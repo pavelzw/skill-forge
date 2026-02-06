@@ -1,0 +1,37 @@
+context:
+  skill: my-skill
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+
+source:
+  git: https://github.com/my-skill/my-skill
+  rev: cf9a8a624718607352f29338da830d2844fa879e
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/etc/agent-skills/${{ skill }}
+    - cp -R skills/${{ skill }}/* $PREFIX/etc/agent-skills/${{ skill }}
+
+tests:
+  - package_contents:
+      files:
+        - etc/agent-skills/${{ skill }}/SKILL.md
+        - etc/agent-skills/${{ skill }}/references/*.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/etc/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: ${{ skill }} agent skill
+  homepage: https://skills.sh/my-skill/my-skill/web-design-guidelines
+  repository: https://github.com/my-skill/my-skill
+  documentation: https://skills.sh/my-skill/my-skill/web-design-guidelines
+  license: MIT
+  license_file: LICENSE

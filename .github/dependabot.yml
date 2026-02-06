@@ -1,0 +1,22 @@
+version: 2
+registries:
+  github:
+    type: git
+    url: https://github.com
+    username: x-access-token
+    password: ${{ secrets.DEPENDABOT_CONTENT_PAT }}
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    registries:
+      - github
+    groups:
+      gh-actions:
+        patterns:
+          - "*"
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: ci

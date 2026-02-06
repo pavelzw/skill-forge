@@ -1,0 +1,48 @@
+repos:
+  - repo: local
+    hooks:
+      # ensure pixi environments are up to date
+      # workaround for https://github.com/prefix-dev/pixi/issues/1482
+      - id: pixi-install
+        name: Make sure pixi envs are up to date
+        entry: pixi install
+        language: system
+        always_run: true
+        require_serial: true
+        pass_filenames: false
+      # taplo
+      - id: taplo
+        name: taplo
+        entry: pixi run taplo format
+        language: system
+        types: [toml]
+      # pre-commit-hooks
+      - id: trailing-whitespace-fixer
+        name: trailing-whitespace-fixer
+        entry: pixi run trailing-whitespace-fixer
+        language: system
+        types: [text]
+      - id: end-of-file-fixer
+        name: end-of-file-fixer
+        entry: pixi run end-of-file-fixer
+        language: system
+        types: [text]
+      - id: mixed-line-ending
+        name: mixed-line-ending
+        entry: pixi run mixed-line-ending
+        language: system
+        types: [text]
+      # typos
+      - id: typos
+        name: typos
+        entry: pixi run typos --force-exclude
+        language: system
+        types: [text]
+        require_serial: true
+      # zizmor
+      - id: zizmor
+        name: zizmor
+        entry: pixi run zizmor --min-severity high --fix .
+        language: system
+        types: [yaml]
+        pass_filenames: false

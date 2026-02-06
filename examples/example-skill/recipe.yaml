@@ -1,0 +1,31 @@
+context:
+  skill: my-skill
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/etc/agent-skills/${{ skill }}
+    - cp $RECIPE_DIR/SKILL.md $PREFIX/etc/agent-skills/${{ skill }}/SKILL.md
+
+tests:
+  - package_contents:
+      files:
+        - etc/agent-skills/${{ skill }}/SKILL.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/etc/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: ${{ skill }} agent skill
+  homepage: https://github.com/pavelzw/skill-forge
+  repository: https://github.com/pavelzw/skill-forge
+  documentation: https://github.com/pavelzw/skill-forge
+  license: BSD-3-Clause
