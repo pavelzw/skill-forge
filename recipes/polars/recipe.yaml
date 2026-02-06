@@ -1,0 +1,32 @@
+context:
+  skill: polars
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+source:
+  git: https://github.com/k-dense-ai/claude-scientific-skills
+  rev: 3a5f2e2227d64679bbe998acfea53007102b4d94
+  patches:
+    - fix-skill.patch
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp -R scientific-skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+about:
+  summary: ${{ skill }} agent skill
+  homepage: https://skills.sh/k-dense-ai/claude-scientific-skills/polars
+  repository: https://github.com/k-dense-ai/claude-scientific-skills
+  documentation: https://skills.sh/k-dense-ai/claude-scientific-skills/polars
+  license: MIT
+  license_file: LICENSE.md

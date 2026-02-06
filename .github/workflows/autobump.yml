@@ -1,0 +1,52 @@
+name: Autobump
+on:
+  workflow_dispatch:
+    inputs:
+      skill:
+        description: Skill to bump.
+        required: true
+  schedule:
+    - cron: "0 5 * * *"
+
+jobs:
+  bump:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # git-main strategy (track main branch)
+          - skill: polars
+            strategy: git-main
+    name: Bump ${{ matrix.skill }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Set up Pixi
+        uses: prefix-dev/setup-pixi@82d477f15f3a381dbcc8adc1206ce643fe110fb7 # v0.9.3
+
+      - name: Bump version
+        run: pixi run .github/scripts/update.sh ${{ matrix.skill }} ${{ matrix.strategy }}
+        id: bump
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Create Pull Request
+        if: (github.event_name == 'schedule' || github.event.inputs.skill == matrix.skill) && steps.bump.outputs.old-version != steps.bump.outputs.new-version
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          title: Bump ${{ matrix.skill }} from ${{ steps.bump.outputs.old-version }} to ${{ steps.bump.outputs.new-version }}
+          commit-message: Bump ${{ matrix.skill }} from ${{ steps.bump.outputs.old-version }} to ${{ steps.bump.outputs.new-version }}
+          branch: bump-${{ matrix.skill }}
+          delete-branch: true
+          body: |
+            # ${{ matrix.skill }}
+
+            `${{ steps.bump.outputs.old-version }}` -> `${{ steps.bump.outputs.new-version }}`
+
+            Strategy: `${{ matrix.strategy }}`
