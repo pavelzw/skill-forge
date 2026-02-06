@@ -1,13 +1,13 @@
 context:
-  skill: typst
+  skill: sqlalchemy
 
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.2"
+  version: "0.0.1"
 
 source:
-  url: https://raw.githubusercontent.com/typst/typst/refs/heads/main/LICENSE
-  sha256: 62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a
+  url: https://raw.githubusercontent.com/sqlalchemy/sqlalchemy/refs/heads/main/LICENSE
+  sha256: e862bb5b904fb5513c3e14288d7a25a12eb0ecc7847a0a965d310e9a955e7cb9
 
 build:
   number: 0
@@ -15,17 +15,15 @@ build:
   script:
     - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
     - cp $RECIPE_DIR/SKILL.md $PREFIX/share/agent-skills/${{ skill }}/SKILL.md
-    - cp -R $RECIPE_DIR/references $PREFIX/share/agent-skills/${{ skill }}/
 
 requirements:
   run_constraints:
-    - typst >=0.14.2,<0.15
+    - sqlalchemy >=2.0.46,<3
 
 tests:
   - package_contents:
       files:
         - share/agent-skills/${{ skill }}/SKILL.md
-        - share/agent-skills/${{ skill }}/references/*.md
       strict: true
   - script:
       - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
@@ -35,8 +33,8 @@ tests:
 
 about:
   summary: ${{ skill }} agent skill
-  homepage: https://typst.app
-  repository: https://github.com/typst/typst
-  documentation: https://typst.app/docs
-  license: Apache-2.0
+  homepage: https://www.sqlalchemy.org
+  repository: https://github.com/sqlalchemy/sqlalchemy
+  documentation: https://docs.sqlalchemy.org
+  license: MIT
   license_file: LICENSE

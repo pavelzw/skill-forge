@@ -2,7 +2,7 @@ context:
   skill: polars
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.1"
+  version: "0.0.2"
 source:
   git: https://github.com/k-dense-ai/claude-scientific-skills
   rev: 3a5f2e2227d64679bbe998acfea53007102b4d94
@@ -14,6 +14,9 @@ build:
   script:
     - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
     - cp -R scientific-skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
+requirements:
+  run_constraints:
+    - polars >=1.38.0,<2
 tests:
   - package_contents:
       files:
