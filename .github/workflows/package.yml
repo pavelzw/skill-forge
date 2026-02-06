@@ -54,6 +54,7 @@ jobs:
           path: ${{ env.GITHUB_STEP_SUMMARY }}
           ignore_empty: true
       - name: Upload build artifacts
+        if: steps.check.outputs.has-packages == 'true'
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: output
