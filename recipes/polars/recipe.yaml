@@ -2,7 +2,7 @@ context:
   skill: polars
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.2"
+  version: "0.0.3"
 source:
   git: https://github.com/k-dense-ai/claude-scientific-skills
   rev: 3a5f2e2227d64679bbe998acfea53007102b4d94
@@ -27,7 +27,12 @@ tests:
       run:
         - skills-ref
 about:
-  summary: ${{ skill }} agent skill
+  summary: Agent skill for Polars DataFrame library
+  description: |
+    Fast in-memory DataFrame library for datasets that fit in RAM:
+    - Lazy evaluation and parallel execution
+    - Apache Arrow backend for efficient data processing
+    - ETL pipelines and data analysis
   homepage: https://skills.sh/k-dense-ai/claude-scientific-skills/polars
   repository: https://github.com/k-dense-ai/claude-scientific-skills
   documentation: https://skills.sh/k-dense-ai/claude-scientific-skills/polars

@@ -3,7 +3,7 @@ context:
 
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.1"
+  version: "0.0.2"
 
 source:
   url: https://raw.githubusercontent.com/sqlalchemy/sqlalchemy/refs/heads/main/LICENSE
@@ -32,7 +32,12 @@ tests:
         - skills-ref
 
 about:
-  summary: ${{ skill }} agent skill
+  summary: Agent skill for SQLAlchemy ORM and SQL toolkit
+  description: |
+    Python SQL toolkit and Object Relational Mapper (ORM):
+    - Define models and build queries
+    - Manage sessions and transactions
+    - Interact with SQL databases using Python objects
   homepage: https://www.sqlalchemy.org
   repository: https://github.com/sqlalchemy/sqlalchemy
   documentation: https://docs.sqlalchemy.org

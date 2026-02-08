@@ -24,7 +24,10 @@ tests:
         - skills-ref
 
 about:
-  summary: ${{ skill }} agent skill
+  summary: Example agent skill for demonstration purposes
+  description: |
+    Minimal example skill that demonstrates the agent skill packaging format.
+    Use as a template when creating new skills.
   homepage: https://github.com/pavelzw/skill-forge
   repository: https://github.com/pavelzw/skill-forge
   documentation: https://github.com/pavelzw/skill-forge
