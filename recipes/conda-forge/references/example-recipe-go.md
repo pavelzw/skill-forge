@@ -56,3 +56,25 @@ Key points:
 - Use `${{ compiler("go-cgo") }}` if the package uses cgo
 - Use `go-licenses` to collect dependency licenses
 - Place source in `target_directory: src` to keep license output separate
+
+In case a license is missing, use `--skip ...` to skip the package but ensure it's still part of the package by manually downloading it from `https://raw.githubusercontent.com/.../refs/heads/master/LICENSE`:
+
+```yaml
+source:
+  - url: https://github.com/example-package/example-package/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: ...
+    target_directory: src
+  - url: https://raw.githubusercontent.com/.../refs/heads/master/LICENSE
+    sha256: ...
+    file_name: LICENSE-other-package
+
+# ...
+
+about:
+  # ...
+  license: MIT
+  license_file:
+    - src/LICENSE
+    - library_licenses/
+    - LICENSE-other-package
+```

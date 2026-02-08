@@ -3,7 +3,7 @@ context:
 
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.1"
+  version: "0.0.2"
 
 source:
   url: https://raw.githubusercontent.com/conda-forge/conda-forge.github.io/refs/heads/main/LICENSE
