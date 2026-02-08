@@ -171,7 +171,9 @@ ONLY modify files in the recipe directory. All other directories are autogenerat
 ls .ci_support/
 ```
 
-### Step 4.2: Run build (prefer osx_arm64 or linux_64)
+### Step 4.2: Run build
+
+Select the machine you are running on.
 
 ```bash
 pixi exec rattler-build build --recipe recipe --variant-config .ci_support/<VARIANT>.yaml
@@ -199,7 +201,7 @@ Fix any linting errors and re-lint.
 
 Commit any manual changes you performed in `recipe/`.
 
-### Step 5.3: Rerender
+### Step 5.3: Rerender after committing manual changes
 
 ```bash
 pixi exec conda-smithy rerender --no-check-uptodate --commit=auto
