@@ -62,12 +62,21 @@ Inside `$...$`, these characters have special meaning and need `\` to use litera
 | `&` | Alignment | `\&` |
 | `#` | Code/variable access | `\#` |
 
-### Unicode Escapes
+### Symbols and Special Characters
 
-Insert any Unicode codepoint with `\u{hex}`:
+Typst has built-in named symbols for common characters. Prefer these over `\u{...}` unicode escapes:
 ```typst
-Emoji: \u{1f600}
-En dash: \u{2013}
+// Dashes
+En dash: --    Em dash: ---
+
+// Emojis via #emoji namespace
+#emoji.avocado #emoji.face.happy
+
+// Named symbols via #sym namespace
+#sym.arrow.r  #sym.checkmark  #sym.euro
+
+// Direct UTF-8 characters also work
+Ü, ñ, ö — just type them directly
 ```
 
 ### Common Mistakes
