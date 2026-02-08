@@ -32,6 +32,7 @@ jobs:
           if [ ! -d "./output" ] || [ -z "$(find ./output -type f -name "*.conda" 2>/dev/null)" ]; then
             echo "❌ no package was built, did you increment the recipe version?" >> "$GITHUB_STEP_SUMMARY"
           fi
+          cp "$GITHUB_STEP_SUMMARY" pr-comment.md
         env:
           RATTLER_BUILD_ENABLE_GITHUB_INTEGRATION: true
           RATTLER_BUILD_COLOR: always
@@ -51,7 +52,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@67d0dec7b07ed060a405f9b2a64b8ab319fdd7db # v2.9.2
         with:
           header: package-build
-          path: ${{ env.GITHUB_STEP_SUMMARY }}
+          path: pr-comment.md
           ignore_empty: true
       - name: Upload build artifacts
         if: steps.check.outputs.has-packages == 'true'
