@@ -28,6 +28,70 @@ Typst operates in three modes:
 | **Math** | Mathematical formulas | `$...$` for inline, `$ ... $` with spaces for display |
 | **Code** | Scripting features | Prefix with `#` |
 
+## Escaping Special Characters
+
+CRITICAL: When writing literal text in markup mode, you MUST escape special characters with a backslash (`\`). An unescaped `#` is the most common source of compilation errors — it tells Typst to enter code mode, so any literal `#` in text (e.g. "C#", "issue #42") must be written as `\#`.
+
+### Markup Mode Special Characters
+
+| Character | Meaning | Escape | Example |
+|-----------|---------|--------|---------|
+| `\` | Escape character / line break | `\\` | `path\\to\\file` |
+| `#` | Code expression | `\#` | `Tweet at us \#ad`, `C\#`, `\$1.50 per \#item` |
+| `*` | Bold text | `\*` | `5 \* 3 = 15` |
+| `_` | Italic text | `\_` | `file\_name\_here` |
+| `` ` `` | Raw text / code | `` \` `` | |
+| `$` | Math mode | `\$` | `costs \$1.50` |
+| `<` | Label | `\<` | `a \< b in text` |
+| `@` | Reference / citation | `\@` | `email\@example.com` |
+| `~` | Non-breaking space | `\~` | |
+| `'` | Smart quote | `\'` | |
+| `"` | Smart quote | `\"` | |
+
+Note: `=`, `-`, `+`, `/` only have special meaning at the start of a line (headings, lists, term lists). They do not need escaping mid-sentence.
+
+### Math Mode Special Characters
+
+Inside `$...$`, these characters have special meaning and need `\` to use literally:
+
+| Character | Meaning | Escape |
+|-----------|---------|--------|
+| `_` | Subscript | `\_` |
+| `^` | Superscript | `\^` |
+| `/` | Fraction | `\/` |
+| `&` | Alignment | `\&` |
+| `#` | Code/variable access | `\#` |
+
+### Unicode Escapes
+
+Insert any Unicode codepoint with `\u{hex}`:
+```typst
+Emoji: \u{1f600}
+En dash: \u{2013}
+```
+
+### Common Mistakes
+
+```typst
+// WRONG — # starts code mode, causes compilation error:
+I love C# programming
+
+// CORRECT:
+I love C\# programming
+
+// WRONG — $ enters math mode:
+The price is $10
+
+// CORRECT:
+The price is \$10
+
+// WRONG — @ tries to find a reference:
+Contact me @twitter
+
+// CORRECT:
+Contact me \@twitter
+```
+
 ## Basic Markup Syntax
 
 ```typst
