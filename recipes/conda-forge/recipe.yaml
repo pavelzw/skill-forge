@@ -1,0 +1,38 @@
+context:
+  skill: conda-forge
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+
+source:
+  url: https://raw.githubusercontent.com/conda-forge/conda-forge.github.io/refs/heads/main/LICENSE
+  sha256: d82d06b562960950be354a34b1d8f5b34baf67d059373c85cdfecf150fb617e9
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp $RECIPE_DIR/SKILL.md $PREFIX/share/agent-skills/${{ skill }}/SKILL.md
+    - cp -R $RECIPE_DIR/references $PREFIX/share/agent-skills/${{ skill }}/
+
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+        - share/agent-skills/${{ skill }}/references/*.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: ${{ skill }} agent skill
+  homepage: https://conda-forge.org
+  repository: https://github.com/pavelzw/skill-forge
+  documentation: https://conda-forge.org/docs
+  license: BSD-3-Clause
+  license_file: LICENSE
