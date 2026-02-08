@@ -166,6 +166,7 @@ ONLY modify files in the recipe directory. All other directories are autogenerat
 **Objective**: Verify the fix works before submitting.
 
 ### Step 4.1: List variant configs
+
 ```bash
 ls .ci_support/
 ```
@@ -194,32 +195,25 @@ pixi exec conda-smithy lint --conda-forge .
 
 Fix any linting errors and re-lint.
 
+### Step 5.2: Commit manual changes
+
+Commit any manual changes you performed in `recipe/`.
+
 ### Step 5.3: Rerender
 
 ```bash
 pixi exec conda-smithy rerender --no-check-uptodate --commit=auto
 ```
 
-### Step 5.4: Stage and review
-
-```bash
-git add -A
-git status
-```
+This will autogenerate files and also commit them (if there are changes).
 
 ---
 
-## Phase 6: Commit and Submit
+## Phase 6: Submit changes
 
 **Objective**: Create a PR with the fix FROM YOUR FORK.
 
-### Step 6.1: Commit
-
-```bash
-git commit -m "Fix: <brief description>"
-```
-
-### Step 6.2: Push
+### Step 6.1: Push
 
 In case you have write access to the fork of the failing CI, you can push directly to the fork.
 
@@ -233,7 +227,7 @@ git push -u origin <BRANCH_NAME>
 
 Then, create a PR from your fork to the upstream repository.
 
-### Step 6.3: Verify CI
+### Step 6.2: Verify CI
 
 Check the CI status on the PR. Ensure all checks pass.
 If they don't, investigate the failures and fix them.
@@ -250,3 +244,4 @@ Provide a summary:
 4. **Linting**: Pass/fail
 5. **Rerender**: Applied or not
 6. **PR URL**: Link to the submitted PR
+7. **PR Changes URL**: <PR URL>/changes for easy diff views

@@ -70,3 +70,7 @@ requirements:
 In `conda-forge.yml`, you define `tests: native_and_emulated`.
 Builds for `linux_aarch64` and `linux_ppc64le` can run tests because they can be emulated using QEMU.
 Cross-builds for `osx_arm64` from `osx_64` cannot run tests because they can't be emulated.
+
+### linux-ppc64le
+
+`linux-ppc64le` only works for Go recipes at the moment. Only include it when you are faced with a cross-compilation scenario where `${{ compiler('go-nocgo') }}` is used.
