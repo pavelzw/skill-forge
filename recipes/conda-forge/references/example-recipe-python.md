@@ -55,7 +55,7 @@ Key points:
 - Use `noarch: python` for pure Python packages (no compiled extensions)
 - Match the `host` build backend to `pyproject.toml`'s `[build-system].requires`
 - Always include `pip_check: true` in tests
-- Use `--no-deps --no-build-isolation` in the pip install command'
+- Use `--no-deps --no-build-isolation` in the pip install command
 - Define `entry_points` that are defined in `[project.scripts]` in `pyproject.toml`
 
 ## With compiled extensions

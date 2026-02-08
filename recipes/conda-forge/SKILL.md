@@ -77,24 +77,24 @@ gh pr view <PR_NUMBER> --repo <OWNER/REPO> --json headRefName,headRepository,sta
 ### Step 1.3: Fetch build timeline
 
 ```bash
-curl -s "https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/builds/<BUILD_ID>/timeline?api-version=6.0" > <temp-dir>
+curl -s "https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/builds/<BUILD_ID>/timeline?api-version=6.0" > $TMPFILE
 ```
 
 ### Step 1.4: Find failed step
 
 ```bash
-jq '.records[] | select(.result == "failed") | {name, id, log: .log.url}' <temp-dir>
+jq '.records[] | select(.result == "failed") | {name, id, log: .log.url}' $TMPFILE
 ```
 
 ### Step 1.5: Fetch error log
 
 ```bash
-curl -s "<LOG_URL>" > <temp-dir>
+curl -s "<LOG_URL>" > $TMPFILE
 ```
 
 ### Step 1.6: Read error log
 
-Read the last 200 lines of `<temp-dir>`.
+Read the last 200 lines of `$TMPFILE`.
 
 **Checkpoint**: You must understand the root cause before proceeding.
 
@@ -107,7 +107,7 @@ Read the last 200 lines of `<temp-dir>`.
 ### Step 2.1: Clone YOUR FORK (not the main repo)
 
 ```bash
-cd <temp-dir> && gh repo fork conda-forge/<FEEDSTOCK> --clone
+cd $TMPFILE && gh repo fork conda-forge/<FEEDSTOCK> --clone
 ```
 
 ### Step 2.2: Checkout PR branch
@@ -124,7 +124,7 @@ git remote -v
 
 Confirm `origin` points to YOUR fork, `upstream` to `conda-forge/<FEEDSTOCK>`.
 
-### Step 2.7: Read recipe and verify schema version
+### Step 2.4: Read recipe and verify schema version
 
 - Read `recipe/recipe.yaml` or `recipe.yaml`
 

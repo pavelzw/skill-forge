@@ -27,7 +27,6 @@ This generates new CI variant configs in `.ci_support/` for the additional platf
 | `build_platform.linux_aarch64` | `linux_64` | Build ARM64 Linux packages on x86_64 Linux |
 | `build_platform.linux_ppc64le` | `linux_64` | Build PPC64LE Linux packages on x86_64 Linux |
 | `test` | `native_and_emulated` | Run tests using emulation where possible |
-| `conda_install_tool` | `pixi` | Use pixi for faster environment solving |
 
 ## Platform types
 

@@ -64,10 +64,10 @@ Use this when feedrattler fails or produces an incorrect conversion.
 6. Commit those changes
 7. Rerender: `pixi exec conda-smithy rerender --commit=all`
 8. Lint the recipe: `pixi exec conda-smithy lint --feedstock-dir . recipe/`
-8. Test locally: `pixi exec rattler-build build --recipe recipe --variant-config .ci_support/<VARIANT>.yaml` (depends on your system)
-9. Submit a draft PR from your fork and check the CI.
-10. If CI passes, mark the PR as ready for review.
-11. If CI fails, diagnose and fix the issues (see below).
+9. Test locally: `pixi exec rattler-build build --recipe recipe --variant-config .ci_support/<VARIANT>.yaml` (depends on your system)
+10. Submit a draft PR from your fork and check the CI.
+11. If CI passes, mark the PR as ready for review.
+12. If CI fails, diagnose and fix the issues (see below).
 
 ### Key v0 to v1 differences
 
@@ -78,7 +78,7 @@ Use this when feedrattler fails or produces an incorrect conversion.
 | Selectors | `# [win]` comments | `if:` / `then:` / `else:` |
 | Compiler | `{{ compiler('c') }}` | `${{ compiler('c') }}` |
 | Pin compatible | `{{ pin_compatible('pkg') }}` | `${{ pin_compatible('pkg') }}` |
-| Test python imports | `test.imports` | `tests[].pythons.imports` |
+| Test python imports | `test.imports` | `tests[].python.imports` |
 | Test commands | `test.commands` | `tests[].script` |
 | Package contents tests | not available | `tests[].package_contents` |
 | Build script | `build.script` | `build.script` (list of strings) |
