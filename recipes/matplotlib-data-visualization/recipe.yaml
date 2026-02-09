@@ -1,0 +1,39 @@
+context:
+  skill: matplotlib-data-visualization
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp $RECIPE_DIR/SKILL.md $PREFIX/share/agent-skills/${{ skill }}/SKILL.md
+
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: Chart design and data storytelling guidelines for matplotlib
+  description: |
+    Data visualization design guidelines for matplotlib focused on storytelling:
+    - Choosing the right chart type (bar, line, slope) and avoiding pie charts
+    - Reducing clutter by removing borders, gridlines, and legends
+    - Using color intentionally with grey baselines and accent highlights
+    - Labeling data directly on charts using ax.text and ax.annotate
+    - Writing titles that state the takeaway, not the chart type
+    - Formatting axes, ordering data, and ensuring accessibility
+  homepage: https://matplotlib.org
+  repository: https://github.com/pavelzw/skill-forge
+  documentation: https://matplotlib.org/stable/
+  license: BSD-3-Clause
