@@ -6,22 +6,15 @@
 
 Before writing anything, gather information about the package:
 
-- **Search prefix.dev (conda-forge)**: Use the GraphQL API to find existing packages and their dependencies:
+- **Search conda-forge**: Use `pixi search` to find existing packages:
 
   ```bash
-  # Search for packages by name similarity
-  curl -s -X POST 'https://prefix.dev/api/graphql' \
-    -H 'Content-Type: application/json' \
-    -d '{"query":"{ channel(name: \"conda-forge\") { packages(limit: 5, orderBy: {bySimilarity: {field: NAME, matches: \"PACKAGE_NAME\"}}) { page { name summary latestVersion { version } } } } }"}' | python3 -m json.tool
+  # Search for packages by name
+  pixi search 'PACKAGE_NAME*' -c conda-forge
 
-  # Get detailed info about a specific package (dependencies, license, urls)
-  curl -s -X POST 'https://prefix.dev/api/graphql' \
-    -H 'Content-Type: application/json' \
-    -d '{"query":"{ package(channelName: \"conda-forge\", name: \"PACKAGE_NAME\") { name summary latestVersion { version platforms } urls { url kind } variants(limit: 1, platform: \"linux-64\") { page { version license rawIndex } } } }"}' | python3 -m json.tool
+  # Get detailed info about a specific package (dependencies, version, etc.)
+  pixi search PACKAGE_NAME -c conda-forge --verbose
   ```
-
-  The `rawIndex` field in variants contains the full dependency list under `depends`.
-  The `urls` field with `kind: "FEEDSTOCK"` links to the conda-forge feedstock recipe.
 
 - **Check Wolfi**: Search for the package in Wolfi's package repository (https://github.com/wolfi-dev/os) to see how they build it. Wolfi recipes use `melange` YAML format and are a great reference for C/C++ packages.
 - **Check Homebrew**: Search for the formula at https://github.com/Homebrew/homebrew-core for build flags, dependencies, and patches.
@@ -29,7 +22,11 @@ Before writing anything, gather information about the package:
 - **Check Yggdrasil**: https://github.com/JuliaPackaging/Yggdrasil/
 - **Check upstream**: Find the official source (GitHub, GitLab, tarball URL) to understand build system (autotools, cmake, meson, etc.).
 
-**Important**: Unlike Wolfi or Nix, rattler-build packages install to a `$PREFIX` directory, not to system paths. Always configure with `--prefix=$PREFIX` or equivalent.
+**Important**: Unlike Wolfi or Nix, rattler-build packages install to a prefix directory, not to system paths. Always configure with `--prefix=$PREFIX` or equivalent.
+
+> **`$PREFIX` vs `${{ PREFIX }}`**: Use the shell variable `$PREFIX` inside build scripts
+> (e.g., `./configure --prefix=$PREFIX`). Use the Jinja expression `${{ PREFIX }}` inside
+> YAML fields (e.g., `build.script` list entries in recipe.yaml).
 
 ### 2. Create the recipe directory
 
@@ -46,6 +43,10 @@ Create `recipes/<package-name>/recipe.yaml`. See the recipe format reference in 
 Download the source and compute sha256:
 
 ```bash
+# On most Linux systems:
+curl -sL <source-url> | sha256sum
+
+# On macOS or systems with shasum:
 curl -sL <source-url> | shasum -a 256
 ```
 

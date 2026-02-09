@@ -13,7 +13,7 @@ echo "Work directory: $WORK_DIR"
 ### 2. Verify source info exists
 
 ```bash
-cat "$WORK_DIR/.source_info.json" | jq .
+jq . "$WORK_DIR/.source_info.json"
 ```
 
 This file tracks the original source files so `create-patch` knows what was modified.
@@ -67,7 +67,7 @@ cd "$WORK_DIR"
 rattler-build create-patch \
   --directory . \
   --name <patch-name> \
-  --exclude "*.o,*.so,*.dylib,*.a,*.pyc,__pycache__"
+  --exclude "*.o,*.so,*.dylib,*.a,*.pyc,__pycache__,build/"
 ```
 
 This creates `<patch-name>.patch` in the current directory.

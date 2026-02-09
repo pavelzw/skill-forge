@@ -10,7 +10,7 @@ find output/ -name "*<package-name>*" -type f \( -name "*.conda" -o -name "*.tar
 
 ## Extracting and Inspecting
 
-### For `.conda` packages (zstd-compressed zip)
+### For `.conda` packages (ZIP containing zstd-compressed tarballs)
 
 `.conda` files are ZIP archives containing:
 - `metadata.json` - package metadata
@@ -29,10 +29,18 @@ unzip -q <package.conda>
 ls -la
 
 # Extract the package contents
+# Option 1 (requires GNU tar built with zstd support):
 tar --zstd -xf pkg-*.tar.zst
 
+# Option 2 (more portable: requires zstd and tar):
+zstd -d < pkg-*.tar.zst | tar -xvf -
+
 # Extract the info
+# Option 1 (requires GNU tar built with zstd support):
 tar --zstd -xf info-*.tar.zst
+
+# Option 2 (more portable: requires zstd and tar):
+zstd -d < info-*.tar.zst | tar -xvf -
 ```
 
 ### For `.tar.bz2` packages
