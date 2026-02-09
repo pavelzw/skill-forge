@@ -12,6 +12,7 @@ They are managed by [pixi-skills](https://github.com/pavelzw/pixi-skills) and ca
 | Skill | Package | Description |
 |-------|---------|-------------|
 | [conda-forge](https://conda-forge.org) | `agent-skill-conda-forge` | conda-forge packaging operations |
+| [Matplotlib Data Visualization](https://matplotlib.org) | `agent-skill-matplotlib-data-visualization` | Chart design and data storytelling guidelines |
 | [Polars](https://pola.rs) | `agent-skill-polars` | DataFrame library for fast data manipulation |
 | [SQLAlchemy](https://www.sqlalchemy.org) | `agent-skill-sqlalchemy` | Python SQL toolkit and ORM |
 | [Typst](https://typst.app) | `agent-skill-typst` | Modern markup-based typesetting system |
