@@ -1,11 +1,6 @@
 ---
 name: conda-forge
-description: >-
-  Performs conda-forge operations: fixes failing builds by analyzing CI logs,
-  creates new packages via staged-recipes, adds cross-compilation and ARM
-  support to feedstocks, and migrates recipes from v0 to v1 format. Use when
-  working with conda-forge feedstocks, staged-recipes, build failures, recipe
-  migrations, or when the user mentions conda-forge.
+description: Performs conda-forge operations. Fixes failing builds by analyzing CI logs, creates new packages via staged-recipes, adds cross-compilation and ARM support to feedstocks, and migrates recipes from v0 to v1 format. Use when working with conda-forge feedstocks, staged-recipes, build failures, recipe migrations, or when the user mentions conda-forge.
 license: BSD-3-Clause
 compatibility: >-
   Requires gh (GitHub CLI), git, curl, jq, tar, and pixi with
