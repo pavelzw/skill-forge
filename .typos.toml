@@ -1,2 +1,5 @@
 [files]
 extend-exclude = ["*.patch"]
+
+[default.extend-words]
+placehold = "placehold"
