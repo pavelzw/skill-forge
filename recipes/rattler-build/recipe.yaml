@@ -1,0 +1,52 @@
+context:
+  skill: rattler-build
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+
+source:
+  url: https://raw.githubusercontent.com/prefix-dev/rattler-build/refs/heads/main/LICENSE
+  sha256: 679d42a76b82a6dc20ffd9048ab45fb2e5557a526113aaedc7419e12f3cfab38
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp $RECIPE_DIR/SKILL.md $PREFIX/share/agent-skills/${{ skill }}/SKILL.md
+    - cp -R $RECIPE_DIR/references $PREFIX/share/agent-skills/${{ skill }}/
+
+requirements:
+  run_constraints:
+    - rattler-build >=0.35.0
+
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+        - share/agent-skills/${{ skill }}/references/*.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: Agent skill for building conda packages with rattler-build
+  description: |
+    Build conda packages with rattler-build:
+    - Create new recipes by researching packages across Wolfi, Homebrew,
+      Nixpkgs, and conda-forge
+    - Build recipes and iterate on failures
+    - Debug failed builds by inspecting work directories, logs, and
+      environment variables
+    - Create patches from modifications in build directories
+    - Inspect built .conda packages (metadata, dependencies, binaries,
+      relocatability)
+  homepage: https://rattler.build
+  repository: https://github.com/prefix-dev/rattler-build
+  documentation: https://rattler.build
+  license: BSD-3-Clause
+  license_file: LICENSE
