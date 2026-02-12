@@ -192,6 +192,13 @@ pixi exec conda-smithy lint --conda-forge .
 
 Fix any linting errors and re-lint.
 
+For `noarch: python` recipes, do not pin Python by writing only a bare version number. Use conda-forge's expected pins:
+
+- `host` section: `python ${{ python_min }}.*`
+- `run` section: `python >=${{ python_min }}`
+- Tests (`tests[].python.python_version` or `tests[].requirements.run`): `python_version: ${{ python_min }}.*` or `python ${{ python_min }}.*`
+- If a newer Python minimum is required than conda-forge's default (3.10), override `python_min` at the top of the recipe (for v1 recipes, use `context`).
+
 ### Step 5.2: Commit manual changes
 
 Commit any manual changes you performed in `recipe/`.
