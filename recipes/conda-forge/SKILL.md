@@ -199,6 +199,8 @@ For `noarch: python` recipes, do not pin Python by writing only a bare version n
 - Tests (`tests[].python.python_version` or `tests[].requirements.run`): `python_version: ${{ python_min }}.*` or `python ${{ python_min }}.*`
 - If a newer Python minimum is required than conda-forge's default (3.10), override `python_min` at the top of the recipe in the `context` section
 
+Building directly might not work in the staged-recipes repository because there, you don't specify `python_min`. You can inject additional context into rattler-build's build by using `--context python_min=3.10`.
+
 ### Step 5.2: Commit manual changes
 
 Commit any manual changes you performed in `recipe/`.
