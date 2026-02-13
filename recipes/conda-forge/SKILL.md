@@ -41,7 +41,7 @@ rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml
 
 For `noarch: python` packages, provide the `python_min` context since staged-recipes doesn't define it:
 ```bash
-rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml --context python_min=3.10
+rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml --variant python_min=3.10
 ```
 
 Submit a draft PR. Watch CI until green. Don't mark as ready for review — let the human do that. To skip a platform, add `skip: win` in the `build` section.
