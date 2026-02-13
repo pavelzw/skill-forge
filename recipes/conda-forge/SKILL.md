@@ -20,6 +20,7 @@ New packages are submitted via [staged-recipes](https://github.com/conda-forge/s
 Fork and branch:
 ```bash
 gh repo fork conda-forge/staged-recipes --clone=true
+cd staged-recipes
 git switch -c <PACKAGE_NAME>
 ```
 
