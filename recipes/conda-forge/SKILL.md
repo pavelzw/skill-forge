@@ -112,7 +112,7 @@ If a tool isn't available locally, use `pixi exec <tool>` to run tools (rattler-
 For `noarch: python` recipes, use conda-forge's pinning conventions:
 - host: `python ${{ python_min }}.*`
 - run: `python >=${{ python_min }}`
-- tests: `python_version: ${{ python_min }}.*` or `python ${{ python_min }}.*`
+- tests: `python_version: ${{ python_min }}.*`
 
 If a newer Python minimum is required than conda-forge's default (3.10), override `python_min` in the `context` section of the recipe.
 
