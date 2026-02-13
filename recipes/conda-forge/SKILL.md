@@ -42,7 +42,7 @@ Test locally:
 rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml
 ```
 
-For `noarch: python` packages, provide the `python_min` context since staged-recipes doesn't define it:
+For `noarch: python` packages, provide a `python_min` variant override since staged-recipes doesn't define it:
 ```bash
 rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml --variant python_min=3.10
 ```
