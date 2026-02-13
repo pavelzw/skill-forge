@@ -88,7 +88,7 @@ Apply the minimal fix needed. Only modify files in the `recipe/` directory.
 
 Always test with a variant config that matches your local platform:
 ```bash
-pixi exec rattler-build build --recipe recipe -m .ci_support/<VARIANT>.yaml
+rattler-build build --recipe recipe -m .ci_support/<VARIANT>.yaml
 ```
 
 ### Finalize Changes
