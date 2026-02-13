@@ -64,7 +64,9 @@ This sets `origin` → your fork, `upstream` → conda-forge repo.
 
 ### Fixing Failing Builds
 
-To diagnose a failing CI build:
+Start by reproducing the issue locally — run a local build (see Test Locally below) and iterate from there. If `rattler-build` fails, it keeps the work directory at `output/bld/rattler-build_.../work` — you can debug with `cd <work> && source build_env.sh`.
+
+If the user explicitly references CI failures or pastes a link, diagnose via Azure Pipelines:
 1. `gh pr view <PR> --repo <OWNER/REPO> --json headRefName,headRepository,statusCheckRollup,url,title`
 2. Find checks with `"conclusion": "FAILURE"` and extract the Azure Pipelines `detailsUrl`
 3. Extract `buildId` from the URL, then fetch the timeline:
@@ -73,8 +75,6 @@ To diagnose a failing CI build:
 5. Read the error log — understand the root cause before making any changes
 
 Apply the minimal fix needed. Only modify files in the `recipe/` directory.
-
-If the error is not trivial, try to reproduce it locally first. If `rattler-build` fails, it keeps the work directory at `output/bld/rattler-build_.../work` — you can debug with `cd <work> && source build_env.sh`.
 
 ### Test Locally
 
@@ -97,7 +97,7 @@ Push to your fork and create a PR to `conda-forge/<FEEDSTOCK>:main`.
 
 ## General
 
-Use `pixi exec <tool>` to run tools (rattler-build, conda-smithy, grayskull, feedrattler) without installing them. Use `mktemp -d` for temporary working directories.
+If a tool isn't available locally, use `pixi exec <tool>` to run tools (rattler-build, conda-smithy, grayskull, feedrattler) without installing them. Use `mktemp -d` for temporary working directories.
 
 ### Python Version Pinning (noarch recipes)
 
