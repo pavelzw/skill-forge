@@ -52,15 +52,20 @@ For submitting multiple related packages, place each in a separate directory und
 
 Work on `recipe/recipe.yaml`. If you only find a `meta.yaml`, you must convert it to `recipe.yaml` first — see [rattler-build-migration.md](references/rattler-build-migration.md).
 
-### Fork Workflow
+### Critical: Always Use a Personal Fork
 
-conda-forge requires all PRs from forks. Never push directly to `conda-forge/<feedstock>`.
+conda-forge requires all PRs to come from forks, NOT from branches in the main feedstock repository.
 
-```bash
-gh repo fork conda-forge/<FEEDSTOCK> --clone
-```
+If you push directly to `conda-forge/<feedstock>`, it will try to upload to conda-forge directly which is not allowed!
 
-This sets `origin` → your fork, `upstream` → conda-forge repo.
+You MUST:
+
+1. Fork the feedstock to your personal GitHub account (or use an existing fork)
+2. Push your fix branch to YOUR fork
+3. Create a PR from <YOUR_USERNAME>:<branch> to conda-forge/<feedstock>:main
+
+Use `gh repo fork conda-forge/<feedstock> --clone` to fork the feedstock.
+This will clone the forked repository with the origin remote pointing to your fork and the upstream remote pointing to the original feedstock.
 
 ### Fixing Failing Builds
 
