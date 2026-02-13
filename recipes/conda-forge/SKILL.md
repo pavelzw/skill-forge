@@ -23,7 +23,9 @@ gh repo fork conda-forge/staged-recipes --clone=true
 git switch -c <PACKAGE_NAME>
 ```
 
-Generate a recipe for Python packages with `pixi exec grayskull pypi --use-v1-format --strict-conda-forge <PACKAGE_NAME>`. For Go or Rust, adapt the templates from [example-recipe-go.md](references/example-recipe-go.md) or [example-recipe-rust.md](references/example-recipe-rust.md). See also [example-recipe-python.md](references/example-recipe-python.md).
+Generate a recipe for Python packages with `pixi exec grayskull pypi --use-v1-format --strict-conda-forge <PACKAGE_NAME>`. Since grayskull creates the `my-package/recipe.yaml` in the CWD, run this command in the `recipes/` directory of your staged-recipes fork.
+
+For Go or Rust, adapt the templates from [example-recipe-go.md](references/example-recipe-go.md) or [example-recipe-rust.md](references/example-recipe-rust.md). See also [example-recipe-python.md](references/example-recipe-python.md).
 
 Place the recipe in `recipes/<PACKAGE_NAME>/recipe.yaml`.
 
