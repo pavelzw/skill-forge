@@ -367,3 +367,121 @@ async def my_agent(inputs: QAInput) -> QAOutput:
 ```
 
 These values appear in `ctx.attributes` and `ctx.metrics` inside evaluators.
+
+## Import Reference
+
+```python
+# Core dataset and case types
+from pydantic_evals import Case, Dataset, set_eval_attribute, increment_eval_metric
+
+# Evaluator base classes and types
+from pydantic_evals.evaluators import (
+    Evaluator,
+    EvaluatorContext,
+    EvaluatorOutput,
+    EvaluationReason,
+    ReportEvaluator,
+    ReportEvaluatorContext,
+)
+
+# Built-in evaluators
+from pydantic_evals.evaluators.common import (
+    Equals,
+    EqualsExpected,
+    Contains,
+    IsInstance,
+    MaxDuration,
+)
+
+# LLM-as-judge evaluator
+from pydantic_evals.evaluators import LLMJudge
+
+# Span-based evaluation (requires logfire extra)
+from pydantic_evals.evaluators import HasMatchingSpan
+from pydantic_evals.otel import SpanQuery
+
+# Dataset generation
+from pydantic_evals.generation import generate_dataset
+```
+
+## Multi-Score Evaluators (Dict Returns)
+
+When `evaluate` returns a `dict`, each key becomes a **separate named column** in the evaluation report. This is the most powerful return type — it lets a single evaluator produce multiple independent scores, assertions, or labels from one evaluation pass.
+
+The report categorizes each value by its type:
+- `bool` values go into `ReportCase.assertions`
+- `int`/`float` values go into `ReportCase.scores`
+- `str` values go into `ReportCase.labels`
+- `EvaluationReason` values are unwrapped and categorized by their inner `.value` type
+
+```python
+@dataclass
+class QualityEvaluator(Evaluator[QAInput, QAOutput]):
+    """Single evaluator that produces multiple report columns."""
+
+    def evaluate(self, ctx: EvaluatorContext[QAInput, QAOutput]) -> dict[str, EvaluationReason | bool | float]:
+        output = ctx.output.answer
+
+        # Each key becomes a separate column in the report
+        return {
+            "is_nonempty": len(output.strip()) > 0,                          # -> assertions
+            "answer_length": float(len(output)),                             # -> scores
+            "contains_expected": EvaluationReason(                           # -> assertions (bool value)
+                value=ctx.expected_output is not None
+                    and ctx.expected_output.answer.lower() in output.lower(),
+                reason=f"Output: {output[:50]}",
+            ),
+            "verbosity": EvaluationReason(                                   # -> scores (float value)
+                value=min(len(output) / 100, 1.0),
+                reason="Normalized length score",
+            ),
+        }
+```
+
+Without dict returns, you would need four separate evaluator classes to produce four columns. With dict returns, one evaluator handles all related checks in a single pass.
+
+By contrast, returning a single scalar (e.g. `return True`) uses the **evaluator class name** as the column name. You can override this by setting `evaluation_name` on the evaluator instance.
+
+## Common Pitfalls
+
+**Custom evaluators must be dataclasses.** The `@dataclass` decorator is required, not just subclassing `Evaluator`. Without it, serialization and construction break silently.
+
+```python
+# WRONG — missing @dataclass
+class MyEval(Evaluator[str, str]):
+    def evaluate(self, ctx: EvaluatorContext[str, str]) -> bool:
+        return ctx.output == ctx.expected_output
+
+# CORRECT
+@dataclass
+class MyEval(Evaluator[str, str]):
+    def evaluate(self, ctx: EvaluatorContext[str, str]) -> bool:
+        return ctx.output == ctx.expected_output
+```
+
+**Always handle `expected_output is None`.** Cases may omit `expected_output`. Evaluators that access `ctx.expected_output` without a None check will crash on those cases.
+
+```python
+@dataclass
+class MyEval(Evaluator[str, str]):
+    def evaluate(self, ctx: EvaluatorContext[str, str]) -> EvaluationReason:
+        if ctx.expected_output is None:
+            return EvaluationReason(value=False, reason="No expected output")
+        # ... safe to use ctx.expected_output here
+```
+
+**The task function receives the full input object.** If `InputsT` is a dataclass, the function receives the whole dataclass instance — not unpacked fields. The function can be sync or async; both work with `evaluate` and `evaluate_sync`.
+
+```python
+@dataclass
+class AgentInput:
+    query: str
+    context: str
+
+# WRONG — unpacked fields
+async def my_agent(query: str, context: str) -> str: ...
+
+# CORRECT — receives the dataclass
+async def my_agent(inputs: AgentInput) -> str:
+    return f"Answer to {inputs.query} given {inputs.context}"
+```
