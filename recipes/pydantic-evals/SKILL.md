@@ -252,7 +252,9 @@ dataset = Dataset(cases=[...], evaluators=[...], report_evaluators=[PassRate(thr
 
 `evaluate` / `evaluate_sync` return an `EvaluationReport` containing:
 - `cases: list[ReportCase]` — successful results, each with `scores` (float), `labels` (str), `assertions` (bool), `metrics`, `task_duration`, `total_duration`
+- `ReportCase` also includes `inputs`, `output`, `expected_output`, and `metadata`
 - `failures: list[ReportCaseFailure]` — failed cases with `error_message` and `error_stacktrace`
+- `ReportCaseFailure` also includes `inputs` and `expected_output`
 - `analyses: list[ReportAnalysis]` — report-level analyses (confusion matrices, precision-recall, etc.)
 
 ```python
