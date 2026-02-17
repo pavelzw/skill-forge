@@ -216,7 +216,45 @@ Pass `custom_evaluator_types` when loading so pydantic-evals can deserialize cus
 
 ## Reporting
 
-`evaluate` / `evaluate_sync` return an `EvaluationReport` with a `print` method:
+`evaluate` / `evaluate_sync` return an `EvaluationReport`.
+
+### EvaluationReport
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | `str` | Experiment name |
+| `cases` | `list[ReportCase]` | Successful case results |
+| `failures` | `list[ReportCaseFailure]` | Cases where the task raised an exception |
+| `analyses` | `list[ReportAnalysis]` | Report-level analyses (confusion matrices, precision-recall, etc.) |
+| `experiment_metadata` | `dict` | Metadata passed to `evaluate(metadata=...)` |
+
+### ReportCase
+
+Each successful case result contains:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `inputs` | `InputsT` | Case inputs |
+| `output` | `OutputsT` | Task output |
+| `expected_output` | `OutputsT \| None` | Expected output |
+| `metadata` | `MetadataT \| None` | Case metadata |
+| `scores` | `dict[str, float]` | Numeric evaluator results (from `float`/`int` returns) |
+| `labels` | `dict[str, str]` | Categorical evaluator results (from `str` returns) |
+| `assertions` | `dict[str, bool]` | Boolean evaluator results (from `bool` returns) |
+| `metrics` | `dict[str, float]` | Runtime metrics from `increment_eval_metric` |
+| `task_duration` | `float` | Time spent in the task function |
+| `total_duration` | `float` | Time including evaluators |
+
+### ReportCaseFailure
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `inputs` | `InputsT` | Case inputs |
+| `expected_output` | `OutputsT \| None` | Expected output |
+| `error_message` | `str` | Exception message |
+| `error_stacktrace` | `str` | Full traceback |
+
+### Printing and Rendering
 
 ```python
 report = dataset.evaluate_sync(my_agent)
@@ -227,7 +265,92 @@ report.print(
 )
 ```
 
-This prints a formatted table showing each case, its inputs/outputs, evaluator scores, and pass/fail status.
+`print` outputs a formatted table showing each case, its inputs/outputs, evaluator scores, and pass/fail status. Use `report.render()` to get the formatted string without printing.
+
+When using `repeat > 1`, access grouped results with `report.case_groups()` and aggregated statistics with `report.averages()`.
+
+## Per-Case Evaluators
+
+Cases can have their own evaluators in addition to dataset-wide ones. Use this when certain cases need specialized checks that don't apply globally.
+
+```python
+from pydantic_evals.evaluators import LLMJudge, MaxDuration
+
+dataset = Dataset(
+    cases=[
+        Case(
+            name="fast_lookup",
+            inputs=QAInput(question="What is 2+2?"),
+            expected_output=QAOutput(answer="4"),
+            evaluators=(MaxDuration(seconds=1.0),),  # only this case must be fast
+        ),
+        Case(
+            name="complex_reasoning",
+            inputs=QAInput(question="Explain quantum entanglement simply."),
+            expected_output=None,
+            evaluators=(
+                LLMJudge(rubric="The explanation should be accurate and accessible to a layperson."),
+            ),
+        ),
+    ],
+    evaluators=[AnswerContainsExpected()],  # applied to ALL cases
+)
+```
+
+Dataset-wide evaluators run on every case. Case-specific evaluators run only on that case. Both sets of results appear in the report.
+
+You can also add an evaluator to a specific case after construction:
+
+```python
+dataset.add_evaluator(MaxDuration(seconds=2.0), specific_case="fast_lookup")
+```
+
+## Report Evaluators
+
+Report evaluators analyze results across all cases (e.g., confusion matrices, precision-recall). They run after all case-level evaluators finish.
+
+```python
+from dataclasses import dataclass
+from pydantic_evals.evaluators import ReportEvaluator, ReportEvaluatorContext
+
+@dataclass
+class PassRate(ReportEvaluator[QAInput, QAOutput]):
+    threshold: float = 0.8
+
+    def evaluate(self, ctx: ReportEvaluatorContext[QAInput, QAOutput]) -> dict[str, float]:
+        total = len(ctx.report.cases)
+        passed = sum(1 for c in ctx.report.cases if c.assertions.get("AnswerContainsExpected"))
+        rate = passed / total if total else 0.0
+        return {"pass_rate": rate, "meets_threshold": float(rate >= self.threshold)}
+```
+
+Add report evaluators to the dataset:
+
+```python
+dataset = Dataset(
+    cases=[...],
+    evaluators=[AnswerContainsExpected()],
+    report_evaluators=[PassRate(threshold=0.9)],
+)
+```
+
+
+## Retries and Repeat
+
+Control reliability of evaluations with `retry_task`, `retry_evaluators`, and `repeat`:
+
+```python
+report = await dataset.evaluate(
+    my_agent,
+    max_concurrency=5,         # run at most 5 cases in parallel
+    repeat=3,                  # run each case 3 times, results grouped by case
+    retry_task=2,              # retry the task up to 2 times on failure
+    retry_evaluators=1,        # retry evaluators up to 1 time on failure
+)
+```
+
+`repeat` is useful for measuring variance in non-deterministic outputs. Results for repeated runs are grouped under the original case name.
+
 
 ## Runtime Attributes and Metrics
 
