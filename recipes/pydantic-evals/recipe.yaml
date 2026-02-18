@@ -5,6 +5,10 @@ package:
   name: agent-skill-${{ skill }}
   version: "0.0.1"
 
+source:
+  url: https://raw.githubusercontent.com/pydantic/pydantic-ai/refs/heads/main/LICENSE
+  sha256: bc0e89738f36944c8106e1947c3d69631f9c33b8f1bcb60ec4f89d677d2dfcf4
+
 build:
   number: 0
   noarch: generic
@@ -36,3 +40,4 @@ about:
   repository: https://github.com/pavelzw/skill-forge
   documentation: https://ai.pydantic.dev/evals/
   license: MIT
+  license_file: LICENSE
