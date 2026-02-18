@@ -23,7 +23,7 @@ from pydantic_evals.evaluators import (
     LLMJudge, HasMatchingSpan,
 )
 from pydantic_evals.evaluators.common import Equals, EqualsExpected, Contains, IsInstance, MaxDuration
-from pydantic_evals.otel import SpanQuery              # requires logfire extra
+from pydantic_evals.otel import SpanQuery               # requires logfire extra
 from pydantic_evals.generation import generate_dataset  # LLM-based dataset generation
 ```
 
@@ -35,7 +35,7 @@ from pydantic_evals.generation import generate_dataset  # LLM-based dataset gene
 
 ```python
 case = Case(
-    name="simple",                          # identifier (optional, but recommended)
+    name="simple",                           # identifier (optional, but recommended)
     inputs="What is the capital of France?", # any type — passed to the task function
     expected_output="Paris",                 # optional — available via ctx.expected_output
     metadata={"difficulty": "easy"},         # optional — available via ctx.metadata
@@ -70,9 +70,9 @@ Every evaluator receives an `EvaluatorContext`:
 |-------|------|-------------|
 | `inputs` | `InputsT` | The case inputs |
 | `output` | `OutputT` | Actual task output |
-| `expected_output` | `OutputT \| None` | Expected output from the case |
-| `metadata` | `MetadataT \| None` | Case metadata |
-| `name` | `str \| None` | Case name |
+| `expected_output` | `OutputT | None` | Expected output from the case |
+| `metadata` | `MetadataT | None` | Case metadata |
+| `name` | `str | None` | Case name |
 | `duration` | `float` | Task execution time in seconds |
 | `span_tree` | `SpanTree` | OpenTelemetry spans recorded during execution |
 | `attributes` | `dict` | Runtime attributes set via `set_eval_attribute` |
@@ -280,11 +280,11 @@ dataset = Dataset[QAInput, QAOutput].from_file(
 ```python
 report = await dataset.evaluate(
     my_agent,
-    max_concurrency=5,     # limit parallel case execution
-    repeat=3,              # run each case N times, results grouped by case name
-    retry_task=2,          # retry task on failure
-    retry_evaluators=1,    # retry evaluators on failure
-    metadata={"run": "v2"},# experiment-level metadata
+    max_concurrency=5,      # limit parallel case execution
+    repeat=3,               # run each case N times, results grouped by case name
+    retry_task=2,           # retry task on failure
+    retry_evaluators=1,     # retry evaluators on failure
+    metadata={"run": "v2"}, # experiment-level metadata
 )
 ```
 
