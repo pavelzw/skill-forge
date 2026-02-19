@@ -329,6 +329,16 @@ async def my_agent(inputs: QAInput) -> QAOutput:
 
 ## Common Pitfalls
 
+**Always explicitly set generic parameters on `Dataset`.** When serializing or deserializing, pydantic-evals needs to know the concrete types. Use `Dataset[InputsT, OutputT, MetadataT]` instead of bare `Dataset`.
+
+```python
+# WRONG — triggers "Could not determine the generic parameters" warning
+dataset = Dataset(cases=[...])
+
+# CORRECT
+dataset = Dataset[MyInput, MyOutput, MyMetadata](cases=[...])
+```
+
 **Custom evaluators must use `@dataclass`.** Without it, serialization and construction break silently.
 
 ```python
