@@ -3,7 +3,7 @@ context:
 
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.1"
+  version: "0.0.2"
 
 source:
   url: https://raw.githubusercontent.com/pydantic/pydantic-ai/refs/heads/main/LICENSE
