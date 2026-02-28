@@ -82,6 +82,13 @@ Use this when feedrattler fails or produces an incorrect conversion.
 | Test commands | `test.commands` | `tests[].script` |
 | Package contents tests | not available | `tests[].package_contents` |
 | Build script | `build.script` | `build.script` (list of strings) |
+| Constraint version of pkg without depending on them | `requirements.run_constrained` | `requirements.run_constraints` | 
+| Run exports | `build.run_exports` | `run.run_exports` |
+| Ignore run exports by name | `build.ignore_run_exports` | `requirements.ignore_run_exports.by_name` | 
+| Ignore run exports from package | `build.ignore_run_exports_from` | `requirements.ignore_run_exports.from_package` | 
+| Homepage | `about.home` | `about.homepage` | 
+| Package hash | `{{ PKG_HASH }}` | `${{ hash }}` |
+| Build number | `{{ PKG_BUILDNUM }}` | No direct equivalent, define `build` or `build_number` in context and use `${{ build }}` | 
 
 ### Common conversion pitfalls
 
@@ -97,3 +104,4 @@ Use this when feedrattler fails or produces an incorrect conversion.
 ```
 - Test section restructuring: v1 uses a list of test objects
 - `pin_subpackage` and `pin_compatible` syntax changes
+- skipping builds is done by listing skipping conditions under `build.skip`, not with selectors
