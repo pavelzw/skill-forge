@@ -70,10 +70,12 @@ You MUST:
 Use `gh repo fork conda-forge/<feedstock> --clone` to fork the feedstock.
 This will clone the forked repository with the origin remote pointing to your fork and the upstream remote pointing to the original feedstock.
 
-**Important**: If the fork already existed, its `main` branch may be out of date with upstream. Always sync it before creating your fix branch:
+**Important**: If the fork already existed, its `main` branch may be out of date with upstream. Always sync it before creating your fix branch. First back up the fork's current `main` in case it has useful commits, then reset to upstream:
 ```bash
 git fetch upstream
 git checkout main
+git branch main-fork-backup
+git push origin main-fork-backup
 git reset --hard upstream/main
 git push origin main --force
 ```
