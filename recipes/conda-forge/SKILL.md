@@ -70,6 +70,14 @@ You MUST:
 Use `gh repo fork conda-forge/<feedstock> --clone` to fork the feedstock.
 This will clone the forked repository with the origin remote pointing to your fork and the upstream remote pointing to the original feedstock.
 
+**Important**: If the fork already existed, its `main` branch may be out of date with upstream. Always sync it before creating your fix branch:
+```bash
+git fetch upstream
+git checkout main
+git reset --hard upstream/main
+git push origin main --force
+```
+
 ### Fixing Failing Builds
 
 Start by reproducing the issue locally — run a local build (see Test Locally below) and iterate from there. If `rattler-build` fails, it keeps the work directory at `output/bld/rattler-build_.../work` — you can debug with `cd <work> && source build_env.sh`.
