@@ -18,6 +18,7 @@ First, determine the workflow by checking the current working directory:
 New packages are submitted via [staged-recipes](https://github.com/conda-forge/staged-recipes). After merge, conda-forge auto-creates a dedicated feedstock.
 
 Fork and branch:
+
 ```bash
 gh repo fork conda-forge/staged-recipes --clone=true
 cd staged-recipes
