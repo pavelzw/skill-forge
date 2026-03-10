@@ -18,6 +18,7 @@ First, determine the workflow by checking the current working directory:
 New packages are submitted via [staged-recipes](https://github.com/conda-forge/staged-recipes). After merge, conda-forge auto-creates a dedicated feedstock.
 
 Fork and branch:
+
 ```bash
 gh repo fork conda-forge/staged-recipes --clone=true
 cd staged-recipes
@@ -31,6 +32,7 @@ For Go or Rust, adapt the templates from [example-recipe-go.md](references/examp
 Place the recipe in `recipes/<PACKAGE_NAME>/recipe.yaml`.
 
 Recipe rules:
+
 - Use source tarballs with SHA256 checksums (compute with `curl -Ls "<URL>" | sha256sum -`)
 - Use SPDX license identifiers and include `license_file`
 - Tests are mandatory (at minimum: import test for Python, `--help` for CLI)
@@ -38,11 +40,13 @@ Recipe rules:
 - Remove any template/placeholder comments
 
 Test locally:
+
 ```bash
 rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml
 ```
 
 For `noarch: python` packages, provide a `python_min` variant override since staged-recipes doesn't define it:
+
 ```bash
 rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml --variant python_min=3.10
 ```
@@ -70,11 +74,23 @@ You MUST:
 Use `gh repo fork conda-forge/<feedstock> --clone` to fork the feedstock.
 This will clone the forked repository with the origin remote pointing to your fork and the upstream remote pointing to the original feedstock.
 
+**Important**: If the fork already existed, its `main` branch may be out of date with upstream. Always sync it before creating your fix branch. First back up the fork's current `main` in case it has useful commits, then reset to upstream:
+
+```bash
+git fetch upstream
+git checkout main
+git branch main-fork-backup
+git push origin main-fork-backup
+git reset --hard upstream/main
+git push origin main --force
+```
+
 ### Fixing Failing Builds
 
 Start by reproducing the issue locally — run a local build (see Test Locally below) and iterate from there. If `rattler-build` fails, it keeps the work directory at `output/bld/rattler-build_.../work` — you can debug with `cd <work> && source build_env.sh`.
 
 If the user explicitly references CI failures or pastes a link, use `cf-job-logs` to fetch Azure CI logs:
+
 1. List failed jobs: `pixi exec cf-job-logs list-jobs --json <PR_URL>`
    - Returns a JSON array of jobs with `id`, `result`, `platform`, and `name` fields
    - The output only contains failed jobs by default; use `--all` to include successful jobs if needed
@@ -92,6 +108,7 @@ Apply the minimal fix needed. Only modify files in the `recipe/` directory.
 ### Test Locally
 
 Always test with a variant config that matches your local platform:
+
 ```bash
 rattler-build build --recipe recipe -m .ci_support/<VARIANT>.yaml
 ```
@@ -99,6 +116,7 @@ rattler-build build --recipe recipe -m .ci_support/<VARIANT>.yaml
 ### Finalize Changes
 
 After all recipe changes, always run:
+
 ```bash
 pixi exec conda-smithy rerender --no-check-uptodate --commit=auto
 pixi exec conda-smithy lint --conda-forge .
@@ -115,6 +133,7 @@ If a tool isn't available locally, use `pixi exec <tool>` to run tools (rattler-
 ### Python Version Pinning (noarch recipes)
 
 For `noarch: python` recipes, use conda-forge's pinning conventions:
+
 - host: `python ${{ python_min }}.*`
 - run: `python >=${{ python_min }}`
 - tests: `python_version: ${{ python_min }}.*`
