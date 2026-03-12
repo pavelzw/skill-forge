@@ -4,7 +4,7 @@ description: Performs conda-forge operations. Fixes failing builds by analyzing 
 license: BSD-3-Clause
 compatibility: >-
   Requires gh (GitHub CLI), git, curl, jq, tar, and pixi with
-  rattler-build and conda-smithy. Requires network access.
+  rattler-build, conda-smithy, and cf-job-logs. Requires network access.
 ---
 
 # Conda-Forge Skill
@@ -89,14 +89,19 @@ git push origin main --force
 
 Start by reproducing the issue locally — run a local build (see Test Locally below) and iterate from there. If `rattler-build` fails, it keeps the work directory at `output/bld/rattler-build_.../work` — you can debug with `cd <work> && source build_env.sh`.
 
-If the user explicitly references CI failures or pastes a link, diagnose via Azure Pipelines:
+If the user explicitly references CI failures or pastes a link, use `cf-job-logs` to fetch Azure CI logs:
 
-1. `gh pr view <PR> --repo <OWNER/REPO> --json headRefName,headRepository,statusCheckRollup,url,title`
-2. Find checks with `"conclusion": "FAILURE"` and extract the Azure Pipelines `detailsUrl`
-3. Extract `buildId` from the URL, then fetch the timeline:
-   `curl -s "https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/builds/<BUILD_ID>/timeline?api-version=6.0"`
-4. Find failed records and fetch their log URLs
-5. Read the error log — understand the root cause before making any changes
+1. List failed jobs: `pixi exec cf-job-logs list-jobs --json <PR_URL>`
+   - Returns a JSON array of jobs with `id`, `result`, `platform`, and `name` fields
+   - The output only contains failed jobs by default; use `--all` to include successful jobs if needed
+   - Pipe to `jq` for filtering if needed
+2. Download a specific job's log: `pixi exec cf-job-logs download-log <PR_URL> <JOB_ID>`
+   - Use the `id` from the `list-jobs` output as `<JOB_ID>`
+   - Logs are sanitized by default (timestamps and known boilerplate removed; `--no-sanitize` is available but rarely needed)
+   - Redirect to a file with `> log.txt` for large logs
+3. Read the error log — understand the root cause before making any changes
+
+Run `pixi exec cf-job-logs --help` or `pixi exec cf-job-logs <command> --help` for the full list of options.
 
 Apply the minimal fix needed. Only modify files in the `recipe/` directory.
 
