@@ -1,0 +1,50 @@
+context:
+  skill: py-rattler
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+
+source:
+  url: https://raw.githubusercontent.com/prefix-dev/rattler/refs/heads/main/LICENSE
+  sha256: 679d42a76b82a6dc20ffd9048ab45fb2e5557a526113aaedc7419e12f3cfab38
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp $RECIPE_DIR/SKILL.md $PREFIX/share/agent-skills/${{ skill }}/SKILL.md
+    - cp -R $RECIPE_DIR/references $PREFIX/share/agent-skills/${{ skill }}/
+
+requirements:
+  run_constraints:
+    - py-rattler >=0.23.0
+
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+        - share/agent-skills/${{ skill }}/references/*.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: Agent skill for programmatic conda operations with py-rattler
+  description: |
+    Python bindings for the rattler conda library:
+    - Solve package dependencies asynchronously
+    - Install packages into conda environments
+    - Manage repodata, channels, and networking with middleware
+    - Work with lock files, shell activation, and virtual packages
+    - Stream and extract conda packages
+    - Index conda channels (filesystem and S3)
+  homepage: https://github.com/prefix-dev/rattler/tree/main/py-rattler
+  repository: https://github.com/pavelzw/skill-forge
+  documentation: https://github.com/prefix-dev/rattler/tree/main/py-rattler
+  license: BSD-3-Clause
+  license_file: LICENSE
