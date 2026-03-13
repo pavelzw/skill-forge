@@ -9,7 +9,7 @@ license: BSD-3-Clause
 
 # py-rattler
 
-py-rattler provides async Python bindings for the [rattler](https://github.com/prefix-dev/rattler) Rust library for working with the conda ecosystem. It powers tools like [pixi](https://pixi.sh) and [rattler-build](https://rattler.build).
+py-rattler provides async Python bindings for the [rattler](https://github.com/conda/rattler) Rust library for working with the conda ecosystem. It powers tools like [pixi](https://pixi.sh) and [rattler-build](https://rattler.build).
 
 Install: `pip install py-rattler` or `pixi add py-rattler`.
 
