@@ -39,7 +39,6 @@ jobs:
         if: (github.event_name == 'schedule' || github.event.inputs.skill == matrix.skill) && steps.bump.outputs.old-version != steps.bump.outputs.new-version
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         with:
-          token: ${{ steps.generate-token.outputs.token }}
           title: Bump ${{ matrix.skill }} from ${{ steps.bump.outputs.old-version }} to ${{ steps.bump.outputs.new-version }}
           commit-message: Bump ${{ matrix.skill }} from ${{ steps.bump.outputs.old-version }} to ${{ steps.bump.outputs.new-version }}
           branch: bump-${{ matrix.skill }}
