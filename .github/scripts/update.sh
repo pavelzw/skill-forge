@@ -8,7 +8,7 @@ usage() {
     echo "Strategies:"
     echo "  git-main              Update to latest commit on main branch"
     echo "  github-latest-release Update to latest GitHub release"
-    echo "  generate              Update REV in generate.py and re-run it"
+    echo "  generate              Update VERSION in generate.py and re-run it"
     echo "  yolo                  Re-fetch URL and update sha256 if changed"
     echo ""
     echo "Examples:"
