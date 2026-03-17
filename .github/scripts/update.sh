@@ -134,24 +134,24 @@ update_generate() {
     local repo
     repo=$(sed -n 's/^REPO = "\(.*\)"/\1/p' "$generate_script")
 
-    echo "Fetching latest commit from $repo main branch..."
-    local latest_rev
-    latest_rev=$(gh api "repos/${repo}/commits/main" --jq '.sha')
+    echo "Fetching latest release from $repo..."
+    local latest_version
+    latest_version=$(gh api "repos/${repo}/releases/latest" --jq '.tag_name' | sed 's/^v//')
 
-    local current_rev
-    current_rev=$(sed -n 's/^REV = "\(.*\)"/\1/p' "$generate_script")
+    local current_version
+    current_version=$(sed -n 's/^VERSION = "\(.*\)"/\1/p' "$generate_script")
 
-    echo "old-version=$current_rev" >> "${GITHUB_OUTPUT:-/dev/stdout}"
-    echo "new-version=$latest_rev" >> "${GITHUB_OUTPUT:-/dev/stdout}"
+    echo "old-version=$current_version" >> "${GITHUB_OUTPUT:-/dev/stdout}"
+    echo "new-version=$latest_version" >> "${GITHUB_OUTPUT:-/dev/stdout}"
 
-    if [[ "$latest_rev" == "$current_rev" ]]; then
-        echo "$skill_name is up to date (rev: $current_rev)"
+    if [[ "$latest_version" == "$current_version" ]]; then
+        echo "$skill_name is up to date (version: $current_version)"
     else
         echo "$skill_name needs update"
-        echo "  current rev: $current_rev"
-        echo "  latest rev:  $latest_rev"
+        echo "  current version: $current_version"
+        echo "  latest version:  $latest_version"
 
-        sed -i.bak "s|^REV = \"$current_rev\"|REV = \"$latest_rev\"|" "$generate_script" && rm -f "$generate_script.bak"
+        sed -i.bak "s|^VERSION = \"$current_version\"|VERSION = \"$latest_version\"|" "$generate_script" && rm -f "$generate_script.bak"
         pixi run -e "generate-${skill_name}" "generate-${skill_name}"
 
         # Bump patch version in generated recipe

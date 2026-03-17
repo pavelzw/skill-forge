@@ -4,7 +4,7 @@ context:
 
 source:
   git: https://github.com/googleworkspace/cli
-  rev: 1308786bdb0cb88e400bc4311b1dd224c7aa2aee
+  tag: v0.16.0
 
 outputs:
   - package:
@@ -17,7 +17,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-admin-reports/SKILL.md $PREFIX/share/agent-skills/gws-admin-reports/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -43,7 +43,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-calendar/SKILL.md $PREFIX/share/agent-skills/gws-calendar/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -69,7 +69,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-calendar-agenda/SKILL.md $PREFIX/share/agent-skills/gws-calendar-agenda/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -95,7 +95,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-calendar-insert/SKILL.md $PREFIX/share/agent-skills/gws-calendar-insert/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -121,7 +121,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-chat/SKILL.md $PREFIX/share/agent-skills/gws-chat/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -147,7 +147,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-chat-send/SKILL.md $PREFIX/share/agent-skills/gws-chat-send/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -173,7 +173,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-classroom/SKILL.md $PREFIX/share/agent-skills/gws-classroom/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -199,7 +199,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-docs/SKILL.md $PREFIX/share/agent-skills/gws-docs/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -225,7 +225,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-docs-write/SKILL.md $PREFIX/share/agent-skills/gws-docs-write/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -251,7 +251,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-drive/SKILL.md $PREFIX/share/agent-skills/gws-drive/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -277,7 +277,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-drive-upload/SKILL.md $PREFIX/share/agent-skills/gws-drive-upload/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -303,7 +303,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-events/SKILL.md $PREFIX/share/agent-skills/gws-events/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -329,7 +329,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-events-renew/SKILL.md $PREFIX/share/agent-skills/gws-events-renew/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -355,7 +355,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-events-subscribe/SKILL.md $PREFIX/share/agent-skills/gws-events-subscribe/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -381,7 +381,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-forms/SKILL.md $PREFIX/share/agent-skills/gws-forms/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -407,7 +407,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-gmail/SKILL.md $PREFIX/share/agent-skills/gws-gmail/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -433,7 +433,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-gmail-forward/SKILL.md $PREFIX/share/agent-skills/gws-gmail-forward/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -459,7 +459,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-gmail-reply/SKILL.md $PREFIX/share/agent-skills/gws-gmail-reply/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -485,7 +485,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-gmail-reply-all/SKILL.md $PREFIX/share/agent-skills/gws-gmail-reply-all/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -511,7 +511,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-gmail-send/SKILL.md $PREFIX/share/agent-skills/gws-gmail-send/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -537,7 +537,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-gmail-triage/SKILL.md $PREFIX/share/agent-skills/gws-gmail-triage/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -563,7 +563,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-gmail-watch/SKILL.md $PREFIX/share/agent-skills/gws-gmail-watch/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -589,7 +589,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-keep/SKILL.md $PREFIX/share/agent-skills/gws-keep/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -615,7 +615,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-meet/SKILL.md $PREFIX/share/agent-skills/gws-meet/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -641,7 +641,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-modelarmor/SKILL.md $PREFIX/share/agent-skills/gws-modelarmor/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -667,7 +667,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-modelarmor-create-template/SKILL.md $PREFIX/share/agent-skills/gws-modelarmor-create-template/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -693,7 +693,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-modelarmor-sanitize-prompt/SKILL.md $PREFIX/share/agent-skills/gws-modelarmor-sanitize-prompt/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -719,7 +719,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-modelarmor-sanitize-response/SKILL.md $PREFIX/share/agent-skills/gws-modelarmor-sanitize-response/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -745,7 +745,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-people/SKILL.md $PREFIX/share/agent-skills/gws-people/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -771,7 +771,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-shared/SKILL.md $PREFIX/share/agent-skills/gws-shared/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
     tests:
       - package_contents:
           files:
@@ -795,7 +795,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-sheets/SKILL.md $PREFIX/share/agent-skills/gws-sheets/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -821,7 +821,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-sheets-append/SKILL.md $PREFIX/share/agent-skills/gws-sheets-append/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -847,7 +847,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-sheets-read/SKILL.md $PREFIX/share/agent-skills/gws-sheets-read/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -873,7 +873,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-slides/SKILL.md $PREFIX/share/agent-skills/gws-slides/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -899,7 +899,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-tasks/SKILL.md $PREFIX/share/agent-skills/gws-tasks/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -925,7 +925,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-workflow/SKILL.md $PREFIX/share/agent-skills/gws-workflow/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -951,7 +951,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-workflow-email-to-task/SKILL.md $PREFIX/share/agent-skills/gws-workflow-email-to-task/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -977,7 +977,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-workflow-file-announce/SKILL.md $PREFIX/share/agent-skills/gws-workflow-file-announce/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -1003,7 +1003,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-workflow-meeting-prep/SKILL.md $PREFIX/share/agent-skills/gws-workflow-meeting-prep/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -1029,7 +1029,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-workflow-standup-report/SKILL.md $PREFIX/share/agent-skills/gws-workflow-standup-report/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -1055,7 +1055,7 @@ outputs:
         - cp $SRC_DIR/skills/gws-workflow-weekly-digest/SKILL.md $PREFIX/share/agent-skills/gws-workflow-weekly-digest/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
     tests:
@@ -1081,7 +1081,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-content-creator/SKILL.md $PREFIX/share/agent-skills/persona-content-creator/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-docs
@@ -1112,7 +1112,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-customer-support/SKILL.md $PREFIX/share/agent-skills/persona-customer-support/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -1142,7 +1142,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-event-coordinator/SKILL.md $PREFIX/share/agent-skills/persona-event-coordinator/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-calendar
@@ -1173,7 +1173,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-exec-assistant/SKILL.md $PREFIX/share/agent-skills/persona-exec-assistant/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -1203,7 +1203,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-hr-coordinator/SKILL.md $PREFIX/share/agent-skills/persona-hr-coordinator/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -1233,7 +1233,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-it-admin/SKILL.md $PREFIX/share/agent-skills/persona-it-admin/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -1262,7 +1262,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-project-manager/SKILL.md $PREFIX/share/agent-skills/persona-project-manager/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -1293,7 +1293,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-researcher/SKILL.md $PREFIX/share/agent-skills/persona-researcher/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -1323,7 +1323,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-sales-ops/SKILL.md $PREFIX/share/agent-skills/persona-sales-ops/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -1353,7 +1353,7 @@ outputs:
         - cp $SRC_DIR/skills/persona-team-lead/SKILL.md $PREFIX/share/agent-skills/persona-team-lead/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-calendar
@@ -1384,7 +1384,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-backup-sheet-as-csv/SKILL.md $PREFIX/share/agent-skills/recipe-backup-sheet-as-csv/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-sheets
@@ -1412,7 +1412,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-batch-invite-to-event/SKILL.md $PREFIX/share/agent-skills/recipe-batch-invite-to-event/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-calendar
@@ -1439,7 +1439,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-block-focus-time/SKILL.md $PREFIX/share/agent-skills/recipe-block-focus-time/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-calendar
@@ -1466,7 +1466,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-bulk-download-folder/SKILL.md $PREFIX/share/agent-skills/recipe-bulk-download-folder/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -1493,7 +1493,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-collect-form-responses/SKILL.md $PREFIX/share/agent-skills/recipe-collect-form-responses/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-forms
@@ -1520,7 +1520,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-compare-sheet-tabs/SKILL.md $PREFIX/share/agent-skills/recipe-compare-sheet-tabs/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-sheets
@@ -1547,7 +1547,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-copy-sheet-for-new-month/SKILL.md $PREFIX/share/agent-skills/recipe-copy-sheet-for-new-month/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-sheets
@@ -1574,7 +1574,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-classroom-course/SKILL.md $PREFIX/share/agent-skills/recipe-create-classroom-course/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-classroom
@@ -1601,7 +1601,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-doc-from-template/SKILL.md $PREFIX/share/agent-skills/recipe-create-doc-from-template/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -1629,7 +1629,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-events-from-sheet/SKILL.md $PREFIX/share/agent-skills/recipe-create-events-from-sheet/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-sheets
@@ -1657,7 +1657,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-expense-tracker/SKILL.md $PREFIX/share/agent-skills/recipe-create-expense-tracker/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-sheets
@@ -1685,7 +1685,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-feedback-form/SKILL.md $PREFIX/share/agent-skills/recipe-create-feedback-form/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-forms
@@ -1713,7 +1713,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-gmail-filter/SKILL.md $PREFIX/share/agent-skills/recipe-create-gmail-filter/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -1740,7 +1740,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-meet-space/SKILL.md $PREFIX/share/agent-skills/recipe-create-meet-space/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-meet
@@ -1768,7 +1768,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-presentation/SKILL.md $PREFIX/share/agent-skills/recipe-create-presentation/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-slides
@@ -1795,7 +1795,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-shared-drive/SKILL.md $PREFIX/share/agent-skills/recipe-create-shared-drive/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -1822,7 +1822,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-task-list/SKILL.md $PREFIX/share/agent-skills/recipe-create-task-list/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-tasks
@@ -1849,7 +1849,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-create-vacation-responder/SKILL.md $PREFIX/share/agent-skills/recipe-create-vacation-responder/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -1876,7 +1876,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-draft-email-from-doc/SKILL.md $PREFIX/share/agent-skills/recipe-draft-email-from-doc/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-docs
@@ -1904,7 +1904,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-email-drive-link/SKILL.md $PREFIX/share/agent-skills/recipe-email-drive-link/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -1932,7 +1932,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-find-free-time/SKILL.md $PREFIX/share/agent-skills/recipe-find-free-time/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-calendar
@@ -1959,7 +1959,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-find-large-files/SKILL.md $PREFIX/share/agent-skills/recipe-find-large-files/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -1986,7 +1986,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-forward-labeled-emails/SKILL.md $PREFIX/share/agent-skills/recipe-forward-labeled-emails/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -2013,7 +2013,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-generate-report-from-sheet/SKILL.md $PREFIX/share/agent-skills/recipe-generate-report-from-sheet/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-sheets
@@ -2042,7 +2042,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-label-and-archive-emails/SKILL.md $PREFIX/share/agent-skills/recipe-label-and-archive-emails/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -2069,7 +2069,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-log-deal-update/SKILL.md $PREFIX/share/agent-skills/recipe-log-deal-update/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-sheets
@@ -2097,7 +2097,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-organize-drive-folder/SKILL.md $PREFIX/share/agent-skills/recipe-organize-drive-folder/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -2124,7 +2124,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-plan-weekly-schedule/SKILL.md $PREFIX/share/agent-skills/recipe-plan-weekly-schedule/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-calendar
@@ -2151,7 +2151,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-post-mortem-setup/SKILL.md $PREFIX/share/agent-skills/recipe-post-mortem-setup/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-docs
@@ -2180,7 +2180,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-reschedule-meeting/SKILL.md $PREFIX/share/agent-skills/recipe-reschedule-meeting/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-calendar
@@ -2207,7 +2207,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-review-meet-participants/SKILL.md $PREFIX/share/agent-skills/recipe-review-meet-participants/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-meet
@@ -2234,7 +2234,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-review-overdue-tasks/SKILL.md $PREFIX/share/agent-skills/recipe-review-overdue-tasks/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-tasks
@@ -2261,7 +2261,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-save-email-attachments/SKILL.md $PREFIX/share/agent-skills/recipe-save-email-attachments/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -2289,7 +2289,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-save-email-to-doc/SKILL.md $PREFIX/share/agent-skills/recipe-save-email-to-doc/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -2317,7 +2317,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-schedule-recurring-event/SKILL.md $PREFIX/share/agent-skills/recipe-schedule-recurring-event/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-calendar
@@ -2344,7 +2344,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-send-team-announcement/SKILL.md $PREFIX/share/agent-skills/recipe-send-team-announcement/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-gmail
@@ -2372,7 +2372,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-share-doc-and-notify/SKILL.md $PREFIX/share/agent-skills/recipe-share-doc-and-notify/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -2401,7 +2401,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-share-event-materials/SKILL.md $PREFIX/share/agent-skills/recipe-share-event-materials/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-calendar
@@ -2429,7 +2429,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-share-folder-with-team/SKILL.md $PREFIX/share/agent-skills/recipe-share-folder-with-team/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-drive
@@ -2456,7 +2456,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-sync-contacts-to-sheet/SKILL.md $PREFIX/share/agent-skills/recipe-sync-contacts-to-sheet/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-people
@@ -2484,7 +2484,7 @@ outputs:
         - cp $SRC_DIR/skills/recipe-watch-drive-changes/SKILL.md $PREFIX/share/agent-skills/recipe-watch-drive-changes/SKILL.md
     requirements:
       run_constraints:
-        - gws >=0.16.0,<1
+        - gws ==0.16.0
       run:
         - agent-skill-gws-shared
         - agent-skill-gws-events
