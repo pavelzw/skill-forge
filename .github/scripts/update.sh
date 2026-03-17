@@ -152,7 +152,7 @@ update_generate() {
         echo "  latest version:  $latest_version"
 
         sed -i.bak "s|^VERSION = \"$current_version\"|VERSION = \"$latest_version\"|" "$generate_script" && rm -f "$generate_script.bak"
-        pixi run -e "generate-${skill_name}" "generate-${skill_name}"
+        pixi run "generate-${skill_name}"
 
         echo "Updated $generate_script and $recipe_file"
     fi
