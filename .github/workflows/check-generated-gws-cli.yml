@@ -28,4 +28,4 @@ jobs:
       - name: Regenerate recipe
         run: pixi run generate-gws-cli
       - name: Check for differences
-        run: git diff --exit-code recipes/gws-cli/recipe.yaml
+        run: git diff --exit-code recipes/gws-cli/recipe.yaml recipes/gws-cli/SKILLS.md
