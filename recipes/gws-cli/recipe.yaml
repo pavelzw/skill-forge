@@ -3,8 +3,8 @@ context:
   version: "0.0.1"
 
 source:
-  git: https://github.com/googleworkspace/cli
-  tag: v0.16.0
+  url: https://github.com/googleworkspace/cli/archive/refs/tags/v0.16.0.tar.gz
+  sha256: 047d8576614bdd047c8c8c7febb305420a0e1eb74ee0b26fc3529c96160c1c61
 
 outputs:
   - package:
