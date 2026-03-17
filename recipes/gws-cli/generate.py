@@ -82,10 +82,6 @@ def build_output(skill, description, required_skills):
                     "strict": True,
                 },
             },
-            {
-                "script": [f"agentskills validate $CONDA_PREFIX/share/agent-skills/{skill}"],
-                "requirements": {"run": ["skills-ref"]},
-            },
         ],
         "about": {
             "summary": DoubleQuotedScalarString(f"Agent skill: {description}"),

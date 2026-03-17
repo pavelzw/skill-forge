@@ -25,11 +25,6 @@ outputs:
           files:
             - share/agent-skills/gws-admin-reports/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-admin-reports
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Workspace Admin SDK: Audit logs and usage reports."
       license: Apache-2.0
@@ -56,11 +51,6 @@ outputs:
           files:
             - share/agent-skills/gws-calendar/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-calendar
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Calendar: Manage calendars and events."
       license: Apache-2.0
@@ -87,11 +77,6 @@ outputs:
           files:
             - share/agent-skills/gws-calendar-agenda/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-calendar-agenda
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Calendar: Show upcoming events across all calendars."
       license: Apache-2.0
@@ -118,11 +103,6 @@ outputs:
           files:
             - share/agent-skills/gws-calendar-insert/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-calendar-insert
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Calendar: Create a new event."
       license: Apache-2.0
@@ -149,11 +129,6 @@ outputs:
           files:
             - share/agent-skills/gws-chat/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-chat
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Chat: Manage Chat spaces and messages."
       license: Apache-2.0
@@ -180,11 +155,6 @@ outputs:
           files:
             - share/agent-skills/gws-chat-send/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-chat-send
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Chat: Send a message to a space."
       license: Apache-2.0
@@ -211,11 +181,6 @@ outputs:
           files:
             - share/agent-skills/gws-classroom/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-classroom
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Classroom: Manage classes, rosters, and coursework."
       license: Apache-2.0
@@ -242,11 +207,6 @@ outputs:
           files:
             - share/agent-skills/gws-docs/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-docs
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Read and write Google Docs."
       license: Apache-2.0
@@ -273,11 +233,6 @@ outputs:
           files:
             - share/agent-skills/gws-docs-write/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-docs-write
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Docs: Append text to a document."
       license: Apache-2.0
@@ -304,11 +259,6 @@ outputs:
           files:
             - share/agent-skills/gws-drive/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-drive
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Drive: Manage files, folders, and shared drives."
       license: Apache-2.0
@@ -335,11 +285,6 @@ outputs:
           files:
             - share/agent-skills/gws-drive-upload/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-drive-upload
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Drive: Upload a file with automatic metadata."
       license: Apache-2.0
@@ -366,11 +311,6 @@ outputs:
           files:
             - share/agent-skills/gws-events/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-events
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Subscribe to Google Workspace events."
       license: Apache-2.0
@@ -397,11 +337,6 @@ outputs:
           files:
             - share/agent-skills/gws-events-renew/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-events-renew
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Workspace Events: Renew/reactivate Workspace Events subscriptions."
       license: Apache-2.0
@@ -428,11 +363,6 @@ outputs:
           files:
             - share/agent-skills/gws-events-subscribe/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-events-subscribe
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Workspace Events: Subscribe to Workspace events and stream them as NDJSON."
       license: Apache-2.0
@@ -459,11 +389,6 @@ outputs:
           files:
             - share/agent-skills/gws-forms/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-forms
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Read and write Google Forms."
       license: Apache-2.0
@@ -490,11 +415,6 @@ outputs:
           files:
             - share/agent-skills/gws-gmail/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Gmail: Send, read, and manage email."
       license: Apache-2.0
@@ -521,11 +441,6 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-forward/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-forward
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Gmail: Forward a message to new recipients."
       license: Apache-2.0
@@ -552,11 +467,6 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-reply/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-reply
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Gmail: Reply to a message (handles threading automatically)."
       license: Apache-2.0
@@ -583,11 +493,6 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-reply-all/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-reply-all
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Gmail: Reply-all to a message (handles threading automatically)."
       license: Apache-2.0
@@ -614,11 +519,6 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-send/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-send
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Gmail: Send an email."
       license: Apache-2.0
@@ -645,11 +545,6 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-triage/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-triage
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Gmail: Show unread inbox summary (sender, subject, date)."
       license: Apache-2.0
@@ -676,11 +571,6 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-watch/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-watch
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Gmail: Watch for new emails and stream them as NDJSON."
       license: Apache-2.0
@@ -707,11 +597,6 @@ outputs:
           files:
             - share/agent-skills/gws-keep/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-keep
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Manage Google Keep notes."
       license: Apache-2.0
@@ -738,11 +623,6 @@ outputs:
           files:
             - share/agent-skills/gws-meet/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-meet
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Manage Google Meet conferences."
       license: Apache-2.0
@@ -769,11 +649,6 @@ outputs:
           files:
             - share/agent-skills/gws-modelarmor/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-modelarmor
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Model Armor: Filter user-generated content for safety."
       license: Apache-2.0
@@ -800,11 +675,6 @@ outputs:
           files:
             - share/agent-skills/gws-modelarmor-create-template/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-modelarmor-create-template
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Model Armor: Create a new Model Armor template."
       license: Apache-2.0
@@ -831,11 +701,6 @@ outputs:
           files:
             - share/agent-skills/gws-modelarmor-sanitize-prompt/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-modelarmor-sanitize-prompt
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Model Armor: Sanitize a user prompt through a Model Armor template."
       license: Apache-2.0
@@ -862,11 +727,6 @@ outputs:
           files:
             - share/agent-skills/gws-modelarmor-sanitize-response/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-modelarmor-sanitize-response
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Model Armor: Sanitize a model response through a Model Armor template."
       license: Apache-2.0
@@ -893,11 +753,6 @@ outputs:
           files:
             - share/agent-skills/gws-people/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-people
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google People: Manage contacts and profiles."
       license: Apache-2.0
@@ -922,11 +777,6 @@ outputs:
           files:
             - share/agent-skills/gws-shared/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-shared
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: gws CLI: Shared patterns for authentication, global flags, and output formatting."
       license: Apache-2.0
@@ -953,11 +803,6 @@ outputs:
           files:
             - share/agent-skills/gws-sheets/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-sheets
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Sheets: Read and write spreadsheets."
       license: Apache-2.0
@@ -984,11 +829,6 @@ outputs:
           files:
             - share/agent-skills/gws-sheets-append/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-sheets-append
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Sheets: Append a row to a spreadsheet."
       license: Apache-2.0
@@ -1015,11 +855,6 @@ outputs:
           files:
             - share/agent-skills/gws-sheets-read/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-sheets-read
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Sheets: Read values from a spreadsheet."
       license: Apache-2.0
@@ -1046,11 +881,6 @@ outputs:
           files:
             - share/agent-skills/gws-slides/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-slides
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Slides: Read and write presentations."
       license: Apache-2.0
@@ -1077,11 +907,6 @@ outputs:
           files:
             - share/agent-skills/gws-tasks/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-tasks
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Tasks: Manage task lists and tasks."
       license: Apache-2.0
@@ -1108,11 +933,6 @@ outputs:
           files:
             - share/agent-skills/gws-workflow/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Cross-service productivity workflows."
       license: Apache-2.0
@@ -1139,11 +959,6 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-email-to-task/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-email-to-task
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Convert a Gmail message into a Google Tasks entry."
       license: Apache-2.0
@@ -1170,11 +985,6 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-file-announce/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-file-announce
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Announce a Drive file in a Chat space."
       license: Apache-2.0
@@ -1201,11 +1011,6 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-meeting-prep/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-meeting-prep
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Prepare for your next meeting: agenda, attendees, and linked docs."
       license: Apache-2.0
@@ -1232,11 +1037,6 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-standup-report/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-standup-report
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Today's meetings + open tasks as a standup summary."
       license: Apache-2.0
@@ -1263,11 +1063,6 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-weekly-digest/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-weekly-digest
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Weekly summary: this week's meetings + unread email count."
       license: Apache-2.0
@@ -1299,11 +1094,6 @@ outputs:
           files:
             - share/agent-skills/persona-content-creator/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-content-creator
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create, organize, and distribute content across Workspace."
       license: Apache-2.0
@@ -1334,11 +1124,6 @@ outputs:
           files:
             - share/agent-skills/persona-customer-support/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-customer-support
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Manage customer support — track tickets, respond, escalate issues."
       license: Apache-2.0
@@ -1370,11 +1155,6 @@ outputs:
           files:
             - share/agent-skills/persona-event-coordinator/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-event-coordinator
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Plan and manage events — scheduling, invitations, and logistics."
       license: Apache-2.0
@@ -1405,11 +1185,6 @@ outputs:
           files:
             - share/agent-skills/persona-exec-assistant/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-exec-assistant
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Manage an executive's schedule, inbox, and communications."
       license: Apache-2.0
@@ -1440,11 +1215,6 @@ outputs:
           files:
             - share/agent-skills/persona-hr-coordinator/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-hr-coordinator
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Handle HR workflows — onboarding, announcements, and employee comms."
       license: Apache-2.0
@@ -1474,11 +1244,6 @@ outputs:
           files:
             - share/agent-skills/persona-it-admin/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-it-admin
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Administer IT — monitor security and configure Workspace."
       license: Apache-2.0
@@ -1510,11 +1275,6 @@ outputs:
           files:
             - share/agent-skills/persona-project-manager/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-project-manager
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Coordinate projects — track tasks, schedule meetings, and share docs."
       license: Apache-2.0
@@ -1545,11 +1305,6 @@ outputs:
           files:
             - share/agent-skills/persona-researcher/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-researcher
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Organize research — manage references, notes, and collaboration."
       license: Apache-2.0
@@ -1580,11 +1335,6 @@ outputs:
           files:
             - share/agent-skills/persona-sales-ops/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-sales-ops
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Manage sales workflows — track deals, schedule calls, client comms."
       license: Apache-2.0
@@ -1616,11 +1366,6 @@ outputs:
           files:
             - share/agent-skills/persona-team-lead/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-team-lead
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Lead a team — run standups, coordinate tasks, and communicate."
       license: Apache-2.0
@@ -1649,11 +1394,6 @@ outputs:
           files:
             - share/agent-skills/recipe-backup-sheet-as-csv/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-backup-sheet-as-csv
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Export a Google Sheets spreadsheet as a CSV file for local backup or processing."
       license: Apache-2.0
@@ -1681,11 +1421,6 @@ outputs:
           files:
             - share/agent-skills/recipe-batch-invite-to-event/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-batch-invite-to-event
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Add a list of attendees to an existing Google Calendar event and send notifications."
       license: Apache-2.0
@@ -1713,11 +1448,6 @@ outputs:
           files:
             - share/agent-skills/recipe-block-focus-time/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-block-focus-time
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create recurring focus time blocks on Google Calendar to protect deep work hours."
       license: Apache-2.0
@@ -1745,11 +1475,6 @@ outputs:
           files:
             - share/agent-skills/recipe-bulk-download-folder/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-bulk-download-folder
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: List and download all files from a Google Drive folder."
       license: Apache-2.0
@@ -1777,11 +1502,6 @@ outputs:
           files:
             - share/agent-skills/recipe-collect-form-responses/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-collect-form-responses
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Retrieve and review responses from a Google Form."
       license: Apache-2.0
@@ -1809,11 +1529,6 @@ outputs:
           files:
             - share/agent-skills/recipe-compare-sheet-tabs/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-compare-sheet-tabs
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Read data from two tabs in a Google Sheet to compare and identify differences."
       license: Apache-2.0
@@ -1841,11 +1556,6 @@ outputs:
           files:
             - share/agent-skills/recipe-copy-sheet-for-new-month/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-copy-sheet-for-new-month
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Duplicate a Google Sheets template tab for a new month of tracking."
       license: Apache-2.0
@@ -1873,11 +1583,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-classroom-course/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-classroom-course
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create a Google Classroom course and invite students."
       license: Apache-2.0
@@ -1906,11 +1611,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-doc-from-template/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-doc-from-template
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Copy a Google Docs template, fill in content, and share with collaborators."
       license: Apache-2.0
@@ -1939,11 +1639,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-events-from-sheet/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-events-from-sheet
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Read event data from a Google Sheets spreadsheet and create Google Calendar entries for each row."
       license: Apache-2.0
@@ -1972,11 +1667,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-expense-tracker/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-expense-tracker
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Set up a Google Sheets spreadsheet for tracking expenses with headers and initial entries."
       license: Apache-2.0
@@ -2005,11 +1695,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-feedback-form/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-feedback-form
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create a Google Form for feedback and share it via Gmail."
       license: Apache-2.0
@@ -2037,11 +1722,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-gmail-filter/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-gmail-filter
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create a Gmail filter to automatically label, star, or categorize incoming messages."
       license: Apache-2.0
@@ -2070,11 +1750,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-meet-space/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-meet-space
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create a Google Meet meeting space and share the join link."
       license: Apache-2.0
@@ -2102,11 +1777,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-presentation/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-presentation
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create a new Google Slides presentation and add initial slides."
       license: Apache-2.0
@@ -2134,11 +1804,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-shared-drive/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-shared-drive
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create a Google Shared Drive and add members with appropriate roles."
       license: Apache-2.0
@@ -2166,11 +1831,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-task-list/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-task-list
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Set up a new Google Tasks list with initial tasks."
       license: Apache-2.0
@@ -2198,11 +1858,6 @@ outputs:
           files:
             - share/agent-skills/recipe-create-vacation-responder/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-vacation-responder
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Enable a Gmail out-of-office auto-reply with a custom message and date range."
       license: Apache-2.0
@@ -2231,11 +1886,6 @@ outputs:
           files:
             - share/agent-skills/recipe-draft-email-from-doc/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-draft-email-from-doc
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Read content from a Google Doc and use it as the body of a Gmail message."
       license: Apache-2.0
@@ -2264,11 +1914,6 @@ outputs:
           files:
             - share/agent-skills/recipe-email-drive-link/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-email-drive-link
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Share a Google Drive file and email the link with a message to recipients."
       license: Apache-2.0
@@ -2296,11 +1941,6 @@ outputs:
           files:
             - share/agent-skills/recipe-find-free-time/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-find-free-time
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Query Google Calendar free/busy status for multiple users to find a meeting slot."
       license: Apache-2.0
@@ -2328,11 +1968,6 @@ outputs:
           files:
             - share/agent-skills/recipe-find-large-files/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-find-large-files
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Identify large Google Drive files consuming storage quota."
       license: Apache-2.0
@@ -2360,11 +1995,6 @@ outputs:
           files:
             - share/agent-skills/recipe-forward-labeled-emails/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-forward-labeled-emails
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Find Gmail messages with a specific label and forward them to another address."
       license: Apache-2.0
@@ -2394,11 +2024,6 @@ outputs:
           files:
             - share/agent-skills/recipe-generate-report-from-sheet/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-generate-report-from-sheet
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Read data from a Google Sheet and create a formatted Google Docs report."
       license: Apache-2.0
@@ -2426,11 +2051,6 @@ outputs:
           files:
             - share/agent-skills/recipe-label-and-archive-emails/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-label-and-archive-emails
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Apply Gmail labels to matching messages and archive them to keep your inbox clean."
       license: Apache-2.0
@@ -2459,11 +2079,6 @@ outputs:
           files:
             - share/agent-skills/recipe-log-deal-update/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-log-deal-update
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Append a deal status update to a Google Sheets sales tracking spreadsheet."
       license: Apache-2.0
@@ -2491,11 +2106,6 @@ outputs:
           files:
             - share/agent-skills/recipe-organize-drive-folder/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-organize-drive-folder
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create a Google Drive folder structure and move files into the right locations."
       license: Apache-2.0
@@ -2523,11 +2133,6 @@ outputs:
           files:
             - share/agent-skills/recipe-plan-weekly-schedule/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-plan-weekly-schedule
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Review your Google Calendar week, identify gaps, and add events to fill them."
       license: Apache-2.0
@@ -2557,11 +2162,6 @@ outputs:
           files:
             - share/agent-skills/recipe-post-mortem-setup/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-post-mortem-setup
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create a Google Docs post-mortem, schedule a Google Calendar review, and notify via Chat."
       license: Apache-2.0
@@ -2589,11 +2189,6 @@ outputs:
           files:
             - share/agent-skills/recipe-reschedule-meeting/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-reschedule-meeting
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Move a Google Calendar event to a new time and automatically notify all attendees."
       license: Apache-2.0
@@ -2621,11 +2216,6 @@ outputs:
           files:
             - share/agent-skills/recipe-review-meet-participants/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-review-meet-participants
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Review who attended a Google Meet conference and for how long."
       license: Apache-2.0
@@ -2653,11 +2243,6 @@ outputs:
           files:
             - share/agent-skills/recipe-review-overdue-tasks/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-review-overdue-tasks
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Find Google Tasks that are past due and need attention."
       license: Apache-2.0
@@ -2686,11 +2271,6 @@ outputs:
           files:
             - share/agent-skills/recipe-save-email-attachments/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-save-email-attachments
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Find Gmail messages with attachments and save them to a Google Drive folder."
       license: Apache-2.0
@@ -2719,11 +2299,6 @@ outputs:
           files:
             - share/agent-skills/recipe-save-email-to-doc/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-save-email-to-doc
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Save a Gmail message body into a Google Doc for archival or reference."
       license: Apache-2.0
@@ -2751,11 +2326,6 @@ outputs:
           files:
             - share/agent-skills/recipe-schedule-recurring-event/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-schedule-recurring-event
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Create a recurring Google Calendar event with attendees."
       license: Apache-2.0
@@ -2784,11 +2354,6 @@ outputs:
           files:
             - share/agent-skills/recipe-send-team-announcement/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-send-team-announcement
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Send a team announcement via both Gmail and a Google Chat space."
       license: Apache-2.0
@@ -2818,11 +2383,6 @@ outputs:
           files:
             - share/agent-skills/recipe-share-doc-and-notify/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-share-doc-and-notify
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Share a Google Docs document with edit access and email collaborators the link."
       license: Apache-2.0
@@ -2851,11 +2411,6 @@ outputs:
           files:
             - share/agent-skills/recipe-share-event-materials/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-share-event-materials
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Share Google Drive files with all attendees of a Google Calendar event."
       license: Apache-2.0
@@ -2883,11 +2438,6 @@ outputs:
           files:
             - share/agent-skills/recipe-share-folder-with-team/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-share-folder-with-team
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Share a Google Drive folder and all its contents with a list of collaborators."
       license: Apache-2.0
@@ -2916,11 +2466,6 @@ outputs:
           files:
             - share/agent-skills/recipe-sync-contacts-to-sheet/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-sync-contacts-to-sheet
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Export Google Contacts directory to a Google Sheets spreadsheet."
       license: Apache-2.0
@@ -2948,11 +2493,6 @@ outputs:
           files:
             - share/agent-skills/recipe-watch-drive-changes/SKILL.md
           strict: true
-      - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-watch-drive-changes
-        requirements:
-          run:
-            - skills-ref
     about:
       summary: "Agent skill: Subscribe to change notifications on a Google Drive file or folder."
       license: Apache-2.0

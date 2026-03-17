@@ -13,3 +13,9 @@ pixi run generate-gws-cli
 
 This fetches skill metadata (names, descriptions, dependencies) from
 `raw.githubusercontent.com` and writes `recipe.yaml`.
+
+## Notes
+
+The `agentskills validate` test is intentionally skipped for these packages.
+The upstream SKILL.md frontmatter uses JSON-style flow sequences (e.g. `["gws"]`)
+which `strictyaml` (used by `skills-ref`) rejects.
