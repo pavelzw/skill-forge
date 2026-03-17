@@ -132,14 +132,14 @@ update_generate() {
     fi
 
     local repo
-    repo=$(grep -oP "^REPO = \"\K[^\"]+" "$generate_script")
+    repo=$(sed -n 's/^REPO = "\(.*\)"/\1/p' "$generate_script")
 
     echo "Fetching latest commit from $repo main branch..."
     local latest_rev
     latest_rev=$(gh api "repos/${repo}/commits/main" --jq '.sha')
 
     local current_rev
-    current_rev=$(grep -oP "^REV = \"\K[^\"]+" "$generate_script")
+    current_rev=$(sed -n 's/^REV = "\(.*\)"/\1/p' "$generate_script")
 
     echo "old-version=$current_rev" >> "${GITHUB_OUTPUT:-/dev/stdout}"
     echo "new-version=$latest_rev" >> "${GITHUB_OUTPUT:-/dev/stdout}"
@@ -151,7 +151,7 @@ update_generate() {
         echo "  current rev: $current_rev"
         echo "  latest rev:  $latest_rev"
 
-        sed -i "s|^REV = \"$current_rev\"|REV = \"$latest_rev\"|" "$generate_script"
+        sed -i.bak "s|^REV = \"$current_rev\"|REV = \"$latest_rev\"|" "$generate_script" && rm -f "$generate_script.bak"
         pixi run -e "generate-${skill_name}" "generate-${skill_name}"
 
         # Bump patch version in generated recipe
