@@ -3,6 +3,7 @@
 import hashlib
 import sys
 from pathlib import Path
+from typing import Any
 from urllib.request import urlopen
 
 from ruamel.yaml import YAML
@@ -16,17 +17,19 @@ RAW_URL = f"https://raw.githubusercontent.com/{REPO}/v{VERSION}"
 TIMEOUT = 10
 
 
-def fetch(url):
+def fetch(url: str) -> str:
+    """Fetch a URL and return its content as a string."""
     with urlopen(url, timeout=TIMEOUT) as resp:
         return resp.read().decode()
 
 
-def fetch_sha256(url):
+def fetch_sha256(url: str) -> str:
+    """Fetch a URL and return the SHA-256 hex digest of its content."""
     with urlopen(url, timeout=TIMEOUT) as resp:
         return hashlib.sha256(resp.read()).hexdigest()
 
 
-def get_skills():
+def get_skills() -> list[str]:
     """Get skill names from the skills.md documentation page."""
     content = fetch(f"{RAW_URL}/docs/skills.md")
     skills = []
@@ -39,7 +42,7 @@ def get_skills():
     return sorted(skills)
 
 
-def parse_skill_md(skill_name):
+def parse_skill_md(skill_name: str) -> tuple[str, list[str]]:
     """Extract description and required skills from SKILL.md YAML frontmatter."""
     content = fetch(f"{RAW_URL}/skills/{skill_name}/SKILL.md")
     # Parse YAML frontmatter between --- markers
@@ -55,20 +58,21 @@ def parse_skill_md(skill_name):
     return description, required_skills
 
 
-def package_name(skill):
+def package_name(skill: str) -> str:
     """Convert a skill directory name to a conda package name."""
     if skill.startswith("gws-"):
         return f"agent-skill-{skill}"
     return f"agent-skill-gws-{skill}"
 
 
-def build_output(skill, description, required_skills):
+def build_output(skill: str, description: str, required_skills: list[str]) -> dict[str, Any]:
+    """Build a rattler-build output entry for a single skill."""
     run_deps = [package_name(s) for s in required_skills]
     if skill != "gws-shared" and package_name("gws-shared") not in run_deps:
         run_deps.insert(0, package_name("gws-shared"))
 
     run_deps = [f"${{{{ pin_subpackage('{dep}', exact=true) }}}}" for dep in run_deps]
-    requirements = {"run_constraints": ["gws ==${{ version }}"]}
+    requirements: dict[str, list[str]] = {"run_constraints": ["gws ==${{ version }}"]}
     if run_deps:
         requirements["run"] = run_deps
 
@@ -99,7 +103,7 @@ def build_output(skill, description, required_skills):
     }
 
 
-def _spaced_seq(items):
+def _spaced_seq(items: list[Any]) -> CommentedSeq:
     """Create a YAML sequence with blank lines between items."""
     seq = CommentedSeq(items)
     for i in range(1, len(items)):
@@ -107,7 +111,7 @@ def _spaced_seq(items):
     return seq
 
 
-def main():
+def main() -> None:
     skills = get_skills()
 
     recipe = CommentedMap()
