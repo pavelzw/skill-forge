@@ -151,17 +151,16 @@ update_generate() {
         echo "  current version: $current_version"
         echo "  latest version:  $latest_version"
 
-        sed -i.bak "s|^VERSION = \"$current_version\"|VERSION = \"$latest_version\"|" "$generate_script" && rm -f "$generate_script.bak"
+        # Bump VERSION and PACKAGE_VERSION in generate.py, then re-run
+        local pkg_version
+        pkg_version=$(sed -n 's/^PACKAGE_VERSION = "\(.*\)"/\1/p' "$generate_script")
+        local new_pkg_version
+        new_pkg_version=$(echo "$pkg_version" | awk -F. '{print $1"."$2"."$3+1}')
+
+        sed -i.bak "s|^VERSION = \"$current_version\"|VERSION = \"$latest_version\"|;s|^PACKAGE_VERSION = \"$pkg_version\"|PACKAGE_VERSION = \"$new_pkg_version\"|" "$generate_script" && rm -f "$generate_script.bak"
         pixi run -e "generate-${skill_name}" "generate-${skill_name}"
 
-        # Bump patch version in generated recipe
-        local current_version
-        current_version=$(yq -r '.context.version' "$recipe_file")
-        local new_version
-        new_version=$(echo "$current_version" | awk -F. '{print $1"."$2"."$3+1}')
-        yq -i ".context.version = \"$new_version\"" "$recipe_file"
-        echo "  version: $current_version -> $new_version"
-
+        echo "  package version: $pkg_version -> $new_pkg_version"
         echo "Updated $generate_script and $recipe_file"
     fi
 }
