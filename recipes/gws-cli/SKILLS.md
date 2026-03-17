@@ -2,7 +2,7 @@
 
 # Google Workspace CLI skills
 
-Generated from [googleworkspace/cli](https://github.com/googleworkspace/cli) v0.16.0. See the [upstream skills index](https://github.com/googleworkspace/cli/blob/v0.16.0/docs/skills.md) for more details.
+Generated from [googleworkspace/cli](https://github.com/googleworkspace/cli) v0.16.0. See the [upstream skill docs](https://github.com/googleworkspace/cli/blob/v0.16.0/docs/skills.md) for more details.
 
 | Package | Description |
 |---------|-------------|
