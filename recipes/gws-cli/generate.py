@@ -14,15 +14,16 @@ REPO_URL = f"https://github.com/{REPO}"
 VERSION = "0.16.0"
 PACKAGE_VERSION = "0.0.1"
 RAW_URL = f"https://raw.githubusercontent.com/{REPO}/v{VERSION}"
+TIMEOUT = 10
 
 
 def fetch(url):
-    with urlopen(url) as resp:
+    with urlopen(url, timeout=TIMEOUT) as resp:
         return resp.read().decode()
 
 
 def fetch_sha256(url):
-    with urlopen(url) as resp:
+    with urlopen(url, timeout=TIMEOUT) as resp:
         return hashlib.sha256(resp.read()).hexdigest()
 
 
@@ -44,6 +45,8 @@ def parse_skill_md(skill_name):
     content = fetch(f"{RAW_URL}/skills/{skill_name}/SKILL.md")
     # Parse YAML frontmatter between --- markers
     parts = content.split("---", 2)
+    if len(parts) < 3:
+        raise ValueError(f"Invalid frontmatter in {skill_name}/SKILL.md: expected --- delimiters")
     yml = YAML()
     frontmatter = yml.load(parts[1])
     description = frontmatter.get("description", skill_name)
