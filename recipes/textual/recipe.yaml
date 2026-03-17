@@ -1,0 +1,49 @@
+context:
+  skill: textual
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+
+source:
+  url: https://raw.githubusercontent.com/Textualize/textual/refs/heads/main/LICENSE
+  sha256: 94f290a762376dfdb7768e42070618b0abfd2a2799eab1b1c097816c3a39eb57
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp $RECIPE_DIR/SKILL.md $PREFIX/share/agent-skills/${{ skill }}/SKILL.md
+    - cp -R $RECIPE_DIR/references $PREFIX/share/agent-skills/${{ skill }}/
+
+requirements:
+  run_constraints:
+    - textual >=8.0.0,<9
+
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+        - share/agent-skills/${{ skill }}/references/*.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: Agent skill for building terminal user interfaces with Textual
+  description: |
+    Build terminal user interfaces (TUIs) with Textual, a Python framework:
+    - Create rich, interactive terminal applications
+    - Use CSS-like styling for terminal widgets
+    - Handle events, key bindings, and screen management
+    - Work with 35+ built-in widgets
+    - Test apps with the Pilot testing framework
+  homepage: https://textual.textualize.io
+  repository: https://github.com/Textualize/textual
+  documentation: https://textual.textualize.io
+  license: MIT
+  license_file: LICENSE
