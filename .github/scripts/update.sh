@@ -8,6 +8,7 @@ usage() {
     echo "Strategies:"
     echo "  git-main              Update to latest commit on main branch"
     echo "  github-latest-release Update to latest GitHub release"
+    echo "  generate              Update REV in generate.py and re-run it"
     echo "  yolo                  Re-fetch URL and update sha256 if changed"
     echo ""
     echo "Examples:"
@@ -123,6 +124,48 @@ update_github_latest_release() {
     fi
 }
 
+update_generate() {
+    local generate_script="recipes/${skill_name}/generate.py"
+    if [[ ! -f "$generate_script" ]]; then
+        echo "Error: Generate script not found: $generate_script"
+        exit 1
+    fi
+
+    local repo
+    repo=$(grep -oP "^REPO = \"\K[^\"]+" "$generate_script")
+
+    echo "Fetching latest commit from $repo main branch..."
+    local latest_rev
+    latest_rev=$(gh api "repos/${repo}/commits/main" --jq '.sha')
+
+    local current_rev
+    current_rev=$(grep -oP "^REV = \"\K[^\"]+" "$generate_script")
+
+    echo "old-version=$current_rev" >> "${GITHUB_OUTPUT:-/dev/stdout}"
+    echo "new-version=$latest_rev" >> "${GITHUB_OUTPUT:-/dev/stdout}"
+
+    if [[ "$latest_rev" == "$current_rev" ]]; then
+        echo "$skill_name is up to date (rev: $current_rev)"
+    else
+        echo "$skill_name needs update"
+        echo "  current rev: $current_rev"
+        echo "  latest rev:  $latest_rev"
+
+        sed -i "s|^REV = \"$current_rev\"|REV = \"$latest_rev\"|" "$generate_script"
+        pixi run -e "generate-${skill_name}" "generate-${skill_name}"
+
+        # Bump patch version in generated recipe
+        local current_version
+        current_version=$(yq -r '.context.version' "$recipe_file")
+        local new_version
+        new_version=$(echo "$current_version" | awk -F. '{print $1"."$2"."$3+1}')
+        yq -i ".context.version = \"$new_version\"" "$recipe_file"
+        echo "  version: $current_version -> $new_version"
+
+        echo "Updated $generate_script and $recipe_file"
+    fi
+}
+
 update_yolo() {
     local source_url
     source_url=$(yq -r '.source.url' "$recipe_file")
@@ -156,6 +199,9 @@ case "$strategy" in
         ;;
     github-latest-release)
         update_github_latest_release
+        ;;
+    generate)
+        update_generate
         ;;
     yolo)
         update_yolo

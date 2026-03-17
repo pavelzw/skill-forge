@@ -17,6 +17,9 @@ jobs:
           # git-main strategy (track main branch)
           - skill: polars
             strategy: git-main
+          # generate strategy (re-run generate.py with latest rev)
+          - skill: gws-cli
+            strategy: generate
     name: Bump ${{ matrix.skill }}
     runs-on: ubuntu-latest
     permissions:

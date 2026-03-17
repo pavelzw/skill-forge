@@ -21,3 +21,16 @@ pre-commit-hooks = "*"
 taplo = "*"
 typos = "*"
 zizmor = "*"
+
+[feature.generate-gws-cli.dependencies]
+python = ">=3.12"
+"ruamel.yaml" = ">=0.18"
+
+[feature.generate-gws-cli.tasks]
+generate-gws-cli = "python recipes/gws-cli/generate.py"
+
+[environments]
+default = []
+generate-gws-cli = { features = [
+  "generate-gws-cli",
+], no-default-feature = true }
