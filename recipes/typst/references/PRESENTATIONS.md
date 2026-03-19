@@ -1,23 +1,12 @@
----
-name: typst-presentations
-description: >-
-  Create visually appealing presentations with Typst. Combines Typst typesetting
-  knowledge with presentation design principles. Use when creating slide decks,
-  talks, or presentations with Typst, Touying, or Polylux.
-license: BSD-3-Clause
----
-
-# Typst Presentations
+# Creating Presentations with Typst
 
 Create visually appealing presentations with Typst by combining typesetting skills with presentation design principles.
 
 ## Prerequisites
 
-This skill builds on two foundational skills:
-- **typst** - For Typst syntax, packages (Touying, Polylux), and CLI usage
-- **presentation-design** - For general presentation design principles (slide layout, typography, visual hierarchy, storytelling)
+Before starting, also read the **presentation-design** skill for general presentation design principles (slide layout, typography, visual hierarchy, storytelling). If you can't find it, ask the user to install `agent-skill-presentation-design`.
 
-Refer to both skills before starting. Use the typst skill's Touying or Polylux references for slide-specific syntax.
+Use the [Touying](TOUYING.md) or [Polylux](POLYLUX.md) references for slide-specific syntax.
 
 If you don't have a Typst presentation template, set up a 16:9 page format:
 
