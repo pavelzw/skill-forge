@@ -25,7 +25,7 @@ If you don't have a Typst presentation template, set up a 16:9 page format.
 
 **This is the most critical part of creating presentations with Typst.**
 
-You cannot judge a slide from its source code alone. After editing each slide, you MUST compile it to a PNG image and visually inspect it. This is a non-negotiable step in the workflow.
+You cannot judge a slide from its source code alone. After editing each slide, you MUST compile it to a PNG and visually inspect it. This is a non-negotiable step in the workflow.
 
 ### Compile and inspect a single slide
 
