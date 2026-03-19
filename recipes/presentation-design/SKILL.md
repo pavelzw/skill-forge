@@ -22,6 +22,8 @@ This skill covers **design principles for effective presentations**. It is tool-
 
 **Present this outline to the human for review.** Humans are far better at judging narrative flow, pacing, and what will resonate with a specific audience. The outline is the most important artifact — get it right before designing any slides.
 
+The structure of the outline should fit the presentation's topic and purpose — there is no single correct format. Here is one example to use as a starting point:
+
 ```markdown
 # Outline: [Presentation Title]
 
@@ -42,6 +44,8 @@ This skill covers **design principles for effective presentations**. It is tool-
 ## 5. Takeaway / Call to Action
 - [What should the audience do or remember?]
 ```
+
+Adapt the sections freely — not every presentation needs all of these, and many will need different ones.
 
 **One idea per slide.** If a slide makes two points, split it into two slides. The audience processes one concept at a time. More slides with less content each is always better than fewer dense slides.
 
