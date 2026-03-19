@@ -70,6 +70,8 @@ These guidelines apply to **all** presentation tools and formats.
 
 **Replace bullet lists with visual layouts** — cards, columns, or icons with short labels side by side.
 
+**NEVER create boxes that contain only text.** Every box, card, or container on a slide MUST include at least one image, emoji, icon, or graphic element alongside any text. A box with just a heading or label and nothing visual is an antipattern — always pair it with a relevant visual.
+
 **Use diagrams** for processes, relationships, and architecture. Use charts for data, with headlines that state the takeaway.
 
 ## 4. Control Attention
