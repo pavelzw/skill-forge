@@ -19,16 +19,7 @@ This skill builds on two foundational skills:
 
 Refer to both skills before starting. Use the typst skill's Touying or Polylux references for slide-specific syntax.
 
-## Page Setup Without a Template
-
-If you don't have a Typst presentation template (e.g., you're not using Touying or Polylux), set up a 16:9 page format manually:
-
-```typst
-#set page(width: 254mm, height: 142.9mm, margin: 2cm)
-#set text(size: 20pt)
-```
-
-This gives you a standard widescreen slide canvas to work with.
+If you don't have a Typst presentation template, set up a 16:9 page format.
 
 ## Visual Feedback Loop
 
