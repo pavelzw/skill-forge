@@ -81,7 +81,7 @@ Adapt the sections freely — not every presentation needs all of these, and man
 **Replace bullet lists with visual layouts.** Instead of a list of 3-4 items, arrange them as cards, columns, or icons with short labels placed side by side. Each item gets an icon or small image, a bold label, and optionally one short line of description.
 
 For example, instead of:
-```
+```text
 Benefits:
 - Fast
 - Reliable
