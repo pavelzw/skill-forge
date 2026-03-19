@@ -72,7 +72,7 @@ This skill covers **design principles for effective presentations**. It is tool-
 
 **Images and diagrams always take precedence over text.** When you can show something visually, do it. A well-chosen image, diagram, or chart communicates faster and is more memorable than any sentence.
 
-**Use full-bleed images** when an image carries the message. Let the image fill the entire slide with a short overlay headline if needed. A powerful image with minimal text is far more effective than a small image surrounded by bullet points.
+**Use full-bleed images** when an image carries the message. Let the image fill the entire slide with a short overlay headline if needed. A powerful image with minimal text is far more effective than a small image surrounded by bullet points. **If a slide has only one image or graphic, it should cover the entire slide** — a small centered image with empty space around it looks unfinished. Scale it up, use it as a background, or crop it to fill the frame.
 
 **Replace bullet lists with visual layouts.** Instead of a list of 3-4 items, arrange them as cards, columns, or icons with short labels placed side by side. Each item gets an icon or small image, a bold label, and optionally one short line of description.
 
