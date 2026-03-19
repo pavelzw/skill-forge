@@ -363,6 +363,7 @@ Import packages from Typst Universe with `#import "@preview/package:version"`.
 ```
 
 See individual package guides for detailed usage:
+- [Presentations Guide](references/PRESENTATIONS.md) - Creating slides with Typst
 - [Touying](references/TOUYING.md) - Presentations with themes
 - [Polylux](references/POLYLUX.md) - Lightweight slides
 - [CeTZ](references/CETZ.md) - Drawing library

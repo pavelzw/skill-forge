@@ -7,6 +7,7 @@ Typst skill with documentation from https://github.com/typst/typst/tree/main/doc
 - `references/SCRIPTING.md` - Scripting and programming guide
 - `references/STYLING.md` - Set rules, show rules, and styling
 - `references/TABLES.md` - Table creation and formatting
+- `references/PRESENTATIONS.md` - Guide for creating presentations with Typst
 
 ## Package Reference Files
 
