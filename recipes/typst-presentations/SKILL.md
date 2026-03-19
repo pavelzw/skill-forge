@@ -19,7 +19,11 @@ This skill builds on two foundational skills:
 
 Refer to both skills before starting. Use the typst skill's Touying or Polylux references for slide-specific syntax.
 
-If you don't have a Typst presentation template, set up a 16:9 page format.
+If you don't have a Typst presentation template, set up a 16:9 page format:
+
+```typst
+#set page(paper: "presentation-16-9")
+```
 
 ## Visual Feedback Loop
 
