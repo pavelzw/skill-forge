@@ -89,17 +89,22 @@ git push origin main --force
 
 Start by reproducing the issue locally — run a local build (see Test Locally below) and iterate from there. If `rattler-build` fails, it keeps the work directory at `output/bld/rattler-build_.../work` — you can debug with `cd <work> && source build_env.sh`.
 
-If the user explicitly references CI failures or pastes a link, use `cf-job-logs` to fetch Azure CI logs:
+If the user explicitly references CI failures or pastes a link, use `cf-job-logs` to investigate:
 
-1. List failed jobs: `pixi exec cf-job-logs list-jobs --json <PR_URL>`
+1. Wait for CI: `pixi exec cf-job-logs wait-for-ci --json <PR_URL>`
+   - Polls until all checks complete, then reports which passed/failed
+   - Exits 0 if all pass, 1 if any fail — use this to gate further investigation
+2. List failed jobs: `pixi exec cf-job-logs list-jobs --json <PR_URL>`
    - Returns a JSON array of jobs with `id`, `result`, `platform`, and `name` fields
    - The output only contains failed jobs by default; use `--all` to include successful jobs if needed
    - Pipe to `jq` for filtering if needed
-2. Download a specific job's log: `pixi exec cf-job-logs download-log <PR_URL> <JOB_ID>`
+3. Download a specific job's log: `pixi exec cf-job-logs download-log <PR_URL> <JOB_ID>`
    - Use the `id` from the `list-jobs` output as `<JOB_ID>`
    - Logs are sanitized by default (timestamps and known boilerplate removed; `--no-sanitize` is available but rarely needed)
    - Redirect to a file with `> log.txt` for large logs
-3. Read the error log — understand the root cause before making any changes
+4. Read the error log — understand the root cause before making any changes
+
+**Recommended workflow**: If CI is still running, start with `wait-for-ci` to block until completion. Then use `list-jobs` to get the job IDs for any failures, and `download-log` to fetch the actual logs.
 
 Run `pixi exec cf-job-logs --help` or `pixi exec cf-job-logs <command> --help` for the full list of options.
 
