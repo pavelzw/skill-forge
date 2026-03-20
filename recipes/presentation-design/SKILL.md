@@ -1,137 +1,98 @@
 ---
 name: presentation-design
 description: >-
-  Slide design and storytelling guidelines for presentations.
-  Use when creating, reviewing, or improving presentation slides.
-  Focuses on visual clarity, audience attention, and narrative structure
-  rather than any specific presentation tool.
+  Slide design and storytelling guidelines for creating presentations.
+  ALWAYS load this skill when the user wants to create, review, or improve
+  presentation slides — regardless of tool (Typst/Polylux, Beamer, PowerPoint,
+  Google Slides, reveal.js, etc.).
 license: BSD-3-Clause
 ---
 
 # Presentation Slide Design Guidelines
 
-This skill covers **design principles for effective presentations**. It is tool-agnostic — apply these guidelines whether you are generating slides in Typst/Polylux, LaTeX/Beamer, PowerPoint, Google Slides, reveal.js, or any other format.
+These guidelines apply to **all** presentation tools and formats.
 
-## Start with a Story, Not Slides
+## 1. Outline First — Mandatory
 
-**Draft a structured outline before creating any slides.** A presentation is a narrative, not a document. Before touching any slide tool, write a markdown outline that captures:
+**You MUST draft a structured outline before creating any slides. Do NOT skip this step.** A presentation is a narrative, not a document. Write a markdown outline that captures:
 
-- The core message (one sentence — what should the audience remember?)
-- The narrative arc: setup, tension/problem, resolution/insight, takeaway
+- The **core message** — one sentence the audience should remember
+- The **narrative arc** — setup, tension/problem, resolution/insight, takeaway
 - Key transitions between sections
 
-**Present this outline to the human for review.** Humans are far better at judging narrative flow, pacing, and what will resonate with a specific audience. The outline is the most important artifact — get it right before designing any slides.
-
-The structure of the outline should fit the presentation's topic and purpose — there is no single correct format. Here is one example to use as a starting point:
+**Present this outline to the human and wait for approval before proceeding.** Do not create slides until the human has reviewed and approved the outline. Adapt the structure to fit the topic — there is no single correct format. Example:
 
 ```markdown
 # Outline: [Presentation Title]
 
-**Core message:** [One sentence the audience should remember]
+**Core message:** [One sentence]
 
 ## 1. Opening — Hook
-- [Surprising fact, question, or story that draws the audience in]
+- [Surprising fact, question, or story]
 
 ## 2. Problem / Context
-- [What challenge or situation are we addressing?]
+- [What challenge are we addressing?]
 
 ## 3. Key Insight / Solution
-- [The main idea, broken into 2-3 sub-points]
+- [Main idea, 2-3 sub-points]
 
 ## 4. Evidence / Demo
-- [Data, examples, or live demonstration]
+- [Data, examples, or demonstration]
 
 ## 5. Takeaway / Call to Action
 - [What should the audience do or remember?]
 ```
 
-Adapt the sections freely — not every presentation needs all of these, and many will need different ones.
+## 2. Minimize Text — Ruthlessly
 
-**One idea per slide.** If a slide makes two points, split it into two slides. The audience processes one concept at a time. More slides with less content each is always better than fewer dense slides.
+**Slides are a visual aid, not a script.** The presenter speaks; slides support.
 
-## Minimize Text
+**Absolute maximum: 10 words per slide. The best slides have zero to three words.** Headlines and short phrases only — never sentences. If you need full sentences, put them in speaker notes.
 
-**Slides are a visual aid, not a script.** The presenter speaks; the slides support. If the audience is reading your slides, they are not listening to you.
-
-**Target no more than 15-25 words per slide.** Anything beyond that and the audience will read instead of listen. Headlines and short phrases work better than sentences. If you need full sentences, they belong in speaker notes, not on the slide.
-
-**Use short, punchy headlines that state the takeaway** — not a topic label. The headline should tell the audience what to think, not what the slide is about.
+**Use short headlines that state the takeaway**, not a topic label.
 
 - Weak: "Q3 Sales Results"
-- Strong: "Q3 sales grew 40% after the pricing change"
+- Strong: "Sales up 40%"
 
-**Never put paragraphs on slides.** If content requires detailed explanation, the presenter should say it out loud. The slide shows only the key phrase, number, or visual that anchors the point.
+**Never put paragraphs or long bullet lists on slides.** If a slide has more than two lines of text, rethink it.
 
-## Make Text Legible
+**One idea per slide.** If a slide makes two points, split it.
 
-**Use a large font size.** Body text should be at minimum 24pt, ideally 28-32pt. Headlines should be 36-44pt. If text needs to be smaller to fit, there is too much text — cut it down.
+## 3. Visuals Over Text
 
-**Use a clean, sans-serif font.** Fonts like Inter, Helvetica, Source Sans, or the tool's default sans-serif work well. Avoid decorative or script fonts.
+**Show, don't tell.** Images, diagrams, and charts communicate faster than words. When you can replace text with a visual, always do it.
 
-**Ensure high contrast.** Dark text on a light background or light text on a dark background. Avoid low-contrast combinations like light grey on white or yellow on light backgrounds.
+**Use full-bleed images.** If a slide has one image, it should fill the entire slide. A small centered image with empty space looks unfinished. Use overlay text sparingly.
 
-**Left-align text.** Centered text is harder to scan, especially for multi-line content. Left alignment creates a clean reading edge.
+**Download product logos and relevant images from the internet** when they would strengthen the slide. Prefer official brand assets over arbitrary web results.
 
-## Prefer Visuals Over Text
+**Ask the human for screenshots** if they would help illustrate a point — screenshots of UIs, demos, dashboards, or workflows are often more effective than any diagram you could generate. It's very good practice to ask.
 
-**Images and diagrams always take precedence over text.** When you can show something visually, do it. A well-chosen image, diagram, or chart communicates faster and is more memorable than any sentence.
+**Replace bullet lists with visual layouts** — cards, columns, or icons with short labels side by side.
 
-**Use full-bleed images** when an image carries the message. Let the image fill the entire slide with a short overlay headline if needed. A powerful image with minimal text is far more effective than a small image surrounded by bullet points. **If a slide has only one image or graphic, it should cover the entire slide** — a small centered image with empty space around it looks unfinished. Scale it up, use it as a background, or crop it to fill the frame.
+**NEVER create boxes that contain only text.** Every box, card, or container on a slide MUST include at least one image, emoji, icon, or graphic element alongside any text. A box with just a heading or label and nothing visual is an antipattern — always pair it with a relevant visual. Exceptions exist but are rare.
 
-**Replace bullet lists with visual layouts.** Instead of a list of 3-4 items, arrange them as cards, columns, or icons with short labels placed side by side. Each item gets an icon or small image, a bold label, and optionally one short line of description.
+**Use diagrams** for processes, relationships, and architecture. Use charts for data, with headlines that state the takeaway.
 
-For example, instead of:
-```text
-Benefits:
-- Fast
-- Reliable
-- Easy to use
-```
+## 4. Control Attention
 
-Use a three-column layout where each column has an icon at the top, a bold keyword, and one short phrase beneath it. This is more scannable and visually engaging.
+**Reveal content progressively.** Don't show everything at once — use incremental builds so each point appears when the presenter discusses it.
 
-**Use diagrams for processes and relationships.** Flowcharts, architecture diagrams, timelines, and comparison tables communicate structure far better than prose.
+**One visual focus per slide.** Use size, color, or position to create a clear focal point. Grey out elements that aren't the current focus.
 
-**Use charts for data.** Follow standard data visualization principles: choose the right chart type, label data directly, use color intentionally, and write a headline that states the takeaway (not the chart type).
+## 5. Design for Clarity
 
-## Control Audience Attention
+- **Consistent styling.** One color palette, one font family, one layout grid throughout.
+- **Large fonts.** Body text minimum 24pt, headlines 36pt+. If text must shrink to fit, there's too much text.
+- **High contrast.** Dark on light or light on dark.
+- **White space.** Empty space directs attention — don't fill every corner.
+- **1-2 accent colors** against a neutral background.
+- **No clutter.** Remove decorative elements, unnecessary logos on every slide, and ornamental borders.
+- **Left-align text.** Easier to scan than centered.
 
-**Reveal content progressively.** Do not show an entire slide at once if it contains multiple elements. Use incremental reveals (animations/builds) so each point appears when the presenter is ready to discuss it. This keeps the audience focused on what is being said right now rather than reading ahead.
+## 6. Structure and Pacing
 
-**One visual focus per slide.** The audience's eye should be drawn to exactly one place. If everything is equally prominent, nothing stands out. Use size, color, or position to create a clear focal point.
-
-**Use contrast to direct attention.** Grey out or dim elements that are not the current focus. Highlight the active element with a bold accent color or larger size. This is especially effective when walking through a list or process step by step.
-
-**Pause on key slides.** Important points deserve their own slide with generous white space — not a packed slide that rushes past. Give the audience time to absorb the message.
-
-## Design for Clarity
-
-**Use consistent styling.** Pick one color palette, one font family, and one layout grid and stick to them throughout. Consistency looks professional and avoids distracting the audience with visual novelty.
-
-**Use white space generously.** Empty space is not wasted space — it directs attention and reduces cognitive load. Resist the urge to fill every corner of a slide.
-
-**Limit your color palette.** Use 1-2 accent colors against a neutral background. More colors create visual noise. Use the accent color only to highlight what matters most.
-
-**Avoid clutter.** Remove decorative elements, unnecessary logos on every slide, ornamental borders, and drop shadows. Every element on a slide should earn its place by contributing to the message.
-
-**Use high-quality images.** Blurry, stretched, or watermarked images undermine credibility. If you don't have a good image, use a clean diagram or no image at all rather than a bad one.
-
-## Structure and Pacing
-
-**Start with a hook.** The opening slide should grab attention — a surprising statistic, a provocative question, a compelling image, or a short story. Do not start with an agenda slide or a title slide that just states the topic.
-
-**Use section dividers.** Between major sections, use a simple slide with just the section title or a key question. This gives the audience a mental break and signals a shift in topic.
-
-**End with a clear takeaway.** The final slide should reinforce the core message. A strong closing slide might restate the key insight, pose a call to action, or end with a memorable image. Avoid ending on a generic "Thank you" or "Questions?" slide — combine the takeaway with the invitation for questions.
-
-**Keep presentations short.** Aim for fewer slides than you think you need. A 20-minute talk rarely needs more than 15-20 slides. Cut ruthlessly — if a slide doesn't directly support the core message, remove it.
-
-## Common Pitfalls
-
-- **Wall of text.** If a slide has more than 3 lines of text, rethink it.
-- **Reading slides aloud.** The presenter should add context and narrative, not read what's on screen.
-- **Bullet point overload.** Lists of 5+ items are hard to process. Group, prioritize, or visualize them instead.
-- **Inconsistent design.** Mixing fonts, colors, or layouts across slides looks unprofessional.
-- **Too many animations.** Subtle builds are good; flying, spinning, or bouncing transitions are distracting.
-- **Data without context.** A chart without a headline that explains the takeaway leaves the audience guessing.
-- **Small or low-contrast text.** If you have to squint, the audience in the back row has no chance.
+- **Start with a hook** — surprising fact, question, or image. Not an agenda slide.
+- **Use section dividers** — simple slides with just a section title for mental breaks.
+- **End with a clear takeaway** — restate the core message. Avoid generic "Thank you" or "Questions?" slides.
+- **Keep it short.** Fewer slides than you think. Cut anything that doesn't directly support the core message.
