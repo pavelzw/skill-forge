@@ -64,13 +64,13 @@ These guidelines apply to **all** presentation tools and formats.
 
 **Use full-bleed images.** If a slide has one image, it should fill the entire slide. A small centered image with empty space looks unfinished. Use overlay text sparingly.
 
-**Download product logos and relevant images from the internet** when they would strengthen the slide. Fetch official logos rather than describing them in text.
+**Download product logos and relevant images from the internet** when they would strengthen the slide. Prefer official brand assets over arbitrary web results.
 
 **Ask the human for screenshots** if they would help illustrate a point — screenshots of UIs, demos, dashboards, or workflows are often more effective than any diagram you could generate. It's very good practice to ask.
 
 **Replace bullet lists with visual layouts** — cards, columns, or icons with short labels side by side.
 
-**NEVER create boxes that contain only text.** Every box, card, or container on a slide MUST include at least one image, emoji, icon, or graphic element alongside any text. A box with just a heading or label and nothing visual is an antipattern — always pair it with a relevant visual.
+**NEVER create boxes that contain only text.** Every box, card, or container on a slide MUST include at least one image, emoji, icon, or graphic element alongside any text. A box with just a heading or label and nothing visual is an antipattern — always pair it with a relevant visual. Exceptions exist but are rare.
 
 **Use diagrams** for processes, relationships, and architecture. Use charts for data, with headlines that state the takeaway.
 
