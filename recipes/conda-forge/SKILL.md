@@ -51,7 +51,7 @@ For `noarch: python` packages, provide a `python_min` variant override since sta
 rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml --variant python_min=3.10
 ```
 
-Submit a draft PR. Watch CI until green. Don't mark as ready for review — let the human do that. To skip a platform, add `skip: win` in the `build` section.
+Submit a draft PR, **always** use the PR template for the description. Watch CI until green. Don't mark as ready for review — let the human do that. To skip a platform, add `skip: win` in the `build` section.
 
 For submitting multiple related packages, place each in a separate directory under `recipes/`. The build system resolves dependency order within staged-recipes.
 
