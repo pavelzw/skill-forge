@@ -32,6 +32,11 @@ outputs:
           files:
             - share/agent-skills/gws-admin-reports/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-admin-reports
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Workspace Admin SDK: Audit logs and usage reports."
 
@@ -53,6 +58,11 @@ outputs:
           files:
             - share/agent-skills/gws-calendar/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-calendar
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Calendar: Manage calendars and events."
 
@@ -74,6 +84,11 @@ outputs:
           files:
             - share/agent-skills/gws-calendar-agenda/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-calendar-agenda
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Calendar: Show upcoming events across all calendars."
 
@@ -95,6 +110,11 @@ outputs:
           files:
             - share/agent-skills/gws-calendar-insert/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-calendar-insert
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Calendar: Create a new event."
 
@@ -116,6 +136,11 @@ outputs:
           files:
             - share/agent-skills/gws-chat/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-chat
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Chat: Manage Chat spaces and messages."
 
@@ -137,6 +162,11 @@ outputs:
           files:
             - share/agent-skills/gws-chat-send/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-chat-send
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Chat: Send a message to a space."
 
@@ -158,6 +188,11 @@ outputs:
           files:
             - share/agent-skills/gws-classroom/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-classroom
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Classroom: Manage classes, rosters, and coursework."
 
@@ -179,6 +214,11 @@ outputs:
           files:
             - share/agent-skills/gws-docs/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-docs
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Read and write Google Docs."
 
@@ -200,6 +240,11 @@ outputs:
           files:
             - share/agent-skills/gws-docs-write/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-docs-write
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Docs: Append text to a document."
 
@@ -221,6 +266,11 @@ outputs:
           files:
             - share/agent-skills/gws-drive/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-drive
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Drive: Manage files, folders, and shared drives."
 
@@ -242,6 +292,11 @@ outputs:
           files:
             - share/agent-skills/gws-drive-upload/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-drive-upload
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Drive: Upload a file with automatic metadata."
 
@@ -263,6 +318,11 @@ outputs:
           files:
             - share/agent-skills/gws-events/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-events
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Subscribe to Google Workspace events."
 
@@ -284,6 +344,11 @@ outputs:
           files:
             - share/agent-skills/gws-events-renew/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-events-renew
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Workspace Events: Renew/reactivate Workspace Events subscriptions."
 
@@ -305,6 +370,11 @@ outputs:
           files:
             - share/agent-skills/gws-events-subscribe/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-events-subscribe
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Workspace Events: Subscribe to Workspace events and stream them as NDJSON."
 
@@ -326,6 +396,11 @@ outputs:
           files:
             - share/agent-skills/gws-forms/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-forms
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Read and write Google Forms."
 
@@ -347,6 +422,11 @@ outputs:
           files:
             - share/agent-skills/gws-gmail/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Gmail: Send, read, and manage email."
 
@@ -368,6 +448,11 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-forward/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-forward
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Gmail: Forward a message to new recipients."
 
@@ -389,6 +474,11 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-read/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-read
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Gmail: Read a message and extract its body or headers."
 
@@ -410,6 +500,11 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-reply/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-reply
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Gmail: Reply to a message (handles threading automatically)."
 
@@ -431,6 +526,11 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-reply-all/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-reply-all
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Gmail: Reply-all to a message (handles threading automatically)."
 
@@ -452,6 +552,11 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-send/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-send
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Gmail: Send an email."
 
@@ -473,6 +578,11 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-triage/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-triage
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Gmail: Show unread inbox summary (sender, subject, date)."
 
@@ -494,6 +604,11 @@ outputs:
           files:
             - share/agent-skills/gws-gmail-watch/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-gmail-watch
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Gmail: Watch for new emails and stream them as NDJSON."
 
@@ -515,6 +630,11 @@ outputs:
           files:
             - share/agent-skills/gws-keep/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-keep
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Manage Google Keep notes."
 
@@ -536,6 +656,11 @@ outputs:
           files:
             - share/agent-skills/gws-meet/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-meet
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Manage Google Meet conferences."
 
@@ -557,6 +682,11 @@ outputs:
           files:
             - share/agent-skills/gws-modelarmor/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-modelarmor
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Model Armor: Filter user-generated content for safety."
 
@@ -578,6 +708,11 @@ outputs:
           files:
             - share/agent-skills/gws-modelarmor-create-template/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-modelarmor-create-template
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Model Armor: Create a new Model Armor template."
 
@@ -599,6 +734,11 @@ outputs:
           files:
             - share/agent-skills/gws-modelarmor-sanitize-prompt/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-modelarmor-sanitize-prompt
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Model Armor: Sanitize a user prompt through a Model Armor template."
 
@@ -620,6 +760,11 @@ outputs:
           files:
             - share/agent-skills/gws-modelarmor-sanitize-response/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-modelarmor-sanitize-response
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Model Armor: Sanitize a model response through a Model Armor template."
 
@@ -641,6 +786,11 @@ outputs:
           files:
             - share/agent-skills/gws-people/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-people
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google People: Manage contacts and profiles."
 
@@ -660,6 +810,11 @@ outputs:
           files:
             - share/agent-skills/gws-shared/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-shared
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: gws CLI: Shared patterns for authentication, global flags, and output formatting."
 
@@ -681,6 +836,11 @@ outputs:
           files:
             - share/agent-skills/gws-sheets/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-sheets
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Sheets: Read and write spreadsheets."
 
@@ -702,6 +862,11 @@ outputs:
           files:
             - share/agent-skills/gws-sheets-append/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-sheets-append
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Sheets: Append a row to a spreadsheet."
 
@@ -723,6 +888,11 @@ outputs:
           files:
             - share/agent-skills/gws-sheets-read/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-sheets-read
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Sheets: Read values from a spreadsheet."
 
@@ -744,6 +914,11 @@ outputs:
           files:
             - share/agent-skills/gws-slides/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-slides
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Slides: Read and write presentations."
 
@@ -765,6 +940,11 @@ outputs:
           files:
             - share/agent-skills/gws-tasks/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-tasks
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Tasks: Manage task lists and tasks."
 
@@ -786,6 +966,11 @@ outputs:
           files:
             - share/agent-skills/gws-workflow/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Cross-service productivity workflows."
 
@@ -807,6 +992,11 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-email-to-task/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-email-to-task
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Convert a Gmail message into a Google Tasks entry."
 
@@ -828,6 +1018,11 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-file-announce/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-file-announce
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Announce a Drive file in a Chat space."
 
@@ -849,6 +1044,11 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-meeting-prep/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-meeting-prep
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Prepare for your next meeting: agenda, attendees, and linked docs."
 
@@ -870,6 +1070,11 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-standup-report/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-standup-report
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Today's meetings + open tasks as a standup summary."
 
@@ -891,6 +1096,11 @@ outputs:
           files:
             - share/agent-skills/gws-workflow-weekly-digest/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/gws-workflow-weekly-digest
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Google Workflow: Weekly summary: this week's meetings + unread email count."
 
@@ -917,6 +1127,11 @@ outputs:
           files:
             - share/agent-skills/persona-content-creator/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-content-creator
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create, organize, and distribute content across Workspace."
 
@@ -942,6 +1157,11 @@ outputs:
           files:
             - share/agent-skills/persona-customer-support/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-customer-support
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Manage customer support — track tickets, respond, escalate issues."
 
@@ -968,6 +1188,11 @@ outputs:
           files:
             - share/agent-skills/persona-event-coordinator/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-event-coordinator
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Plan and manage events — scheduling, invitations, and logistics."
 
@@ -993,6 +1218,11 @@ outputs:
           files:
             - share/agent-skills/persona-exec-assistant/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-exec-assistant
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Manage an executive's schedule, inbox, and communications."
 
@@ -1018,6 +1248,11 @@ outputs:
           files:
             - share/agent-skills/persona-hr-coordinator/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-hr-coordinator
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Handle HR workflows — onboarding, announcements, and employee comms."
 
@@ -1042,6 +1277,11 @@ outputs:
           files:
             - share/agent-skills/persona-it-admin/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-it-admin
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Administer IT — monitor security and configure Workspace."
 
@@ -1068,6 +1308,11 @@ outputs:
           files:
             - share/agent-skills/persona-project-manager/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-project-manager
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Coordinate projects — track tasks, schedule meetings, and share docs."
 
@@ -1093,6 +1338,11 @@ outputs:
           files:
             - share/agent-skills/persona-researcher/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-researcher
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Organize research — manage references, notes, and collaboration."
 
@@ -1118,6 +1368,11 @@ outputs:
           files:
             - share/agent-skills/persona-sales-ops/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-sales-ops
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Manage sales workflows — track deals, schedule calls, client comms."
 
@@ -1144,6 +1399,11 @@ outputs:
           files:
             - share/agent-skills/persona-team-lead/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/persona-team-lead
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Lead a team — run standups, coordinate tasks, and communicate."
 
@@ -1167,6 +1427,11 @@ outputs:
           files:
             - share/agent-skills/recipe-backup-sheet-as-csv/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-backup-sheet-as-csv
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Export a Google Sheets spreadsheet as a CSV file for local backup or processing."
 
@@ -1189,6 +1454,11 @@ outputs:
           files:
             - share/agent-skills/recipe-batch-invite-to-event/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-batch-invite-to-event
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Add a list of attendees to an existing Google Calendar event and send notifications."
 
@@ -1211,6 +1481,11 @@ outputs:
           files:
             - share/agent-skills/recipe-block-focus-time/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-block-focus-time
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create recurring focus time blocks on Google Calendar to protect deep work hours."
 
@@ -1233,6 +1508,11 @@ outputs:
           files:
             - share/agent-skills/recipe-bulk-download-folder/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-bulk-download-folder
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: List and download all files from a Google Drive folder."
 
@@ -1255,6 +1535,11 @@ outputs:
           files:
             - share/agent-skills/recipe-collect-form-responses/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-collect-form-responses
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Retrieve and review responses from a Google Form."
 
@@ -1277,6 +1562,11 @@ outputs:
           files:
             - share/agent-skills/recipe-compare-sheet-tabs/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-compare-sheet-tabs
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Read data from two tabs in a Google Sheet to compare and identify differences."
 
@@ -1299,6 +1589,11 @@ outputs:
           files:
             - share/agent-skills/recipe-copy-sheet-for-new-month/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-copy-sheet-for-new-month
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Duplicate a Google Sheets template tab for a new month of tracking."
 
@@ -1321,6 +1616,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-classroom-course/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-classroom-course
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create a Google Classroom course and invite students."
 
@@ -1344,6 +1644,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-doc-from-template/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-doc-from-template
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Copy a Google Docs template, fill in content, and share with collaborators."
 
@@ -1367,6 +1672,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-events-from-sheet/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-events-from-sheet
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Read event data from a Google Sheets spreadsheet and create Google Calendar entries for each row."
 
@@ -1390,6 +1700,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-expense-tracker/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-expense-tracker
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Set up a Google Sheets spreadsheet for tracking expenses with headers and initial entries."
 
@@ -1413,6 +1728,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-feedback-form/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-feedback-form
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create a Google Form for feedback and share it via Gmail."
 
@@ -1435,6 +1755,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-gmail-filter/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-gmail-filter
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create a Gmail filter to automatically label, star, or categorize incoming messages."
 
@@ -1458,6 +1783,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-meet-space/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-meet-space
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create a Google Meet meeting space and share the join link."
 
@@ -1480,6 +1810,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-presentation/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-presentation
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create a new Google Slides presentation and add initial slides."
 
@@ -1502,6 +1837,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-shared-drive/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-shared-drive
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create a Google Shared Drive and add members with appropriate roles."
 
@@ -1524,6 +1864,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-task-list/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-task-list
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Set up a new Google Tasks list with initial tasks."
 
@@ -1546,6 +1891,11 @@ outputs:
           files:
             - share/agent-skills/recipe-create-vacation-responder/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-create-vacation-responder
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Enable a Gmail out-of-office auto-reply with a custom message and date range."
 
@@ -1569,6 +1919,11 @@ outputs:
           files:
             - share/agent-skills/recipe-draft-email-from-doc/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-draft-email-from-doc
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Read content from a Google Doc and use it as the body of a Gmail message."
 
@@ -1592,6 +1947,11 @@ outputs:
           files:
             - share/agent-skills/recipe-email-drive-link/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-email-drive-link
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Share a Google Drive file and email the link with a message to recipients."
 
@@ -1614,6 +1974,11 @@ outputs:
           files:
             - share/agent-skills/recipe-find-free-time/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-find-free-time
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Query Google Calendar free/busy status for multiple users to find a meeting slot."
 
@@ -1636,6 +2001,11 @@ outputs:
           files:
             - share/agent-skills/recipe-find-large-files/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-find-large-files
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Identify large Google Drive files consuming storage quota."
 
@@ -1658,6 +2028,11 @@ outputs:
           files:
             - share/agent-skills/recipe-forward-labeled-emails/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-forward-labeled-emails
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Find Gmail messages with a specific label and forward them to another address."
 
@@ -1682,6 +2057,11 @@ outputs:
           files:
             - share/agent-skills/recipe-generate-report-from-sheet/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-generate-report-from-sheet
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Read data from a Google Sheet and create a formatted Google Docs report."
 
@@ -1704,6 +2084,11 @@ outputs:
           files:
             - share/agent-skills/recipe-label-and-archive-emails/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-label-and-archive-emails
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Apply Gmail labels to matching messages and archive them to keep your inbox clean."
 
@@ -1727,6 +2112,11 @@ outputs:
           files:
             - share/agent-skills/recipe-log-deal-update/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-log-deal-update
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Append a deal status update to a Google Sheets sales tracking spreadsheet."
 
@@ -1749,6 +2139,11 @@ outputs:
           files:
             - share/agent-skills/recipe-organize-drive-folder/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-organize-drive-folder
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create a Google Drive folder structure and move files into the right locations."
 
@@ -1771,6 +2166,11 @@ outputs:
           files:
             - share/agent-skills/recipe-plan-weekly-schedule/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-plan-weekly-schedule
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Review your Google Calendar week, identify gaps, and add events to fill them."
 
@@ -1795,6 +2195,11 @@ outputs:
           files:
             - share/agent-skills/recipe-post-mortem-setup/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-post-mortem-setup
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create a Google Docs post-mortem, schedule a Google Calendar review, and notify via Chat."
 
@@ -1817,6 +2222,11 @@ outputs:
           files:
             - share/agent-skills/recipe-reschedule-meeting/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-reschedule-meeting
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Move a Google Calendar event to a new time and automatically notify all attendees."
 
@@ -1839,6 +2249,11 @@ outputs:
           files:
             - share/agent-skills/recipe-review-meet-participants/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-review-meet-participants
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Review who attended a Google Meet conference and for how long."
 
@@ -1861,6 +2276,11 @@ outputs:
           files:
             - share/agent-skills/recipe-review-overdue-tasks/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-review-overdue-tasks
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Find Google Tasks that are past due and need attention."
 
@@ -1884,6 +2304,11 @@ outputs:
           files:
             - share/agent-skills/recipe-save-email-attachments/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-save-email-attachments
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Find Gmail messages with attachments and save them to a Google Drive folder."
 
@@ -1907,6 +2332,11 @@ outputs:
           files:
             - share/agent-skills/recipe-save-email-to-doc/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-save-email-to-doc
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Save a Gmail message body into a Google Doc for archival or reference."
 
@@ -1929,6 +2359,11 @@ outputs:
           files:
             - share/agent-skills/recipe-schedule-recurring-event/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-schedule-recurring-event
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Create a recurring Google Calendar event with attendees."
 
@@ -1952,6 +2387,11 @@ outputs:
           files:
             - share/agent-skills/recipe-send-team-announcement/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-send-team-announcement
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Send a team announcement via both Gmail and a Google Chat space."
 
@@ -1976,6 +2416,11 @@ outputs:
           files:
             - share/agent-skills/recipe-share-doc-and-notify/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-share-doc-and-notify
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Share a Google Docs document with edit access and email collaborators the link."
 
@@ -1999,6 +2444,11 @@ outputs:
           files:
             - share/agent-skills/recipe-share-event-materials/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-share-event-materials
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Share Google Drive files with all attendees of a Google Calendar event."
 
@@ -2021,6 +2471,11 @@ outputs:
           files:
             - share/agent-skills/recipe-share-folder-with-team/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-share-folder-with-team
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Share a Google Drive folder and all its contents with a list of collaborators."
 
@@ -2044,6 +2499,11 @@ outputs:
           files:
             - share/agent-skills/recipe-sync-contacts-to-sheet/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-sync-contacts-to-sheet
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Export Google Contacts directory to a Google Sheets spreadsheet."
 
@@ -2066,5 +2526,10 @@ outputs:
           files:
             - share/agent-skills/recipe-watch-drive-changes/SKILL.md
           strict: true
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/recipe-watch-drive-changes
+        requirements:
+          run:
+            - skills-ref
     about:
       summary: "Agent skill: Subscribe to change notifications on a Google Drive file or folder."

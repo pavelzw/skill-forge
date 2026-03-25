@@ -24,9 +24,3 @@ one added: `recipe-save-email-attachments` becomes
 `agent-skill-gws-recipe-save-email-attachments`. The install paths under
 `share/agent-skills/` still use the original upstream directory names, so
 relative links between SKILL.md files are not affected.
-
-### Skipped validation
-
-The `agentskills validate` test is intentionally skipped for these packages.
-The upstream SKILL.md frontmatter uses JSON-style flow sequences (e.g. `["gws"]`)
-which `strictyaml` (used by `skills-ref`) rejects.
