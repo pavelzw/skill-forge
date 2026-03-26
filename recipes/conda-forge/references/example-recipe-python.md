@@ -24,11 +24,11 @@ build:
 
 requirements:
   host:
-    - python >=3.9
+    - python ${{ python_min }}.*
     - pip
     - hatchling
   run:
-    - python >=3.9
+    - python >=${{ python_min }}
     - requests
     - click
 
@@ -37,6 +37,7 @@ tests:
       imports:
         - example_package
       pip_check: true
+      python_version: ${{ python_min }}.*
   - script:
       - example-command --help
 
@@ -53,6 +54,7 @@ extra:
 
 Key points:
 - Use `noarch: python` for pure Python packages (no compiled extensions)
+- Use `python_min` for version pinning: `${{ python_min }}.*` in host, `>=${{ python_min }}` in run, and `python_version: ${{ python_min }}.*` in tests
 - Match the `host` build backend to `pyproject.toml`'s `[build-system].requires`
 - Always include `pip_check: true` in tests
 - Use `--no-deps --no-build-isolation` in the pip install command
