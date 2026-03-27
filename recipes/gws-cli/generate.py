@@ -12,7 +12,7 @@ from ruamel.yaml.scalarstring import DoubleQuotedScalarString
 
 REPO = "googleworkspace/cli"
 REPO_URL = f"https://github.com/{REPO}"
-VERSION = "0.22.1"
+VERSION = "0.22.3"
 RAW_URL = f"https://raw.githubusercontent.com/{REPO}/v{VERSION}"
 TIMEOUT = 10
 
