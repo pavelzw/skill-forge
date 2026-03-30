@@ -13,16 +13,23 @@ description: >
 
 # Unit Testing Skill
 
-## Scope
+## Scope and Principles
 
-This skill governs how you write **tests only**. Do not refactor or modify
-the user's production code. If you identify production code that would benefit
-from refactoring (e.g., to improve testability), mention it as a suggestion
-but do not make the change yourself.
+Only write and modify test code. Do not refactor or modify the user's
+production code. If production code would benefit from changes to improve
+testability, suggest the refactor but do not perform it.
 
-Not all tests are equal. A test suite full of low-value tests is worse than
-a small suite of high-value ones because every test has a maintenance
-cost. Write tests that maximize value while minimizing that cost.
+Every test has a maintenance cost. Prefer a small suite of high-value tests
+over broad coverage with low-value ones. Evaluate each test against these
+four pillars:
+
+1. Protection against regressions — exercise meaningful, complex code paths.
+2. Resistance to refactoring — must not break when implementation changes
+   but behavior stays the same. Never compromise on this.
+3. Fast feedback — keep tests fast (milliseconds).
+4. Maintainability — keep tests short, readable, and free of complex setup.
+
+When (1) and (3) conflict, make a deliberate trade-off. (2) is non-negotiable.
 
 ## Step 1: Classify the Code Before Writing Tests
 
@@ -198,20 +205,6 @@ Use the classical school: isolate tests from each other, not classes
 from each other. Use real collaborators. A "unit" is a unit of behavior,
 possibly spanning multiple classes. London-style mocking (mock all
 collaborators) couples tests to implementation and makes them brittle.
-
-## Step 5: Review Against the Four Pillars
-
-Every test must score well on all four. If any is zero, the test's value
-is zero.
-
-1. Protection against regressions — Does it exercise meaningful,
-   complex code paths?
-2. Resistance to refactoring — Will it break if implementation changes
-   but behavior stays the same? (Non-negotiable — treat as binary.)
-3. Fast feedback — Does it run in milliseconds?
-4. Maintainability — Is it short, readable, free of complex setup?
-
-The trade-off is between (1) and (3). Never compromise on (2).
 
 ## Anti-Patterns — Don't Do These
 
