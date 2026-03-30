@@ -1,0 +1,43 @@
+context:
+  skill: presentation-design
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.2"
+
+source:
+  - path: ../../LICENSE
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp $RECIPE_DIR/SKILL.md $PREFIX/share/agent-skills/${{ skill }}/SKILL.md
+
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: Slide design and storytelling guidelines for presentations
+  description: |
+    Presentation design guidelines focused on visual clarity and storytelling:
+    - Drafting a narrative outline before creating slides
+    - Minimizing text and using large, legible fonts
+    - Preferring visuals, icons, and diagrams over bullet lists
+    - Controlling audience attention with progressive reveals
+    - Using consistent styling, white space, and intentional color
+    - Structuring presentations with hooks, section dividers, and clear takeaways
+  homepage: https://github.com/pavelzw/skill-forge
+  repository: https://github.com/pavelzw/skill-forge
+  documentation: https://github.com/pavelzw/skill-forge
+  license: BSD-3-Clause
+  license_file: LICENSE
