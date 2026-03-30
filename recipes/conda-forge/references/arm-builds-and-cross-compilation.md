@@ -45,6 +45,7 @@ Only enable it if the user explicitly asks for `win-arm64` support. Do not add i
 ```yaml
 build_platform:
   win_arm64: win_64
+test: native_and_emulated
 ```
 
 ## Explicit cross-compilation
