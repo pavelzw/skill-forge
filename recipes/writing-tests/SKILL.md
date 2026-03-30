@@ -13,6 +13,13 @@ description: >
 
 # Unit Testing Skill
 
+## Scope
+
+This skill governs how you write **tests only**. Do not refactor or modify
+the user's production code. If you identify production code that would benefit
+from refactoring (e.g., to improve testability), mention it as a suggestion
+but do not make the change yourself.
+
 Not all tests are equal. A test suite full of low-value tests is worse than
 a small suite of high-value ones because every test has a maintenance
 cost. Write tests that maximize value while minimizing that cost.
@@ -21,14 +28,15 @@ cost. Write tests that maximize value while minimizing that cost.
 
 | | Few collaborators | Many collaborators |
 |---|---|---|
-| High complexity / domain significance | Unit test extensively | Refactor first (Humble Object pattern), then test |
+| High complexity / domain significance | Unit test extensively | Suggest refactoring first (Humble Object pattern), then test what you can |
 | Low complexity / domain significance | Don't test (trivial code) | Integration test (few, happy-path + critical edges) |
 
 - Domain logic with few collaborators = best ROI. Test these first.
 - Trivial code (constructors, one-liner pass-throughs) = don't test.
 - Overcomplicated code (high complexity + many collaborators) = don't
-  mock everything. Split into a pure domain piece and a thin
-  orchestration piece using the Humble Object pattern.
+  mock everything. Suggest splitting into a pure domain piece and a thin
+  orchestration piece (Humble Object pattern), but do not perform the
+  refactor yourself. Write the best tests you can for the code as-is.
 
 ## Step 2: Choose the Testing Style
 
@@ -37,8 +45,8 @@ Prefer in this order:
 1. Output-based (best) — Supply input, verify return value. Shortest,
    most maintainable, most refactoring-resistant.
 2. State-based (good) — Invoke operation, verify resulting state.
-3. Communication-based (sparingly) — Verify the SUT called an
-   external dependency correctly. Only for unmanaged dependencies.
+3. Communication-based (sparingly) — Verify the system under test called
+   an external dependency correctly. Only for unmanaged dependencies.
 
 ## Step 3: Write the Test
 
@@ -47,11 +55,11 @@ Prefer in this order:
 ```python
 def test_delivery_with_a_past_date_is_invalid():
     # Arrange
-    sut = DeliveryService()
+    service = DeliveryService()
     delivery = Delivery(date=datetime.now() - timedelta(days=1))
 
     # Act
-    is_valid = sut.is_delivery_valid(delivery)
+    is_valid = service.is_delivery_valid(delivery)
 
     # Assert
     assert is_valid is False
@@ -60,9 +68,8 @@ def test_delivery_with_a_past_date_is_invalid():
 - One act per test. Multiple acts = multiple behaviors = multiple tests.
 - No `if` statements in tests. Branching means two tests.
 - Act should be a single call. If it takes multiple lines to invoke one
-  behavior, the SUT's API may be leaking implementation details.
+  behavior, the API may be leaking implementation details.
 - Multiple assertions are fine if they verify the same unit of behavior.
-- Name the SUT `sut` to make the test subject obvious.
 
 ### Naming: Plain English Facts
 
@@ -90,15 +97,15 @@ class TestCustomer:
     def setup_method(self):
         self.store = Store()
         self.store.add_inventory(Product.SHAMPOO, 10)
-        self.sut = Customer()
+        self.customer = Customer()
 ```
 
 ```python
 # GOOD — self-contained, readable, decoupled
 def test_purchase_succeeds_when_enough_inventory():
     store = create_store_with_inventory(Product.SHAMPOO, 10)
-    sut = Customer()
-    success = sut.purchase(store, Product.SHAMPOO, 5)
+    customer = Customer()
+    success = customer.purchase(store, Product.SHAMPOO, 5)
     assert success is True
 
 def create_store_with_inventory(product, quantity):
@@ -130,8 +137,8 @@ def test_the_soonest_delivery_date_is_two_days_from_now(): ...
 - Stub = emulates incoming interactions (queries). Example: returning
   data from a dependency.
 
-Never assert interactions with stubs. How the SUT queries data is an
-implementation detail.
+Never assert interactions with stubs. How the system under test queries
+data is an implementation detail.
 
 ### Managed vs. Unmanaged Dependencies
 
