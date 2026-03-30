@@ -1,14 +1,9 @@
 ---
 name: unit-testing
 description: >
-  Write high-quality unit and integration tests for Python code using pytest,
-  following value-driven testing principles. Use this skill whenever the user
-  asks you to write tests, add test coverage, create a test suite, write unit
-  tests, integration tests, or review existing tests for quality. Also trigger
-  when the user mentions pytest, testing strategy, mocking best practices, test
-  refactoring, test design, TDD, or asks "how should I test this?". This skill
-  ensures every test you write is valuable, maintainable, and resistant to
-  refactoring. Always consult this skill before writing any test code.
+  How to write valuable, maintainable Python tests with pytest. Use this skill
+  whenever writing, reviewing, or designing tests for Python code — including
+  questions about what or how to test, mocking strategy, and test structure.
 ---
 
 # Unit Testing Skill
