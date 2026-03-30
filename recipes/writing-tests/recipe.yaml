@@ -26,7 +26,9 @@ tests:
 about:
   summary: Guidelines for writing tests
   description: |
-    TODO: Add description
+    Write high-quality unit and integration tests for Python code using pytest,
+    following value-driven testing principles. Covers test classification,
+    mocking strategy, and common anti-patterns.
   homepage: https://github.com/pavelzw/skill-forge
   repository: https://github.com/pavelzw/skill-forge
   license: BSD-3-Clause

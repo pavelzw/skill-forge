@@ -1,11 +1,11 @@
 ---
 name: unit-testing
 description: >
-  Write high-quality unit and integration tests for Python code following
-  value-driven testing principles. Use this skill whenever the user asks you to
-  write tests, add test coverage, create a test suite, write unit tests,
-  integration tests, or review existing tests for quality. Also trigger when
-  the user mentions pytest, testing strategy, mocking best practices, test
+  Write high-quality unit and integration tests for Python code using pytest,
+  following value-driven testing principles. Use this skill whenever the user
+  asks you to write tests, add test coverage, create a test suite, write unit
+  tests, integration tests, or review existing tests for quality. Also trigger
+  when the user mentions pytest, testing strategy, mocking best practices, test
   refactoring, test design, TDD, or asks "how should I test this?". This skill
   ensures every test you write is valuable, maintainable, and resistant to
   refactoring. Always consult this skill before writing any test code.
@@ -17,7 +17,8 @@ description: >
 
 Only write and modify test code. Do not refactor or modify the user's
 production code. If production code would benefit from changes to improve
-testability, suggest the refactor but do not perform it.
+testability, suggest the refactor but do not perform it. Always read the
+production code first to classify it (Step 1) before writing any tests.
 
 Every test has a maintenance cost. Prefer a small suite of high-value tests
 over broad coverage with low-value ones. Evaluate each test against these
@@ -44,6 +45,12 @@ When (1) and (3) conflict, make a deliberate trade-off. (2) is non-negotiable.
   mock everything. Suggest splitting into a pure domain piece and a thin
   orchestration piece (Humble Object pattern), but do not perform the
   refactor yourself. Write the best tests you can for the code as-is.
+
+## Test File Organization
+
+Place tests in a `tests/` directory mirroring the source structure. Name test
+files `test_<module>.py`. For example, `src/billing/invoice.py` →
+`tests/billing/test_invoice.py`.
 
 ## Step 2: Choose the Testing Style
 
@@ -77,6 +84,30 @@ def test_delivery_with_a_past_date_is_invalid():
 - Act should be a single call. If it takes multiple lines to invoke one
   behavior, the API may be leaking implementation details.
 - Multiple assertions are fine if they verify the same unit of behavior.
+
+### Testing Exceptions
+
+Use `pytest.raises` to verify error paths. Name the test after the scenario,
+not the exception class.
+
+```python
+def test_withdrawal_above_balance_raises_insufficient_funds():
+    account = Account(balance=100)
+    with pytest.raises(InsufficientFundsError):
+        account.withdraw(200)
+```
+
+### Testing Async Code
+
+For async functions, use `pytest-asyncio`:
+
+```python
+@pytest.mark.asyncio
+async def test_fetching_user_returns_profile():
+    client = AsyncAPIClient()
+    profile = await client.get_user(user_id=42)
+    assert profile.name == "Alice"
+```
 
 ### Naming: Plain English Facts
 
@@ -123,14 +154,38 @@ def create_store_with_inventory(product, quantity):
 
 Exception: shared infrastructure in `conftest.py` (DB connections) is fine.
 
+### Fixtures vs. Factory Functions
+
+Use `@pytest.fixture` for shared infrastructure (DB sessions, HTTP clients) or
+when pytest's teardown/scoping is needed. Use plain factory functions for
+creating domain objects — they're simpler, explicit, and don't hide setup.
+
+```python
+# Fixture: good for infrastructure with teardown
+@pytest.fixture
+def db_session():
+    session = create_test_session()
+    yield session
+    session.rollback()
+
+# Factory function: good for domain objects
+def create_store_with_inventory(product, quantity):
+    store = Store()
+    store.add_inventory(product, quantity)
+    return store
+```
+
 ### Parameterized Tests
 
 Group related scenarios that differ only by input. Keep positive and
 negative cases together only when it's obvious which is which.
 
 ```python
-@pytest.mark.parametrize("days_from_now", [-1, 0, 1])
-def test_detects_an_invalid_delivery_date(days_from_now): ...
+@pytest.mark.parametrize("days_from_now, expected_valid", [(-1, False), (0, False), (2, True)])
+def test_delivery_date_validity(days_from_now, expected_valid):
+    service = DeliveryService()
+    delivery = Delivery(date=datetime.now() + timedelta(days=days_from_now))
+    assert service.is_delivery_valid(delivery) is expected_valid
 
 def test_the_soonest_delivery_date_is_two_days_from_now(): ...
 ```
@@ -176,28 +231,14 @@ bus_client_mock.send.assert_called_once_with(
 )
 ```
 
-### Prefer Spies at Boundaries
+### Consider Spies at Frequently Tested Boundaries
 
-Handwritten spy classes encapsulate assertion logic and improve
-readability over raw `Mock()` calls.
-
-```python
-class BusClientSpy:
-    def __init__(self):
-        self.sent_messages: list[str] = []
-
-    def send(self, message: str) -> None:
-        self.sent_messages.append(message)
-
-    def should_have_sent(self, count: int) -> "BusClientSpy":
-        assert len(self.sent_messages) == count
-        return self
-
-    def with_email_changed_message(self, user_id, email) -> "BusClientSpy":
-        expected = f"Type: USER EMAIL CHANGED; Id: {user_id}; NewEmail: {email}"
-        assert expected in self.sent_messages
-        return self
-```
+A spy is a handwritten test double that records calls for later assertion.
+Unlike `Mock()`, spies let you encapsulate assertion logic into fluent,
+domain-specific methods (e.g., `spy.should_have_sent(1).with_message(...)`)
+which makes tests read like specifications. This is especially valuable at
+boundaries you test repeatedly — write the spy once and reuse it across
+many tests. For one-off mocks, `Mock(spec=...)` is fine.
 
 ### Don't Mock Between Your Own Classes
 
