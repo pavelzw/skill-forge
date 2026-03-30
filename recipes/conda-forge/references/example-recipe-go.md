@@ -38,12 +38,6 @@ tests:
   - package_contents:
       bin:
         - example-package
-      files:
-        - if: unix
-          then:
-            - share/bash-completion/completions/example-package
-            - share/fish/vendor_completions.d/example-package.fish
-            - share/zsh/site-functions/_example-package
       strict: true
 
 about:
@@ -68,8 +62,6 @@ Key points:
 - Use `${{ compiler("go-cgo") }}` if the package uses cgo
 - Use `go-licenses` to collect dependency licenses
 - Place source in `target_directory: src` to keep license output separate
-- Generate shell completions for bash, zsh, and fish on Unix platforms. This assumes the binary supports a `completion --shell <shell>` subcommand. The completion files are installed to the standard locations under `$PREFIX/share/`. If your tool does not support generating completions, remove those build and test lines.
-- Verify that both the binary and the shell completion files are present using `package_contents` tests, with `strict: true` to ensure no unexpected files are installed.
 
 In case a license is missing, use `--skip ...` to skip the package but ensure it's still part of the package by manually downloading it from `https://raw.githubusercontent.com/.../refs/heads/master/LICENSE`:
 
@@ -92,12 +84,3 @@ about:
     - library_licenses/
     - LICENSE-other-package
 ```
-
-You might need to set the following in `conda-forge.yml` to ensure that the `$PREFIX/bin/example-package completion --shell ...` steps work:
-
-```yml
-provider:
-  osx_arm64: azure
-```
-
-Generating the completions only works when running the native binary which doesn't work with `osx-64 -> osx-arm64` cross-compilation.

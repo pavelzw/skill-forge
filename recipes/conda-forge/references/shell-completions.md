@@ -1,6 +1,8 @@
 # Shell Completions for CLI Packages
 
-Many CLI tools support generating shell completion scripts for bash, zsh, and fish. When packaging such tools for conda-forge, you should include these completions so that users get tab-completion out of the box — especially when installing via `pixi global`.
+Some CLI tools support generating shell completion scripts for bash, zsh, and fish. When a tool supports this, you may want to add these completions so users get tab-completion out of the box, especially when installing via `pixi global`.
+
+When helping a user package a CLI tool, do not add completion steps by default to every recipe template. First check whether the tool supports generating completions. If it does, suggest to the user that the recipe can install them as well, and only add the recipe changes when the user asks for that or it is otherwise clearly in scope.
 
 ## Standard Installation Paths
 
@@ -62,7 +64,7 @@ There is no universal standard for how CLI tools expose completion generation. Y
 - `<bin> --generate-completion bash`
 - `<bin> generate-completion bash`
 
-When creating a recipe, run `<bin> --help` and `<bin> completion --help` (or similar) to find the correct invocation.
+When creating a recipe, run `<bin> --help` and `<bin> completion --help` (or similar) to find the correct invocation. If a completion subcommand is available, mention to the user that the recipe can package these files too.
 
 ## Cross-Compilation Constraint
 
