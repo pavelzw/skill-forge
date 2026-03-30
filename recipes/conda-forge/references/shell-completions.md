@@ -70,19 +70,19 @@ When creating a recipe, run `<bin> --help` and `<bin> completion --help` (or sim
 
 Generating completions requires **executing the built binary**. This means it only works when the build platform can run the target binary natively. Cross-compiled builds (e.g., building `osx-arm64` on `osx-64`) cannot run the binary, so the completion generation step will fail.
 
-To handle this, set the `osx_arm64` provider to `azure` in `conda-forge.yml` so that ARM builds run on native ARM machines:
+To handle this, update `conda-forge.yml` to the latest defaults so `osx_arm64` uses native builds instead of cross-compilation:
 
 ```yaml
 provider:
-  osx_arm64: azure
+  osx_arm64: default
 ```
 
-This replaces the default `build_platform` cross-compilation approach for `osx_arm64`. `linux_aarch64` does not need this change — cross-compiled ARM binaries can still be executed on `linux_64` via QEMU emulation, so the completion generation steps work there.
+This switches `osx_arm64` back to the default native build configuration instead of overriding it to use `build_platform` cross-compilation. `linux_aarch64` does not necessarily need this change — cross-compiled ARM binaries can still be executed on `linux_64` via QEMU emulation, so the completion generation steps work there.
 
 If adding completions to an existing feedstock that uses cross-compilation, you will need to:
 
 1. Remove `osx_arm64: osx_64` from `build_platform` (if present)
-2. Add `provider: osx_arm64: azure`
+2. Update `provider: osx_arm64: default`
 3. Run `pixi exec conda-smithy rerender --commit=auto` to regenerate CI configuration
 
 ## When NOT to Add Completions
