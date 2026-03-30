@@ -25,12 +25,6 @@ build:
         else:
           - cargo auditable install --locked --no-track --bins --root %LIBRARY_PREFIX% --path .
       - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
-      - if: unix
-        then:
-          - mkdir -p $PREFIX/share/zsh/site-functions $PREFIX/share/bash-completion/completions $PREFIX/share/fish/vendor_completions.d
-          - $PREFIX/bin/example-package completion --shell zsh > $PREFIX/share/zsh/site-functions/_example-package
-          - $PREFIX/bin/example-package completion --shell bash > $PREFIX/share/bash-completion/completions/example-package
-          - $PREFIX/bin/example-package completion --shell fish > $PREFIX/share/fish/vendor_completions.d/example-package.fish
 
 requirements:
   build:
