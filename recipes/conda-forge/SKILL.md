@@ -165,4 +165,5 @@ If a newer Python minimum is required than conda-forge's default (3.10), overrid
 - [Go recipe template](references/example-recipe-go.md)
 - [Rust recipe template](references/example-recipe-rust.md)
 - [ARM builds and cross-compilation](references/arm-builds-and-cross-compilation.md)
+- [Shell completions for CLI packages](references/shell-completions.md)
 - [Recipe migration (v0 → v1)](references/rattler-build-migration.md)
