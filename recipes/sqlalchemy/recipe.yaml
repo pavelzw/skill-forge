@@ -3,7 +3,7 @@ context:
 
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.2"
+  version: "0.0.3"
 
 source:
   url: https://raw.githubusercontent.com/sqlalchemy/sqlalchemy/refs/heads/main/LICENSE
