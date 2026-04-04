@@ -1,0 +1,36 @@
+context:
+  skill: building-pydantic-ai-agents
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+source:
+  git: https://github.com/pydantic/skills
+  rev: 29ff4129f9b17e2d5b7992cac96ca7fc240d03d8
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp -R skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+about:
+  summary: Build AI agents with Pydantic AI
+  description: |
+    Patterns, architecture guidance, and tested code examples for building
+    production-grade AI applications with Pydantic AI:
+    - Tools, capabilities, structured output, and streaming
+    - Multi-agent patterns and delegation
+    - Testing agent behavior
+    - Agent observability with Logfire
+  homepage: https://ai.pydantic.dev/
+  repository: https://github.com/pydantic/skills
+  documentation: https://ai.pydantic.dev/
+  license: MIT
