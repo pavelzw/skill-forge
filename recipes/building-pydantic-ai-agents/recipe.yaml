@@ -34,3 +34,7 @@ about:
   repository: https://github.com/pydantic/skills
   documentation: https://ai.pydantic.dev/
   license: MIT
+  # Upstream repo has no dedicated LICENSE file yet (https://github.com/pydantic/skills/issues/5).
+  # License is declared in SKILL.md frontmatter:
+  # https://github.com/pydantic/skills/blob/29ff4129f9b17e2d5b7992cac96ca7fc240d03d8/skills/building-pydantic-ai-agents/SKILL.md?plain=1#L7
+  license_file: skills/${{ skill }}/SKILL.md
