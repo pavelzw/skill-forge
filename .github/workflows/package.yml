@@ -79,25 +79,7 @@ jobs:
         with:
           name: output
           path: output
-      - name: Get JWT
-        id: get_token
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
-        with:
-          script: |
-            const token = await core.getIDToken('prefix.dev')
-            core.setOutput('token', token)
-      - name: Mint the API Key on prefix.dev
-        shell: bash
-        run: |
-          TOKEN="${{ steps.get_token.outputs.token }}"
-          RESPONSE="$(curl -s -X POST                 \
-              https://prefix.dev/api/oidc/mint_token \
-              -H 'Content-Type: application/json'    \
-              --data "{\"token\": \"$TOKEN\"}")"
-          # mask the response
-          echo "::add-mask::$RESPONSE"
-          echo "PREFIX_API_KEY=$RESPONSE" >> "$GITHUB_ENV"
-      - name: Upload package to Artifactory
+      - name: Upload package to prefix.dev
         if: github.event_name == 'push'
         run: |
-          rattler-build upload prefix --generate-attestation -c skill-forge output/**/*.conda
+          rattler-build publish --to https://prefix.dev/skill-forge --generate-attestation output/**/*.conda
