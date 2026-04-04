@@ -9,23 +9,21 @@ about:
   repository: https://github.com/pydantic/skills
 
 outputs:
-  - context:
-      skill: building-pydantic-ai-agents
-    package:
-      name: agent-skill-${{ skill }}
+  - package:
+      name: agent-skill-building-pydantic-ai-agents
       version: "0.0.1"
     build:
       number: 0
       noarch: generic
       script:
-        - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
-        - cp -R skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
+        - mkdir -p $PREFIX/share/agent-skills/building-pydantic-ai-agents
+        - cp -R skills/building-pydantic-ai-agents/* $PREFIX/share/agent-skills/building-pydantic-ai-agents
     tests:
       - package_contents:
           files:
-            - share/agent-skills/${{ skill }}/SKILL.md
+            - share/agent-skills/building-pydantic-ai-agents/SKILL.md
       - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/building-pydantic-ai-agents
         requirements:
           run:
             - skills-ref
@@ -40,25 +38,22 @@ outputs:
         - Agent observability with Logfire
       documentation: https://ai.pydantic.dev/
 
-  - context:
-      skill: logfire-instrumentation
-      # The SKILL.md frontmatter uses name: instrumentation
-      skill_name: instrumentation
-    package:
-      name: agent-skill-${{ skill }}
+  - package:
+      name: agent-skill-logfire-instrumentation
       version: "0.0.1"
     build:
       number: 0
       noarch: generic
       script:
-        - mkdir -p $PREFIX/share/agent-skills/${{ skill_name }}
-        - cp -R skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill_name }}
+        # Upstream SKILL.md uses name: instrumentation, so install under that name
+        - mkdir -p $PREFIX/share/agent-skills/instrumentation
+        - cp -R skills/logfire-instrumentation/* $PREFIX/share/agent-skills/instrumentation
     tests:
       - package_contents:
           files:
-            - share/agent-skills/${{ skill_name }}/SKILL.md
+            - share/agent-skills/instrumentation/SKILL.md
       - script:
-          - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill_name }}
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/instrumentation
         requirements:
           run:
             - skills-ref
