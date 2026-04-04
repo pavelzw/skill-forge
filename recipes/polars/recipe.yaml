@@ -2,7 +2,7 @@ context:
   skill: polars
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.5"
+  version: "0.0.6"
 source:
   git: https://github.com/k-dense-ai/claude-scientific-skills
   rev: 575404d3c23ca9163b9bd4a7512d127522ccdc0d

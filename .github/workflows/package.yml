@@ -100,7 +100,4 @@ jobs:
       - name: Upload package to Artifactory
         if: github.event_name == 'push'
         run: |
-          shopt -s nullglob
-          for file in output/**/*.conda; do
-            rattler-build upload prefix -c skill-forge "$file"
-          done
+          rattler-build upload prefix --generate-attestation -c skill-forge output/**/*.conda
