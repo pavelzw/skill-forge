@@ -11,7 +11,7 @@ about:
 outputs:
   - package:
       name: agent-skill-building-pydantic-ai-agents
-      version: "0.0.1"
+      version: "0.0.2"
     build:
       number: 0
       noarch: generic
@@ -40,7 +40,7 @@ outputs:
 
   - package:
       name: agent-skill-logfire-instrumentation
-      version: "0.0.1"
+      version: "0.0.2"
     build:
       number: 0
       noarch: generic
