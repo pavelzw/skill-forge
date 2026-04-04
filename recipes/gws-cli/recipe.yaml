@@ -13,9 +13,6 @@ about:
   repository: https://github.com/googleworkspace/cli
   documentation: https://github.com/googleworkspace/cli/blob/v0.22.5/docs/skills.md
 
-build:
-  number: 1
-
 outputs:
   - package:
       name: agent-skill-gws-admin-reports
