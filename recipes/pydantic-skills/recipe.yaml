@@ -2,6 +2,7 @@ source:
   git: https://github.com/pydantic/skills
   rev: cb098e838fb9a280141b34825e4db112afb05256
 
+  version: 0.0.2
 about:
   license: MIT
   license_file: LICENSE
@@ -11,7 +12,7 @@ about:
 outputs:
   - package:
       name: agent-skill-building-pydantic-ai-agents
-      version: "0.0.2"
+      version: ${{ version }}
     build:
       number: 0
       noarch: generic
@@ -37,10 +38,9 @@ outputs:
         - Testing agent behavior
         - Agent observability with Logfire
       documentation: https://ai.pydantic.dev/
-
   - package:
       name: agent-skill-logfire-instrumentation
-      version: "0.0.2"
+      version: ${{ version }}
     build:
       number: 0
       noarch: generic
