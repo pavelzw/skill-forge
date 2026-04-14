@@ -1,13 +1,11 @@
 source:
   git: https://github.com/pydantic/skills
-  rev: cb098e838fb9a280141b34825e4db112afb05256
-
+  rev: 97d8c1d5adcf85dce633f5f4633f4e01464d087e
 about:
   license: MIT
   license_file: LICENSE
   homepage: https://ai.pydantic.dev/
   repository: https://github.com/pydantic/skills
-
 outputs:
   - package:
       name: agent-skill-building-pydantic-ai-agents
@@ -37,7 +35,6 @@ outputs:
         - Testing agent behavior
         - Agent observability with Logfire
       documentation: https://ai.pydantic.dev/
-
   - package:
       name: agent-skill-logfire-instrumentation
       version: "0.0.2"
@@ -65,3 +62,5 @@ outputs:
         - Native SDKs for Python, JavaScript/TypeScript, and Rust
         - Monitor AI/LLM calls (PydanticAI, OpenAI, Anthropic)
       documentation: https://logfire.pydantic.dev/
+package:
+  version: null..1
