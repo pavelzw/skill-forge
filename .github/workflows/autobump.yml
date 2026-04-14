@@ -17,7 +17,7 @@ jobs:
           # git-main strategy (track main branch)
           - skill: polars
             strategy: git-main
-          - skill: building-pydantic-ai-agents
+          - skill: pydantic-skills
             strategy: git-main
           # generate strategy (re-run generate.py with latest rev)
           - skill: gws-cli
@@ -25,8 +25,7 @@ jobs:
     name: Bump ${{ matrix.skill }}
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
       id-token: write
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -40,6 +39,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
+      - uses: octo-sts/action@6177b4481c00308b3839969c3eca88c96a91775f # v1.0.0
+        id: octo-sts
+        with:
+          scope: ${{ github.repository }}
+          identity: write
+
       - name: Create Pull Request
         if: (github.event_name == 'schedule' || github.event.inputs.skill == matrix.skill) && steps.bump.outputs.old-version != steps.bump.outputs.new-version
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
@@ -48,6 +53,7 @@ jobs:
           commit-message: Bump ${{ matrix.skill }} from ${{ steps.bump.outputs.old-version }} to ${{ steps.bump.outputs.new-version }}
           branch: bump-${{ matrix.skill }}
           delete-branch: true
+          token: ${{ steps.octo-sts.outputs.token }}
           body: |
             # ${{ matrix.skill }}
 

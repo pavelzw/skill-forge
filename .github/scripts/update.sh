@@ -33,11 +33,16 @@ fi
 
 # Bump patch version (e.g., 0.0.1 -> 0.0.2)
 bump_patch_version() {
-    local current_version
-    current_version=$(yq -r '.package.version' "$recipe_file")
+    local current_version version_path
+    current_version=$(yq -r '.package.version // ""' "$recipe_file")
+    version_path=".package.version"
+    if [[ -z "$current_version" ]]; then
+        current_version=$(yq -r '.context.version // ""' "$recipe_file")
+        version_path=".context.version"
+    fi
     local new_version
     new_version=$(echo "$current_version" | awk -F. '{print $1"."$2"."$3+1}')
-    yq -i ".package.version = \"$new_version\"" "$recipe_file"
+    yq -i "$version_path = \"$new_version\"" "$recipe_file"
     echo "  version: $current_version -> $new_version"
 }
 
