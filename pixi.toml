@@ -6,7 +6,7 @@ preview = ["pixi-build"]
 
 [tasks]
 pre-commit-install = "pre-commit install"
-pre-commit-run = "pre-commit run -a"
+lint = "pre-commit run -a"
 build-new = "rattler-build build -c https://prefix.dev/skill-forge -c conda-forge --recipe-dir recipes/ --skip-existing=all"
 build-all = "rattler-build build -c https://prefix.dev/skill-forge -c conda-forge --recipe-dir recipes/"
 generate-gws-cli = "python recipes/gws-cli/generate.py"

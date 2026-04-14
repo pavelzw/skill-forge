@@ -17,7 +17,7 @@ jobs:
           # git-main strategy (track main branch)
           - skill: polars
             strategy: git-main
-          - skill: building-pydantic-ai-agents
+          - skill: pydantic-skills
             strategy: git-main
           # generate strategy (re-run generate.py with latest rev)
           - skill: gws-cli
