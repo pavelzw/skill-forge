@@ -1,8 +1,9 @@
+context:
+  version: 0.0.2
 source:
   git: https://github.com/pydantic/skills
   rev: cb098e838fb9a280141b34825e4db112afb05256
 
-  version: 0.0.2
 about:
   license: MIT
   license_file: LICENSE
