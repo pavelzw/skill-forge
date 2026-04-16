@@ -1,5 +1,6 @@
 [workspace]
 channels = ["conda-forge"]
+exclude-newer = "7d"
 name = "skill-forge"
 platforms = ["osx-arm64", "linux-64"]
 preview = ["pixi-build"]
