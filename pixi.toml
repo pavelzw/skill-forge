@@ -1,14 +1,16 @@
 [workspace]
 channels = ["conda-forge"]
+exclude-newer = "7d"
 name = "skill-forge"
 platforms = ["osx-arm64", "linux-64"]
 preview = ["pixi-build"]
 
 [tasks]
 pre-commit-install = "pre-commit install"
-pre-commit-run = "pre-commit run -a"
+lint = "pre-commit run -a"
 build-new = "rattler-build build -c https://prefix.dev/skill-forge -c conda-forge --recipe-dir recipes/ --skip-existing=all"
 build-all = "rattler-build build -c https://prefix.dev/skill-forge -c conda-forge --recipe-dir recipes/"
+generate-gws-cli = "python recipes/gws-cli/generate.py"
 
 [dependencies]
 skills-ref = "*"
@@ -21,3 +23,5 @@ pre-commit-hooks = "*"
 taplo = "*"
 typos = "*"
 zizmor = "*"
+python = ">=3.14"
+"ruamel.yaml" = ">=0.18"

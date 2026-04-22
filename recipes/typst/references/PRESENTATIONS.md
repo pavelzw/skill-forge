@@ -1,0 +1,51 @@
+# Creating Presentations with Typst
+
+Create visually appealing presentations with Typst by combining typesetting skills with presentation design principles.
+
+## Prerequisites
+
+Before starting, also read the **presentation-design** skill for general presentation design principles (slide layout, typography, visual hierarchy, storytelling). If you can't find it, ask the user to install `agent-skill-presentation-design`.
+
+Use the [Touying](TOUYING.md) or [Polylux](POLYLUX.md) references for slide-specific syntax.
+
+If you don't have a Typst presentation template, set up a 16:9 page format:
+
+```typst
+#set page(paper: "presentation-16-9")
+```
+
+## Visual Feedback Loop
+
+**This is the most critical part of creating presentations with Typst.**
+
+You cannot judge a slide from its source code alone. After editing each slide, you MUST compile it to a PNG and visually inspect it. This is a non-negotiable step in the workflow.
+
+### Compile and inspect a single slide
+
+After editing slide N, run:
+
+```bash
+pixi run typst compile <main.typ> <output.png> --format png --pages <N>
+```
+
+Then read the output PNG to visually inspect the result.
+
+### What to check on every slide
+
+- **Text overflow** - Does text run off the slide or overlap with other elements?
+- **Alignment** - Are elements properly aligned and balanced on the slide?
+- **Font sizes** - Is text large enough to read from the back of a room (minimum ~20pt for body text)?
+- **White space** - Does the slide feel cramped or cluttered?
+- **Visual hierarchy** - Is it immediately clear what the most important element is?
+- **Consistency** - Does this slide match the style of previous slides?
+
+### Fix and re-render
+
+If anything looks wrong, fix the issue in the source, recompile, and inspect again. Repeat until the slide is clean. Common fixes:
+
+- **Text overflow** - Reduce content, decrease font size, or split into multiple slides
+- **Cramped layout** - Increase margins, reduce content, use whitespace deliberately
+- **Poor alignment** - Use `align`, `grid`, or `stack` for precise positioning
+- **Inconsistent styling** - Extract repeated styles into `set` rules or variables
+
+**Do not move on to the next slide until the current slide passes visual inspection.**

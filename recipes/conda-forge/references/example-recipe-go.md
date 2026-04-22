@@ -56,6 +56,7 @@ Key points:
 - Use `${{ compiler("go-cgo") }}` if the package uses cgo
 - Use `go-licenses` to collect dependency licenses
 - Place source in `target_directory: src` to keep license output separate
+- If you are creating a CLI package that supports shell completions, you might want to suggest to the user that the recipe can include them as well. See [Shell Completions for CLI Packages](shell-completions.md).
 
 In case a license is missing, use `--skip ...` to skip the package but ensure it's still part of the package by manually downloading it from `https://raw.githubusercontent.com/.../refs/heads/master/LICENSE`:
 

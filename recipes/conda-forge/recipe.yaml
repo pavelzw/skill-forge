@@ -3,7 +3,7 @@ context:
 
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.9"
+  version: "0.0.15"
 
 source:
   url: https://raw.githubusercontent.com/conda-forge/conda-forge.github.io/refs/heads/main/LICENSE
@@ -35,13 +35,14 @@ about:
     Performs conda-forge operations:
     - Fix failing builds by analyzing Azure Pipelines CI logs
     - Create new packages via staged-recipes
-    - Add cross-compilation and ARM support to feedstocks
+    - Add native ARM CI support or explicit cross-compilation to feedstocks
     - Migrate recipes from v0 to v1 format
     - Includes phased workflows for diagnosing build errors, cloning forks,
       applying fixes, local testing with rattler-build, linting/rerendering
       with conda-smithy, and submitting PRs
     - Ships with reference guides for recipe templates
-      (Python, Rust, Go), cross-compilation setup, and rattler-build migration
+      (Python, Rust, Go), shell completions, ARM build and
+      cross-compilation setup, and rattler-build migration
   homepage: https://conda-forge.org
   repository: https://github.com/pavelzw/skill-forge
   documentation: https://conda-forge.org/docs

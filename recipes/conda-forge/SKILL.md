@@ -1,10 +1,10 @@
 ---
 name: conda-forge
-description: Performs conda-forge operations. Fixes failing builds by analyzing CI logs, creates new packages via staged-recipes, adds cross-compilation and ARM support to feedstocks, and migrates recipes from v0 to v1 format. Use when working with conda-forge feedstocks, staged-recipes, build failures, recipe migrations, or when the user mentions conda-forge.
+description: Performs conda-forge operations. Fixes failing builds by analyzing CI logs, creates new packages via staged-recipes, adds native ARM CI support or explicit cross-compilation to feedstocks, and migrates recipes from v0 to v1 format. Use when working with conda-forge feedstocks, staged-recipes, build failures, recipe migrations, or when the user mentions conda-forge.
 license: BSD-3-Clause
 compatibility: >-
   Requires gh (GitHub CLI), git, curl, jq, tar, and pixi with
-  rattler-build and conda-smithy. Requires network access.
+  rattler-build, conda-smithy, and cf-job-logs. Requires network access.
 ---
 
 # Conda-Forge Skill
@@ -51,7 +51,7 @@ For `noarch: python` packages, provide a `python_min` variant override since sta
 rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml --variant python_min=3.10
 ```
 
-Submit a draft PR. Watch CI until green. Don't mark as ready for review — let the human do that. To skip a platform, add `skip: win` in the `build` section.
+Submit a draft PR, **always** use the PR template for the description. Watch CI until green. Don't mark as ready for review — let the human do that. To skip a platform, add `skip: win` in the `build` section.
 
 For submitting multiple related packages, place each in a separate directory under `recipes/`. The build system resolves dependency order within staged-recipes.
 
@@ -89,14 +89,24 @@ git push origin main --force
 
 Start by reproducing the issue locally — run a local build (see Test Locally below) and iterate from there. If `rattler-build` fails, it keeps the work directory at `output/bld/rattler-build_.../work` — you can debug with `cd <work> && source build_env.sh`.
 
-If the user explicitly references CI failures or pastes a link, diagnose via Azure Pipelines:
+If the user explicitly references CI failures or pastes a link, use `cf-job-logs` to investigate:
 
-1. `gh pr view <PR> --repo <OWNER/REPO> --json headRefName,headRepository,statusCheckRollup,url,title`
-2. Find checks with `"conclusion": "FAILURE"` and extract the Azure Pipelines `detailsUrl`
-3. Extract `buildId` from the URL, then fetch the timeline:
-   `curl -s "https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/builds/<BUILD_ID>/timeline?api-version=6.0"`
-4. Find failed records and fetch their log URLs
-5. Read the error log — understand the root cause before making any changes
+1. Wait for CI: `pixi exec cf-job-logs wait-for-ci --json <PR_URL>`
+   - Polls until all checks complete, then reports which passed/failed
+   - Exits 0 if all pass, 1 if any fail — use this to gate further investigation
+2. List failed jobs: `pixi exec cf-job-logs list-jobs --json <PR_URL>`
+   - Returns a JSON array of jobs with `id`, `result`, `platform`, and `name` fields
+   - The output only contains failed jobs by default; use `--all` to include successful jobs if needed
+   - Pipe to `jq` for filtering if needed
+3. Download a specific job's log: `pixi exec cf-job-logs download-log <PR_URL> <JOB_ID>`
+   - Use the `id` from the `list-jobs` output as `<JOB_ID>`
+   - Logs are sanitized by default (timestamps and known boilerplate removed; `--no-sanitize` is available but rarely needed)
+   - Redirect to a file with `> log.txt` for large logs
+4. Read the error log — understand the root cause before making any changes
+
+**Recommended workflow**: If CI is still running, start with `wait-for-ci` to block until completion. Then use `list-jobs` to get the job IDs for any failures, and `download-log` to fetch the actual logs.
+
+Run `pixi exec cf-job-logs --help` or `pixi exec cf-job-logs <command> --help` for the full list of options.
 
 Apply the minimal fix needed. Only modify files in the `recipe/` directory.
 
@@ -147,12 +157,13 @@ If a newer Python minimum is required than conda-forge's default (3.10), overrid
 - `noarch: python`: Use for pure Python packages with no compiled extensions or platform-specific code.
 - `noarch: generic`: Use for packages without any compiled code (e.g., shell-only recipes).
 - Build backend: Match `pyproject.toml`'s `[build-system].requires`.
-- For cross-compilation details, see [cross-compilation.md](references/cross-compilation.md).
+- For ARM enablement and explicit cross-compilation details, see [arm-builds-and-cross-compilation.md](references/arm-builds-and-cross-compilation.md).
 
 ### References
 
 - [Python recipe template](references/example-recipe-python.md)
 - [Go recipe template](references/example-recipe-go.md)
 - [Rust recipe template](references/example-recipe-rust.md)
-- [Cross-compilation and ARM support](references/cross-compilation.md)
+- [ARM builds and cross-compilation](references/arm-builds-and-cross-compilation.md)
+- [Shell completions for CLI packages](references/shell-completions.md)
 - [Recipe migration (v0 → v1)](references/rattler-build-migration.md)

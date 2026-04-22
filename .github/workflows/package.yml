@@ -49,14 +49,14 @@ jobs:
           fi
       - name: Comment on PR
         if: github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork
-        uses: marocchino/sticky-pull-request-comment@773744901bac0e8cbb5a0dc842800d45e9b2b405 # v2.9.4
+        uses: marocchino/sticky-pull-request-comment@70d2764d1a7d5d9560b100cbea0077fc8f633987 # v3.0.2
         with:
           header: package-build
           path: pr-comment.md
           ignore_empty: true
       - name: Upload build artifacts
         if: steps.check.outputs.has-packages == 'true'
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: output
           path: output/**/*.conda
@@ -75,32 +75,11 @@ jobs:
         with:
           activate-environment: true
       - name: Download artifacts
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: output
           path: output
-      - name: Get JWT
-        id: get_token
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
-        with:
-          script: |
-            const token = await core.getIDToken('prefix.dev')
-            core.setOutput('token', token)
-      - name: Mint the API Key on prefix.dev
-        shell: bash
-        run: |
-          TOKEN="${{ steps.get_token.outputs.token }}"
-          RESPONSE="$(curl -s -X POST                 \
-              https://prefix.dev/api/oidc/mint_token \
-              -H 'Content-Type: application/json'    \
-              --data "{\"token\": \"$TOKEN\"}")"
-          # mask the response
-          echo "::add-mask::$RESPONSE"
-          echo "PREFIX_API_KEY=$RESPONSE" >> "$GITHUB_ENV"
-      - name: Upload package to Artifactory
+      - name: Upload package to prefix.dev
         if: github.event_name == 'push'
         run: |
-          shopt -s nullglob
-          for file in output/**/*.conda; do
-            rattler-build upload prefix -c skill-forge "$file"
-          done
+          rattler-build publish --to https://prefix.dev/skill-forge --generate-attestation output/**/*.conda

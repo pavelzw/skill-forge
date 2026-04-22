@@ -8,6 +8,7 @@ usage() {
     echo "Strategies:"
     echo "  git-main              Update to latest commit on main branch"
     echo "  github-latest-release Update to latest GitHub release"
+    echo "  generate              Update VERSION in generate.py and re-run it"
     echo "  yolo                  Re-fetch URL and update sha256 if changed"
     echo ""
     echo "Examples:"
@@ -32,11 +33,16 @@ fi
 
 # Bump patch version (e.g., 0.0.1 -> 0.0.2)
 bump_patch_version() {
-    local current_version
-    current_version=$(yq -r '.package.version' "$recipe_file")
+    local current_version version_path
+    current_version=$(yq -r '.package.version // ""' "$recipe_file")
+    version_path=".package.version"
+    if [[ -z "$current_version" ]]; then
+        current_version=$(yq -r '.context.version // ""' "$recipe_file")
+        version_path=".context.version"
+    fi
     local new_version
     new_version=$(echo "$current_version" | awk -F. '{print $1"."$2"."$3+1}')
-    yq -i ".package.version = \"$new_version\"" "$recipe_file"
+    yq -i "$version_path = \"$new_version\"" "$recipe_file"
     echo "  version: $current_version -> $new_version"
 }
 
@@ -123,6 +129,40 @@ update_github_latest_release() {
     fi
 }
 
+update_generate() {
+    local generate_script="recipes/${skill_name}/generate.py"
+    if [[ ! -f "$generate_script" ]]; then
+        echo "Error: Generate script not found: $generate_script"
+        exit 1
+    fi
+
+    local repo
+    repo=$(sed -n 's/^REPO = "\(.*\)"/\1/p' "$generate_script")
+
+    echo "Fetching latest release from $repo..."
+    local latest_version
+    latest_version=$(gh api "repos/${repo}/releases/latest" --jq '.tag_name' | sed 's/^v//')
+
+    local current_version
+    current_version=$(sed -n 's/^VERSION = "\(.*\)"/\1/p' "$generate_script")
+
+    echo "old-version=$current_version" >> "${GITHUB_OUTPUT:-/dev/stdout}"
+    echo "new-version=$latest_version" >> "${GITHUB_OUTPUT:-/dev/stdout}"
+
+    if [[ "$latest_version" == "$current_version" ]]; then
+        echo "$skill_name is up to date (version: $current_version)"
+    else
+        echo "$skill_name needs update"
+        echo "  current version: $current_version"
+        echo "  latest version:  $latest_version"
+
+        sed -i.bak "s|^VERSION = \"$current_version\"|VERSION = \"$latest_version\"|" "$generate_script" && rm -f "$generate_script.bak"
+        pixi run "generate-${skill_name}"
+
+        echo "Updated $generate_script and $recipe_file"
+    fi
+}
+
 update_yolo() {
     local source_url
     source_url=$(yq -r '.source.url' "$recipe_file")
@@ -156,6 +196,9 @@ case "$strategy" in
         ;;
     github-latest-release)
         update_github_latest_release
+        ;;
+    generate)
+        update_generate
         ;;
     yolo)
         update_yolo

@@ -1,0 +1,66 @@
+context:
+  version: 0.0.3
+source:
+  git: https://github.com/pydantic/skills
+  rev: 97d8c1d5adcf85dce633f5f4633f4e01464d087e
+about:
+  license: MIT
+  license_file: LICENSE
+  homepage: https://ai.pydantic.dev/
+  repository: https://github.com/pydantic/skills
+outputs:
+  - package:
+      name: agent-skill-building-pydantic-ai-agents
+      version: ${{ version }}
+    build:
+      number: 0
+      noarch: generic
+      script:
+        - mkdir -p $PREFIX/share/agent-skills/building-pydantic-ai-agents
+        - cp -R skills/building-pydantic-ai-agents/* $PREFIX/share/agent-skills/building-pydantic-ai-agents
+    tests:
+      - package_contents:
+          files:
+            - share/agent-skills/building-pydantic-ai-agents/SKILL.md
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/building-pydantic-ai-agents
+        requirements:
+          run:
+            - skills-ref
+    about:
+      summary: Build AI agents with Pydantic AI
+      description: |
+        Patterns, architecture guidance, and tested code examples for building
+        production-grade AI applications with Pydantic AI:
+        - Tools, capabilities, structured output, and streaming
+        - Multi-agent patterns and delegation
+        - Testing agent behavior
+        - Agent observability with Logfire
+      documentation: https://ai.pydantic.dev/
+  - package:
+      name: agent-skill-logfire-instrumentation
+      version: ${{ version }}
+    build:
+      number: 0
+      noarch: generic
+      script:
+        # Upstream SKILL.md uses name: instrumentation, so install under that name
+        - mkdir -p $PREFIX/share/agent-skills/instrumentation
+        - cp -R skills/logfire-instrumentation/* $PREFIX/share/agent-skills/instrumentation
+    tests:
+      - package_contents:
+          files:
+            - share/agent-skills/instrumentation/SKILL.md
+      - script:
+          - agentskills validate $CONDA_PREFIX/share/agent-skills/instrumentation
+        requirements:
+          run:
+            - skills-ref
+    about:
+      summary: Add Pydantic Logfire observability to applications
+      description: |
+        Instrument applications with Pydantic Logfire for observability:
+        - Structured logging, tracing, and metrics via OpenTelemetry
+        - Native SDKs for Python, JavaScript/TypeScript, and Rust
+        - Monitor AI/LLM calls (PydanticAI, OpenAI, Anthropic)
+      documentation: https://logfire.pydantic.dev/
