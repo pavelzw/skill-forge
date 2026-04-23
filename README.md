@@ -20,6 +20,7 @@ For more background on why distributing agent skills through package managers ma
 | [Polars](https://pola.rs) | `agent-skill-polars` | DataFrame library for fast data manipulation |
 | [rattler-build](https://rattler.build) | `agent-skill-rattler-build` | Build conda packages with rattler-build |
 | [SQLAlchemy](https://www.sqlalchemy.org) | `agent-skill-sqlalchemy` | Python SQL toolkit and ORM |
+| [textual](https://github.com/textualize/textual/) | `agent-skill-textual` | Python TUI framework |
 | [Google Workspace CLI](https://github.com/googleworkspace/cli) | [92 packages](recipes/gws-cli/SKILLS.md) | Google Workspace services (Gmail, Calendar, Drive, etc.) |
 | [Typst](https://typst.app) | `agent-skill-typst` | Modern markup-based typesetting system |
 
