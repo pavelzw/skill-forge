@@ -15,6 +15,8 @@ jobs:
       matrix:
         include:
           # git-main strategy (track main branch)
+          - skill: librarian
+            strategy: git-main
           - skill: polars
             strategy: git-main
           - skill: pydantic-skills
