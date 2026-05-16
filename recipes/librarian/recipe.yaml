@@ -1,0 +1,44 @@
+context:
+  skill: librarian
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+
+source:
+  git: https://github.com/mitsuhiko/agent-stuff
+  rev: ab79f98104bcd3c6a7c5491e609f6d6700a7414d
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp -R skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
+
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+        - share/agent-skills/${{ skill }}/checkout.sh
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+      - bash $CONDA_PREFIX/share/agent-skills/${{ skill }}/checkout.sh --help
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: Cache and refresh remote git repository checkouts
+  description: |
+    Agent skill for resolving remote git repository references into stable,
+    reusable local checkouts:
+    - Supports GitHub/GitLab/Bitbucket URLs, git@ URLs, and owner/repo shorthand
+    - Stores checkouts under ~/.cache/checkouts/<host>/<org>/<repo>
+    - Uses partial clones and throttled refreshes to avoid repeated full clones
+  homepage: https://github.com/mitsuhiko/agent-stuff/tree/main/skills/librarian
+  repository: https://github.com/mitsuhiko/agent-stuff
+  documentation: https://github.com/mitsuhiko/agent-stuff/blob/main/skills/librarian/SKILL.md
+  license: Apache-2.0
+  license_file: LICENSE
