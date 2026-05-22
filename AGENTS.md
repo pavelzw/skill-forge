@@ -5,7 +5,7 @@ This repository contains conda packages for coding agent skills.
 ## Structure
 
 "Skills" are text files that AI-based coding agents can read to enhance their understanding of a complex topic or tool, like an internal library or company-specific guidelines and knowledge. They're usually structured as markdown files with brief documentation, instructions, code examples, and usage guidelines. A skill may reference additional markdown files in a `references/` subdirectory that are read on demand.
-Every skill is shipped in a conda package located in `etc/agent-skills/<skill>/SKILL.md` (plus additional files).
+Every skill is shipped in a conda package located in `share/agent-skills/<skill>/SKILL.md` (plus additional files).
 
 ## Mirroring from skills.sh
 

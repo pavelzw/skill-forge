@@ -13,17 +13,17 @@ build:
   number: 0
   noarch: generic
   script:
-    - mkdir -p $PREFIX/etc/agent-skills/${{ skill }}
-    - cp -R skills/${{ skill }}/* $PREFIX/etc/agent-skills/${{ skill }}
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp -R skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
 
 tests:
   - package_contents:
       files:
-        - etc/agent-skills/${{ skill }}/SKILL.md
-        - etc/agent-skills/${{ skill }}/references/*.md
+        - share/agent-skills/${{ skill }}/SKILL.md
+        - share/agent-skills/${{ skill }}/references/*.md
       strict: true
   - script:
-      - agentskills validate $CONDA_PREFIX/etc/agent-skills/${{ skill }}
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
     requirements:
       run:
         - skills-ref
