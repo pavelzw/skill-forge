@@ -1,9 +1,9 @@
 ---
-name: review-skill
+name: pr-review
 description: Interactive PR review workflow. Reads existing PR comments (including pending review drafts) before reviewing, drafts severity-grouped findings into a markdown file with proposed GitHub comments, iterates with the human, and only posts via gh after explicit approval — with a human-written summary.
 ---
 
-# Review Skill
+# PR Review
 
 Use this skill when the user asks you to review a pull request. The workflow is interactive: you draft, the human refines, and only after explicit approval do you post to GitHub.
 
@@ -73,7 +73,7 @@ Append this footer to the human's summary (do not modify their text above it):
 
 ```
 ---
-<sub>created with [review-skill](https://github.com/pavelzw/skill-forge/tree/main/recipes/review-skill)</sub>
+<sub>created with [pr-review](https://github.com/pavelzw/skill-forge/tree/main/recipes/pr-review)</sub>
 ```
 
 Append any overarching notes to the review body above the footer.

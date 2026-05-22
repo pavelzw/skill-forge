@@ -1,5 +1,5 @@
 context:
-  skill: review-skill
+  skill: pr-review
 
 package:
   name: agent-skill-${{ skill }}
