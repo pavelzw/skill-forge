@@ -1,63 +1,50 @@
 ---
 name: review-skill
-description: Interactive senior-engineer pull request review workflow. Reads all existing PR comments (including pending review comments) before reviewing, drafts findings grouped by severity into a markdown file with proposed GitHub comments, iterates with the human, and only posts via the gh CLI after explicit approval — with a human-written summary.
+description: Interactive PR review workflow. Reads existing PR comments (including pending review drafts) before reviewing, drafts severity-grouped findings into a markdown file with proposed GitHub comments, iterates with the human, and only posts via gh after explicit approval — with a human-written summary.
 ---
 
 # Review Skill
 
-Use this skill when the user asks you to review a pull request. The workflow is interactive: you draft, the human refines, and only after explicit approval do you post anything to GitHub.
+Use this skill when the user asks you to review a pull request. The workflow is interactive: you draft, the human refines, and only after explicit approval do you post to GitHub.
 
-Follow the four phases below in order. Do not skip ahead.
+Follow the four phases in order.
 
 ## Phase 1 — Review the PR as a senior engineer
 
-Before forming any opinions of your own, read **all existing comments** on the PR so you don't duplicate, contradict, or ignore prior discussion. This includes:
+Before forming opinions, read **all existing comments** so you don't duplicate, contradict, or ignore prior discussion:
 
-- Issue-level conversation comments: `gh api repos/<owner>/<repo>/issues/<number>/comments`
-- Inline review comments on the diff: `gh api repos/<owner>/<repo>/pulls/<number>/comments`
-- Existing reviews and their bodies: `gh api repos/<owner>/<repo>/pulls/<number>/reviews`
-- **Pending review comments** authored by the current user that have not yet been submitted: `gh api repos/<owner>/<repo>/pulls/<number>/comments` includes them, but you can also check `gh pr view <number> --json reviews` and look for the user's pending review state. If a pending review already exists, treat its drafts as prior context — do not silently overwrite them.
+- Conversation and inline review comments: `gh pr view <number> --comments`
+- Existing reviews: `gh api repos/<owner>/<repo>/pulls/<number>/reviews`
+- **Pending review drafts** authored by the current user: `gh pr view <number> --json reviews`. If a pending review exists, treat its drafts as prior context — do not silently overwrite them.
 
-Then review the diff (`gh pr diff <number>` and `gh pr view <number> --json files`) as a senior engineer would. Focus on:
+Then review the diff (`gh pr diff <number>`) as a senior engineer would. Focus on:
 
-- **Logic errors** — incorrect conditions, off-by-one bugs, wrong operators, missing branches.
+- **Logic errors** — wrong conditions, off-by-one, wrong operators, missing branches.
 - **Edge cases** — empty inputs, concurrency, partial failures, unusual but valid states.
-- **Maintainability** — surprising abstractions, leaky boundaries, code that will be hard to evolve, missing tests for risky paths.
+- **Maintainability** — leaky abstractions, code that will be hard to evolve, missing tests for risky paths.
 
-For each potential issue, articulate **why it matters** (what breaks, for whom, under what conditions) and propose a **concrete fix**, not a vague concern. If you are not sure something is a bug, say so — uncertain findings are fine if labeled.
-
-Skip pure style nits that an autoformatter or linter would catch. Skip "consider renaming X" unless the name is actively misleading.
+For each issue, articulate **why it matters** and propose a **concrete fix**, not a vague concern. Label uncertain findings as such. Skip style nits that a formatter or linter would catch.
 
 ## Phase 2 — Write findings to a markdown file
 
-Create a markdown file at `.review/<pr-number>.md` (create the directory if needed). Group findings into three sections, in this order:
+Create `.review/<pr-number>.md`. Group findings into three sections, sorted by impact within each:
 
-1. `## Blocking` — must be fixed before merge (correctness bugs, security issues, data loss).
-2. `## Important` — should be addressed but not strictly merge-blocking (maintainability, missing tests, edge cases unlikely in practice).
-3. `## Nits` — minor suggestions, take-it-or-leave-it.
+1. `## Blocking` — must be fixed before merge (correctness, security, data loss).
+2. `## Important` — should be addressed but not merge-blocking.
+3. `## Nits` — take-it-or-leave-it.
 
-Within each section, sort by impact (highest first).
+Each finding needs a stable kebab-case ID (e.g. `commit-race-condition`) that the human can reference across iterations.
 
-Each finding must have:
-
-- A **human-friendly ID** in kebab-case that describes the issue, e.g. `commit-race-condition`, `empty-list-crash`, `missing-timeout-on-http-call`. IDs should be stable across iterations so the human can reference them.
-- A concrete **code reference** in the form `path/to/file.ext:LINE` or `path/to/file.ext:START-END` (e.g. `hello-world/git.py:7-8`).
-- A short **explanation** of why the issue matters.
-- A **proposed GitHub comment** — the exact text you would post inline on that code position. Write it as the actual comment, not a description of one. Use a fenced block so the human can copy/edit it directly.
-
-Use this template per finding:
+Template per finding:
 
 ```markdown
 ### <id>
+`path/to/file.ext:LINE` — <why it matters, one or two sentences>
 
-- **Location:** `path/to/file.ext:LINE`
-- **Why it matters:** <one or two sentences>
-- **Proposed comment:**
-
-  > <the literal comment text to post on GitHub, in the voice you want it published in>
+> <literal comment text to post on GitHub>
 ```
 
-At the top of the file, include a `## Summary` section with a placeholder:
+At the top of the file, include:
 
 ```markdown
 ## Summary
@@ -65,53 +52,48 @@ At the top of the file, include a `## Summary` section with a placeholder:
 <!-- TO BE WRITTEN BY THE HUMAN — this is the top-level review comment posted to GitHub. -->
 ```
 
-You may add an `## Overarching notes` section above the findings if there are themes that don't belong on a single line of code (e.g. "this PR mixes a refactor with a feature change"). These will be folded into the review body, not posted as inline comments.
+You may add an `## Overarching notes` section above the findings for themes that don't belong on a single line of code. These get appended to the review body, not posted inline.
 
 ## Phase 3 — Iterate with the human
 
-Tell the human the file is ready and wait. They will:
+Tell the human the file is ready and wait. They will edit the file directly or ask you to revise specific findings. Re-read the file before each round — the human's edits are the source of truth, and you must preserve their wording exactly. Do not "improve" rewritten comments.
 
-- Edit the markdown file directly (reword comments, drop findings, reclassify severity, add their own).
-- Or ask you to revise specific findings ("rewrite `commit-race-condition` to be less prescriptive", "drop the nits", "move X to blocking").
-
-Re-read the file before each round of edits — the human's manual changes are the source of truth. Preserve their wording exactly when they've rewritten a proposed comment; do not "improve" it.
-
-Do **not** post anything to GitHub during this phase. Do not call `gh pr review`, `gh pr comment`, or any `gh api ... POST` for review endpoints yet.
+Do **not** post anything to GitHub during this phase.
 
 ## Phase 4 — Post the review (only after explicit approval)
 
-Wait for **explicit approval** to post — phrases like "go ahead and post", "ship it", "post the review". Ambiguous reactions ("looks good", "nice") are not approval; ask.
+Wait for **explicit approval** — phrases like "go ahead and post", "ship it". Ambiguous reactions ("looks good") are not approval; ask.
 
-Before posting, the human **must write the summary comment** themselves. If the `## Summary` section still contains the placeholder, stop and ask them to fill it in. The summary is the top-level review body on GitHub and must be in their voice.
+Before posting:
 
-Append the following footer to the human's summary before posting (do not modify the human's text above it):
+1. The `## Summary` placeholder must be replaced by the human. If it still says `TO BE WRITTEN`, stop and ask.
+2. Explicitly ask the human which event to use: `APPROVE`, `COMMENT`, or `REQUEST_CHANGES`. Do not pick a default.
+
+Append this footer to the human's summary (do not modify their text above it):
 
 ```
 ---
 <sub>created with [review-skill](https://github.com/pavelzw/skill-forge/tree/main/recipes/review-skill)</sub>
 ```
 
-Then post the review with the `gh` CLI, batching all inline comments into a single review (not separate comments) so the human's collaborators get one notification:
+Append any overarching notes to the review body above the footer.
+
+Post all inline comments in a single review (one notification, not many):
 
 ```bash
 gh api \
   --method POST \
   repos/<owner>/<repo>/pulls/<number>/reviews \
-  -f event=COMMENT \
+  -f event=<EVENT> \
   -f body="$SUMMARY_WITH_FOOTER" \
   -F 'comments=@comments.json'
 ```
 
-Where `comments.json` is an array of `{path, line, body}` (or `{path, start_line, line, body}` for multi-line) entries built from the approved findings file. Use `side: "RIGHT"` (the default) for comments on the new version of the diff.
+`comments.json` is an array of `{path, line, body}` (or `{path, start_line, line, body}` for multi-line) built from the approved findings.
 
-Use `event=COMMENT` by default. Only use `REQUEST_CHANGES` if the human explicitly asks to request changes, and `APPROVE` if they explicitly ask to approve.
-
-Overarching notes from Phase 2 should be appended to the review body (above the footer), not posted as inline comments.
-
-After posting, share the review URL from `gh`'s response with the human and stop.
+After posting, share the review URL and stop.
 
 ## Notes
 
-- If the PR is on a fork, inline comments still work via the same endpoint — no special handling needed.
-- If `gh` posting fails (e.g. line not in diff), report the exact error to the human and ask how to proceed; do not silently retry against a different line.
+- If posting fails (e.g. line not in diff), report the exact error and ask how to proceed; do not silently retry against a different line.
 - Never force-push, close, or merge the PR as part of this workflow.
