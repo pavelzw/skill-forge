@@ -31,9 +31,10 @@ about:
     - Focuses on logic errors, edge cases, and maintainability
     - Groups findings by severity (blocking, important, nits) into a markdown file with
       stable IDs, code references, and proposed GitHub comments
-    - Iterates with the human on the findings file before posting
-    - Posts the review via the gh CLI only after explicit approval, with a
-      human-written summary comment
+    - Iterates with the human on the findings file before pushing
+    - Pushes the inline comments as a pending review via the gh CLI only after
+      explicit approval — never submits; the human writes the summary and
+      submits in the GitHub UI
   homepage: https://github.com/pavelzw/skill-forge
   repository: https://github.com/pavelzw/skill-forge
   documentation: https://github.com/pavelzw/skill-forge
