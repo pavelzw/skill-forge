@@ -33,7 +33,7 @@ Create `.review/<pr-number>.md`. Group findings into three sections, sorted by i
 2. `## Important` — should be addressed but not merge-blocking.
 3. `## Nits` — take-it-or-leave-it.
 
-Each finding needs a stable kebab-case ID (e.g. `commit-race-condition`) that the human can reference across iterations.
+Each finding needs a stable kebab-case ID, as short as possible while still being unambiguous (e.g. `commit-race`, not `possible-race-condition-on-commit`), that the human can reference across iterations.
 
 Template per finding:
 
