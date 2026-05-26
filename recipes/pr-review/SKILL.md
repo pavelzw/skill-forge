@@ -44,7 +44,9 @@ Template per finding:
 > <literal comment text to post on GitHub>
 ```
 
-You may add an `## Overarching notes` section above the findings for themes that don't belong on a single line of code. Surface these to the human when handing off — they belong in the human's summary, not on individual lines.
+Do **not** add a `## Summary` section, a "to be written by the human" placeholder, or any other top-level review body to the file. This skill never produces a summary — the human writes it directly in the GitHub UI when they submit the pending review. The findings file contains only inline-comment material.
+
+You may add an `## Overarching notes` section above the findings for themes that don't belong on a single line of code. Surface these to the human when handing off so they can fold them into the summary they'll write in the GitHub UI; do not post them as inline comments and do not write them as a summary in the file.
 
 ## Phase 3 — Iterate with the human
 
