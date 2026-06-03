@@ -5,6 +5,9 @@ package:
   name: agent-skill-${{ skill }}
   version: "0.0.1"
 
+source:
+  - path: ../../LICENSE
+
 build:
   number: 0
   noarch: generic
@@ -39,3 +42,4 @@ about:
   repository: https://github.com/pavelzw/skill-forge
   documentation: https://github.com/pavelzw/skill-forge
   license: BSD-3-Clause
+  license_file: LICENSE
