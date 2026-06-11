@@ -105,3 +105,8 @@ Use this when feedrattler fails or produces an incorrect conversion.
 - Test section restructuring: v1 uses a list of test objects
 - `pin_subpackage` and `pin_compatible` syntax changes
 - skipping builds is done by listing skipping conditions under `build.skip`, not with selectors
+
+### Best practices
+
+Old `meta.yaml` recipes often contain something like `{% set name = "..." %}`. The `recipe.yaml` equivalent would be setting `context.name` appropriately.
+This should not be done anymore for modern recipes. Instead, inline the name in all used places.
