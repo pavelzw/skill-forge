@@ -1,21 +1,17 @@
 context:
   skill: librarian
-
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.1"
-
+  version: "0.0.2"
 source:
   git: https://github.com/mitsuhiko/agent-stuff
-  rev: ab79f98104bcd3c6a7c5491e609f6d6700a7414d
-
+  rev: c68c84c31dc9db46238888db7b5cd44afd971d7a
 build:
   number: 0
   noarch: generic
   script:
     - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
     - cp -R skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
-
 tests:
   - package_contents:
       files:
@@ -28,7 +24,6 @@ tests:
     requirements:
       run:
         - skills-ref
-
 about:
   summary: Cache and refresh remote git repository checkouts
   description: |
