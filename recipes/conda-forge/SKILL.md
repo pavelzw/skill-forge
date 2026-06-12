@@ -27,7 +27,7 @@ git switch -c <PACKAGE_NAME>
 
 Generate a recipe for Python packages with `pixi exec grayskull pypi --use-v1-format --strict-conda-forge <PACKAGE_NAME>`. Since grayskull creates the `my-package/recipe.yaml` in the CWD, run this command in the `recipes/` directory of your staged-recipes fork.
 
-For Go or Rust, adapt the templates from [example-recipe-go.md](references/example-recipe-go.md) or [example-recipe-rust.md](references/example-recipe-rust.md). See also [example-recipe-python.md](references/example-recipe-python.md).
+For Go, Rust, or JavaScript/Node.js, adapt the templates from [example-recipe-go.md](references/example-recipe-go.md), [example-recipe-rust.md](references/example-recipe-rust.md), or [example-recipe-javascript.md](references/example-recipe-javascript.md). See also [example-recipe-python.md](references/example-recipe-python.md).
 
 Place the recipe in `recipes/<PACKAGE_NAME>/recipe.yaml`.
 
@@ -157,6 +157,7 @@ If a newer Python minimum is required than conda-forge's default (3.10), overrid
 - `noarch: python`: Use for pure Python packages with no compiled extensions or platform-specific code.
 - `noarch: generic`: Use for packages without any compiled code (e.g., shell-only recipes).
 - Build backend: Match `pyproject.toml`'s `[build-system].requires`.
+- JavaScript/Node.js packages: Always build from local source (`npm pack` + `npm install --global`), never repackage pre-built binaries. Use a `build.sh` script and bundle third-party licenses with `pnpm-licenses`.
 - For ARM enablement and explicit cross-compilation details, see [arm-builds-and-cross-compilation.md](references/arm-builds-and-cross-compilation.md).
 
 ### References
@@ -166,4 +167,5 @@ If a newer Python minimum is required than conda-forge's default (3.10), overrid
 - [Rust recipe template](references/example-recipe-rust.md)
 - [ARM builds and cross-compilation](references/arm-builds-and-cross-compilation.md)
 - [Shell completions for CLI packages](references/shell-completions.md)
+- [JavaScript/Node.js recipe template](references/example-recipe-javascript.md)
 - [Recipe migration (v0 → v1)](references/rattler-build-migration.md)
