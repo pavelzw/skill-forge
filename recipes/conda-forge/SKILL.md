@@ -151,6 +151,7 @@ If a newer Python minimum is required than conda-forge's default (3.10), overrid
 - **Import errors in test phase**: Missing runtime dependency → add to `requirements.run`.
 - **Compilation failure**: Missing library → add to `requirements.host`.
 - **Command not found (exit 127)**: Missing build tool → add to `requirements.build`.
+- **one or more libraries have an incompatible/unknown license**: `go-license` often needs manual interventions, see [go-licenses.md](references/go-licenses.md).
 
 ### Key Decisions
 
