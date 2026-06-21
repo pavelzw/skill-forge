@@ -51,7 +51,8 @@ For `noarch: python` packages, provide a `python_min` variant override since sta
 rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml --variant python_min=3.10
 ```
 
-Submit a draft PR, **always** use the PR template for the description. Watch CI until green. Don't mark as ready for review — let the human do that. To skip a platform, add `skip: win` in the `build` section.
+Submit a draft PR, **always** use the PR template for the description. When the conda package ships static libraries (go, rust), don't check that box in the PR template.
+Watch CI until green. Don't mark as ready for review — let the human do that. To skip a platform, add `skip: win` in the `build` section.
 
 For submitting multiple related packages, place each in a separate directory under `recipes/`. The build system resolves dependency order within staged-recipes.
 
@@ -94,6 +95,7 @@ If the user explicitly references CI failures or pastes a link, use `cf-job-logs
 1. Wait for CI: `pixi exec cf-job-logs wait-for-ci --json <PR_URL>`
    - Polls until all checks complete, then reports which passed/failed
    - Exits 0 if all pass, 1 if any fail — use this to gate further investigation
+   - `--fail-fast` (default: true) returns as soon as any check fails instead of waiting for the rest — use it when you want to iterate on a single specific error. Pass `--no-fail-fast` to wait for every check to finish when you want to confirm all results up front and then collect all errors at once
 2. List failed jobs: `pixi exec cf-job-logs list-jobs --json <PR_URL>`
    - Returns a JSON array of jobs with `id`, `result`, `platform`, and `name` fields
    - The output only contains failed jobs by default; use `--all` to include successful jobs if needed
