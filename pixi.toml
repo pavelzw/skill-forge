@@ -11,6 +11,10 @@ lint = "pre-commit run -a"
 build-new = "rattler-build build -c https://prefix.dev/skill-forge -c conda-forge --recipe-dir recipes/ --skip-existing=all"
 build-all = "rattler-build build -c https://prefix.dev/skill-forge -c conda-forge --recipe-dir recipes/"
 generate-gws-cli = "python recipes/gws-cli/generate.py"
+update = {
+  args = ["skill_name", "strategy"],
+  cmd = ".github/scripts/update.sh {{ skill_name }} {{ strategy }}",
+}
 
 [dependencies]
 skills-ref = "*"
