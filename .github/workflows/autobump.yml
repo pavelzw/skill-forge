@@ -14,9 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # git-main strategy (track main branch)
+          # github-latest-release strategy (use latest release)
           - skill: grilling
-            strategy: git-main
+            strategy: github-latest-release
+          # git-main strategy (track main branch)
           - skill: librarian
             strategy: git-main
           - skill: polars

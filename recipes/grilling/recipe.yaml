@@ -1,33 +1,28 @@
 context:
   skill: grilling
-
+  version: 1.1.0
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.1"
-
+  version: ${{ version }}
 source:
-  git: https://github.com/mattpocock/skills
-  rev: 2ab958093e83e0ec752e6c1c5932da465bf23e0c
-
+  url: https://github.com/mattpocock/skills/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 33ce6b6dc542a00688485cae30e5921a9872183cfebebf08191fc74c4e3361d0
 build:
   number: 0
   noarch: generic
   script:
     - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
     - cp -R skills/productivity/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
-
 tests:
   - package_contents:
       files:
         - share/agent-skills/${{ skill }}/SKILL.md
-        - share/agent-skills/${{ skill }}/agents/openai.yaml
       strict: true
   - script:
       - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
     requirements:
       run:
         - skills-ref
-
 about:
   summary: Grill the user relentlessly about a plan, decision, or idea
   description: |
