@@ -21,6 +21,9 @@ jobs:
             strategy: git-main
           - skill: pydantic-skills
             strategy: git-main
+          # github-latest-release strategy (track the latest GitHub release)
+          - skill: create-custom-updater
+            strategy: github-latest-release
           # generate strategy (re-run generate.py with latest rev)
           - skill: gws-cli
             strategy: generate

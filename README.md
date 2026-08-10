@@ -15,6 +15,7 @@ For more background on why distributing agent skills through package managers ma
 | Skill | Package | Description |
 |-------|---------|-------------|
 | [conda-forge](https://conda-forge.org) | `agent-skill-conda-forge` | conda-forge packaging operations |
+| [Quant Ranger one-off updater](https://ranger.quantco.cloud/docs/plugins/one-off-updaters) | `agent-skill-create-custom-updater` | Write and run one-off Quant Ranger custom updaters |
 | [Librarian](https://github.com/mitsuhiko/agent-stuff/tree/main/skills/librarian) | `agent-skill-librarian` | Cache and refresh remote git repository checkouts |
 | [Matplotlib Data Visualization](https://matplotlib.org) | `agent-skill-matplotlib-data-visualization` | Chart design and data storytelling guidelines |
 | Presentation Design | `agent-skill-presentation-design` | Slide design and storytelling guidelines |

@@ -1,0 +1,47 @@
+context:
+  skill: create-custom-updater
+  version: "0.1.2"
+
+package:
+  name: agent-skill-${{ skill }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Quantco/quant-ranger/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: fb10c5acb4e6fe42ee2ff78eac14ffed0e7378532da1a0c7c32109d07c4b47f3
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp -R skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
+
+requirements:
+  run_constraints:
+    - quant-ranger >=${{ version }}
+
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: Write and run one-off quant-ranger custom updaters
+  description: |
+    Create narrow, idempotent one-off repository migrations with quant-ranger:
+    - Select repositories or files with built-in or custom scanners
+    - Apply or audit changes through typed custom update tasks
+    - Validate changes safely in dry-run mode before publishing pull requests
+    - Diagnose authentication, selection, subprocess, and publishing failures
+  homepage: https://ranger.quantco.cloud/docs/plugins/one-off-updaters
+  repository: https://github.com/Quantco/quant-ranger
+  documentation: https://ranger.quantco.cloud/docs/plugins/one-off-updaters
+  license: BSD-3-Clause
+  license_file: LICENSE
