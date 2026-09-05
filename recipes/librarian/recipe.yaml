@@ -2,10 +2,10 @@ context:
   skill: librarian
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.2"
+  version: "0.0.3"
 source:
   git: https://github.com/mitsuhiko/agent-stuff
-  rev: c68c84c31dc9db46238888db7b5cd44afd971d7a
+  rev: 4fb0c7d68c87c3612af6289f72b5d90a11a726b8
 build:
   number: 0
   noarch: generic
