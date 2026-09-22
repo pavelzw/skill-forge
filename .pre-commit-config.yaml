@@ -10,10 +10,10 @@ repos:
         always_run: true
         require_serial: true
         pass_filenames: false
-      # taplo
-      - id: taplo
-        name: taplo
-        entry: pixi run taplo format
+      # tombi
+      - id: tombi
+        name: tombi
+        entry: pixi run tombi format
         language: system
         types: [toml]
       # pre-commit-hooks

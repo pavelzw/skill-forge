@@ -1,0 +1,41 @@
+context:
+  skill: grilling
+  version: 1.2.3
+package:
+  name: agent-skill-${{ skill }}
+  version: ${{ version }}
+source:
+  url: https://github.com/mattpocock/skills/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 238fac54d0f53d3e2d0501c1b38c9c0e4e9bc26f6b057b53a7328ea15d43b66f
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
+    - cp -R skills/productivity/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
+tests:
+  - package_contents:
+      files:
+        - share/agent-skills/${{ skill }}/SKILL.md
+        - share/agent-skills/${{ skill }}/agents/openai.yaml
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/share/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+about:
+  summary: Grill the user relentlessly about a plan, decision, or idea
+  description: |
+    Stress-tests a plan, decision, or idea through relentless interviewing:
+    - Walks down each branch of the decision tree, resolving dependencies
+      between decisions one-by-one
+    - Asks questions one at a time, providing a recommended answer for each
+    - Looks up facts by exploring the codebase instead of asking the user,
+      while leaving decisions to the user
+    - Waits for explicit confirmation before acting on the shared understanding
+  homepage: https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling
+  repository: https://github.com/mattpocock/skills
+  documentation: https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md
+  license: MIT
+  license_file: LICENSE
