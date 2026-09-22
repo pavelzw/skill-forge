@@ -8,6 +8,9 @@ To enable the standard ARM builds on conda-forge, add the following to `conda-fo
 provider:
   osx_arm64: default
   linux_aarch64: default
+  win_arm64: default
+build_platform:
+  linux_riscv64: linux_64
 ```
 
 Then rerender:
@@ -15,7 +18,8 @@ Then rerender:
 pixi exec conda-smithy rerender --commit=all
 ```
 
-This generates new CI variant configs in `.ci_support/` for the additional platforms. These are native builds, not cross-compilation: `osx_arm64` currently defaults to Azure, while `linux_aarch64` currently defaults to GitHub Actions.
+This generates new CI variant configs in `.ci_support/` for the additional platforms. These are native builds, not cross-compilation: `osx_arm64` currently defaults to Azure, while `linux_aarch64` and `win_arm64` currently default to GitHub Actions.
+Since `linux_riscv64` currently doesn't have native runners, they should be built using cross-compilation.
 
 ## What the settings mean
 
@@ -23,6 +27,8 @@ This generates new CI variant configs in `.ci_support/` for the additional platf
 |-----|-------|--------|
 | `provider.osx_arm64` | `default` | Build Apple Silicon packages natively on Azure |
 | `provider.linux_aarch64` | `default` | Build ARM64 Linux packages natively on GitHub Actions |
+| `provider.win_arm64` | `default` | Build ARM64 Windows packages natively on GitHub Actions |
+| `build_platform.linux_riscv64` | `linux_64` | Build RISCV64 Linux packages through cross-compilation on GitHub Actions |
 
 ## Platform types
 
@@ -36,18 +42,6 @@ This generates new CI variant configs in `.ci_support/` for the additional platf
 
 Only opt in when there is a concrete requirement for `linux-ppc64le` and you are prepared for a slower, less common CI path.
 
-## win-arm64
-
-`win-arm64` is experimental.
-
-Only enable it if the user explicitly asks for `win-arm64` support. Do not add it as part of the default ARM enablement path.
-
-```yaml
-build_platform:
-  win_arm64: win_64
-test: native_and_emulated
-```
-
 ## Explicit cross-compilation
 
 Only use `build_platform` when you intentionally need cross-compilation and the recipe is already prepared for it.
@@ -57,6 +51,8 @@ build_platform:
   <target_platform>: <build_platform>
 test: native_and_emulated
 ```
+
+When building for `win-arm64` a package that requires `${{ compiler('go-cgo') }}`, you need explicit cross-compilation from `win-64` as there is no native `go-cgo` compiler for `win-arm64`.
 
 ## Recipe requirements for explicit cross-compilation
 
