@@ -148,6 +148,10 @@ For `noarch: python` recipes, use conda-forge's pinning conventions:
 
 If a newer Python minimum is required than conda-forge's default (3.10), override `python_min` in the `context` section of the recipe.
 
+### Patching Sources
+
+If the upstream source needs changes, use git-style patches (`git format-patch`) with a commit message explaining why the patch is needed. Put them in `recipe/patches/` and list them under `source.patches`.
+
 ### Common Errors
 
 - **`no candidates were found`**: Wrong dependency name. Use `pixi search <name>` (supports globs like `pixi search 'lib*'`).
