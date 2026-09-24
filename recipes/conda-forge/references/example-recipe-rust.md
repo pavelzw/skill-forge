@@ -65,3 +65,4 @@ Key points:
 - Strip symbols and enable LTO for smaller binaries
 - Install to `${{ PREFIX }}` on Unix, `%LIBRARY_PREFIX%` on Windows
 - If you are creating a CLI package that supports shell completions, you might want to suggest to the user that the recipe can include them as well. See [Shell Completions for CLI Packages](shell-completions.md).
+- For Python packages with a Rust extension built by maturin, see the abi3 section in [example-recipe-python.md](example-recipe-python.md) instead.
