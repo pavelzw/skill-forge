@@ -168,7 +168,7 @@ If the upstream source needs changes, use git-style patches (`git format-patch`)
 
 ### References
 
-- [Python recipe template](references/example-recipe-python.md)
+- [Python recipe template](references/example-recipe-python.md) (pure Python, compiled extensions, maturin + abi3)
 - [Go recipe template](references/example-recipe-go.md)
 - [Rust recipe template](references/example-recipe-rust.md)
 - [ARM builds and cross-compilation](references/arm-builds-and-cross-compilation.md)
