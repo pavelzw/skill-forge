@@ -153,6 +153,7 @@ build:
         then:
           - mkdir -p "${BUILD_PREFIX}/bin"
           - cp "${RECIPE_DIR}/cargo-auditable-wrapper.sh" "${BUILD_PREFIX}/bin/cargo-auditable-wrapper"
+          - chmod +x "${BUILD_PREFIX}/bin/cargo-auditable-wrapper"
           - export CARGO="cargo-auditable-wrapper"
         else:
           - copy "%RECIPE_DIR%\cargo-auditable-wrapper.bat" "%BUILD_PREFIX%\Library\bin\cargo-auditable-wrapper.bat" || exit 1
@@ -210,7 +211,7 @@ extra:
 Key points:
 - `is_abi3` and `is_python_min` come from conda-forge's build matrix — no need to define them.
 - `is_abi3` describes the Python *variant* being built against, not the package: regular CPython supports the stable ABI (`true`, build once against `python_min`), while free-threading CPython and PyPy don't (`false`, fall back to a normal per-Python build). The `if: is_abi3` selectors let one recipe cover both.
-- `python-abi3` in host (under `if: is_abi3`) makes the extension build and link against the stable ABI and pins the abi3 toolchain.
+- `python-abi3` in host (under `if: is_abi3`) supplies the limited-API headers/link target and pins the abi3 toolchain — it does not by itself switch the extension to the stable ABI. The upstream Rust project has to opt in, by enabling PyO3's `abi3-py3XY` feature (or `abi3` plus a minimum version) in its `Cargo.toml`; otherwise maturin still builds a version-specific extension.
 - `skip: is_abi3 and not is_python_min` keeps the abi3 build to a single Python version.
 - Test the built extension with `abi3audit` to verify it only uses stable ABI symbols.
 - If the package doesn't support abi3, drop every abi3-related piece and build it as a normal compiled extension.
