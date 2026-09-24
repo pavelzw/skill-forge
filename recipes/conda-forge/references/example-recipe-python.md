@@ -181,7 +181,8 @@ tests:
         - example_package
       pip_check: true
       python_version:
-        - ${{ python_min }}.*
+        - if: is_abi3
+          then: ${{ python_min }}.*
         - "*"
   - if: is_abi3
     then:
