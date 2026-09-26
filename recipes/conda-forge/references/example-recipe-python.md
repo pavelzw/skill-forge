@@ -11,7 +11,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/e/example-package/example_package-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/e/example-package/example_package-${{ version }}.tar.gz
   sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 
 build:
@@ -73,7 +73,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/e/example-package/example_package-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/e/example-package/example_package-${{ version }}.tar.gz
   sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 
 build:
@@ -135,7 +135,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/e/example-package/example_package-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/e/example-package/example_package-${{ version }}.tar.gz
   sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 
 build:
