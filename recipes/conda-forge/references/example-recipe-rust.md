@@ -88,7 +88,7 @@ build:
 ```
 
 - Append to `CARGO_BUILD_RUSTFLAGS` and don't set `RUSTFLAGS`. The rust activation puts the `$PREFIX` rpath flags in `CARGO_BUILD_RUSTFLAGS`, and cargo ignores `CARGO_BUILD_RUSTFLAGS` entirely once `RUSTFLAGS` is set. If you have to use `RUSTFLAGS`, seed it from the activation value: `export RUSTFLAGS="${RUSTFLAGS:-${CARGO_BUILD_RUSTFLAGS:-}} -C link-arg=-fuse-ld=bfd"`.
-- If rust-lld is still used, also add `-C link-self-contained=no`.
+- `-fuse-ld=bfd` is the only stable way to switch on this target. The documented opt-out `-C linker-features=-lld` is still unstable on `powerpc64le-unknown-linux-gnu`. `-C link-self-contained=no`, which some recipes add as well, doesn't help on its own: rustc keeps passing `-fuse-ld=lld` and only drops the path to its bundled lld.
 
 ### Cross-compiling: target CFLAGS leak into build-script compiles
 
