@@ -144,7 +144,7 @@ For `noarch: python` recipes, use conda-forge's pinning conventions:
 
 - host: `python ${{ python_min }}.*`
 - run: `python >=${{ python_min }}`
-- tests: `python_version: ${{ python_min }}.*`
+- tests: `python_version: [${{ python_min }}.*, "*"]` (minimum and latest Python)
 
 If a newer Python minimum is required than conda-forge's default (3.10), override `python_min` in the `context` section of the recipe.
 
