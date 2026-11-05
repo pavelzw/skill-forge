@@ -62,7 +62,7 @@ If the build fails, use the debug-build workflow to investigate and fix issues.
 
 ## Guidelines
 
-- **Build dependencies** go in `requirements.build`: compilers (`${{ compiler('c') }}`), build tools (cmake, ninja, make, pkg-config)
+- **Build dependencies** go in `requirements.build`: compilers (`${{ compiler('c') }}`), build tools (cmake, ninja, make, pkgconf — not the deprecated `pkg-config`)
 - **Host dependencies** go in `requirements.host`: libraries to link against (zlib, openssl, etc.)
 - **Run dependencies** go in `requirements.run`: runtime libraries, interpreters
 - Always use `${{ PREFIX }}` for install prefix, never hardcode paths

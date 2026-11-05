@@ -58,7 +58,7 @@ When building for `win-arm64` a package that requires `${{ compiler('go-cgo') }}
 
 ### Build vs Host dependencies
 
-**Build** (tools that run during build): compilers, cmake, make, ninja, pkg-config
+**Build** (tools that run during build): compilers, cmake, make, ninja, pkgconf (not the deprecated `pkg-config`)
 
 **Host** (files for the target platform): libraries, headers, python, numpy
 
