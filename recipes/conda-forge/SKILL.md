@@ -111,6 +111,8 @@ If the user explicitly references CI failures or pastes a link, use `cf-job-logs
 
 Run `pixi exec cf-job-logs --help` or `pixi exec cf-job-logs <command> --help` for the full list of options.
 
+For Rust feedstocks, check the [Frequent Fixes](references/example-recipe-rust.md#frequent-fixes) first — linux-ppc64le linker errors, cross-compile CFLAGS leaks and aws-lc-sys failures come up often.
+
 Apply the minimal fix needed. Only modify files in the `recipe/` directory.
 
 ### Test Locally
@@ -170,7 +172,7 @@ If the upstream source needs changes, use git-style patches (`git format-patch`)
 
 - [Python recipe template](references/example-recipe-python.md) (pure Python, compiled extensions, maturin + abi3)
 - [Go recipe template](references/example-recipe-go.md)
-- [Rust recipe template](references/example-recipe-rust.md)
+- [Rust recipe template](references/example-recipe-rust.md) (includes frequent fixes: linux-ppc64le linker, cross-compile CFLAGS, aws-lc-sys, jemalloc, OOM)
 - [ARM builds and cross-compilation](references/arm-builds-and-cross-compilation.md)
 - [Shell completions for CLI packages](references/shell-completions.md)
 - [Recipe migration (v0 → v1)](references/rattler-build-migration.md)
