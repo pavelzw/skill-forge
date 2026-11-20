@@ -33,7 +33,7 @@ Place the recipe in `recipes/<PACKAGE_NAME>/recipe.yaml`.
 
 Recipe rules:
 
-- Use source tarballs with SHA256 checksums (compute with `curl -Ls "<URL>" | sha256sum -`)
+- Use [official source archives](#choosing-source-archives) with SHA256 checksums.
 - Use SPDX license identifiers and include `license_file`
 - Tests are mandatory (at minimum: import test for Python, `--help` for CLI)
 - All dependencies must already exist on conda-forge
@@ -45,13 +45,13 @@ Test locally:
 rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml
 ```
 
-For `noarch: python` packages, provide a `python_min` variant override since staged-recipes doesn't define it:
+For `noarch: python` or `abi3` packages, use the effective conda-forge variant configuration. A platform config alone may not supply the Python pins and selectors used in CI. If `python_min` is missing for a local noarch build, set `PYTHON_MIN` to the applicable minimum and pass it explicitly:
 
 ```bash
-rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml --variant python_min=3.10
+rattler-build build -r recipes/<PACKAGE_NAME> -m .ci_support/<VARIANT>.yaml --variant "python_min=$PYTHON_MIN"
 ```
 
-Submit a draft PR, **always** use the PR template for the description. When the conda package ships static libraries (go, rust), don't check that box in the PR template. In your PR description, never `@`-mention anybody!
+Submit a draft PR, **always** use the PR template for the description. Base the static-library checklist on [the built package contents](#static-libraries-and-bundled-code). In your PR description, never `@`-mention anybody!
 Only submit a non-draft PR on staged recipes as undrafting re-triggers CI. On feedstocks, undrafting pings people which you should avoid.
 Watch CI until green. Don't mark as ready for review — let the human do that. To skip a platform, add `skip: win` in the `build` section.
 
@@ -138,6 +138,12 @@ Push to your fork and create a PR to `conda-forge/<FEEDSTOCK>:main`.
 
 If a tool isn't available locally, use `pixi exec <tool>` to run tools (rattler-build, conda-smithy, grayskull, feedrattler) without installing them. Use `mktemp -d` for temporary working directories.
 
+### Choosing Source Archives
+
+- For Python packages, inspect the published PyPI source distribution (sdist) first. Compare it with the upstream release archive if needed: make sure the chosen archive contains the required sources, headers, and build inputs, and check whether it adds bundled dependencies or runtime data that change package behavior.
+- If an archive omits a Git submodule, use the submodule's exact commit from the parent release, not its latest tag or branch. When needed, fetch a separate archive with `target_directory` set to the submodule path. If the sdist already contains the submodule code and only lacks its license, fetch just that license from the same commit.
+- Pin a SHA256 for every download, including standalone license files. Recheck the submodule revision and checksums when updating the package.
+
 ### Python Version Pinning (noarch recipes)
 
 For `noarch: python` recipes, use conda-forge's pinning conventions:
@@ -146,11 +152,29 @@ For `noarch: python` recipes, use conda-forge's pinning conventions:
 - run: `python >=${{ python_min }}`
 - tests: `python_version: [${{ python_min }}.*, "*"]` (minimum and latest Python)
 
-If a newer Python minimum is required than conda-forge's default (3.10), override `python_min` in the `context` section of the recipe.
+If the package requires a newer minimum than the current conda-forge pin, override `python_min` in the `context` section of the recipe.
+
+### Python Stable ABI (`abi3`)
+
+An upstream `abi3` wheel doesn't make a conda package version-independent. First verify that the source build actually targets CPython's stable ABI. Then follow the [conda-forge `abi3` recipe pattern](https://conda-forge.org/docs/maintainer/example_recipes/abi3/): use conditional `python-abi3` in `host`, set `build.python.version_independent` from `is_abi3`, and skip `is_abi3 and not is_python_min`. Keep non-`abi3` variants interpreter-specific where upstream supports them.
+
+This still produces a separate binary for each OS and architecture. Test the same built package on the minimum and a newer supported CPython, and use `abi3audit` to check the extension's symbols. See the [Python example](references/example-recipe-python.md#abi3-extensions-built-with-maturin) for how to express the tests in a recipe.
 
 ### Patching Sources
 
 If the upstream source needs changes, use git-style patches (`git format-patch`) with a commit message explaining why the patch is needed. Put them in `recipe/patches/` and list them under `source.patches`.
+
+Keep patches focused on the packaging requirement. Leave unrelated refactors, formatting, and cleanup alone, even if an import or helper becomes unused. Verify that the patch applies to the exact source archive used by the recipe.
+
+### Validating Platform-Specific Builds
+
+Rendering a recipe checks the variant configuration, not compilation or linking. Test affected paths on the target platform with the CI toolchain and host dependencies when feasible. If a native build isn't available, use a supported cross-build or run the affected preprocessor, parser, or generator against the actual target headers. Say which parts, such as linking or runtime tests, remain unverified.
+
+### Static Libraries and Bundled Code
+
+Inspect the built package's file list before answering the static-library checklist. Code compiled into a shared extension or executable is not itself a shipped static archive. Windows import libraries are also distinct from static libraries. If static archives must be shipped, follow [CFEP-18](https://github.com/conda-forge/cfep/blob/main/cfep-18.md), which generally calls for a separate `-static` output.
+
+Check vendoring separately: prefer packaged runtime dependencies where practical, and include the required licenses for any bundled or statically linked code.
 
 ### Common Errors
 
