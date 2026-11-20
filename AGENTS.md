@@ -51,4 +51,4 @@ If you want to build a specific skill, you can run
 pixi run rattler-build build -r recipes/<skill>
 ```
 
-Please always run `pixi run pre-commit-run` to check for linting errors.
+Please always run `pixi run lint` to check for linting errors.
