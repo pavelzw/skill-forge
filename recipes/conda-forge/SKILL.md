@@ -59,7 +59,7 @@ For submitting multiple related packages, place each in a separate directory und
 
 ## Existing Feedstock: Updating
 
-Work on `recipe/recipe.yaml`. If you only find a `meta.yaml`, you must convert it to `recipe.yaml` first — see [rattler-build-migration.md](references/rattler-build-migration.md).
+Work on `recipe/recipe.yaml`. If you only find a `meta.yaml`, you must convert it to `recipe.yaml` first, starting with a pure `git mv` rename commit so `git blame` history is preserved — see [rattler-build-migration.md](references/rattler-build-migration.md).
 
 ### Critical: Always Use a Personal Fork
 
